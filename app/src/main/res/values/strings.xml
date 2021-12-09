@@ -1,3 +1,26 @@
 <resources>
+
     <string name="app_name">Music Master</string>
+    <string name="contentDescription">image</string>
+
+    <string name="mix">Hazme un mix</string>
+    <string name="rock">ROCK</string>
+    <string name="pop">POP</string>
+    <string name="hiphop">HIP HOP</string>
+    <string name="before2000">ANTES DE LOS 2000</string>
+    <string name="after2000">DESPUÉS DE LOS 2000</string>
+    <string name="populares">POPULARES</string>
+    <string name="rap">RAP</string>
+    <string name="reggaeton">REGGAETON</string>
+
+    <string name="mixArtists">Canciones de miles de artistas recopilados en esta aplicación</string>
+    <string name="rockArtists">Queen, Deep Purple…</string>
+    <string name="popArtists">Queen, Deep Purple…</string>
+    <string name="hiphopArtists">Queen, Deep Purple…</string>
+    <string name="beforeArtists">Queen, Deep Purple…</string>
+    <string name="afterArtists">Queen, Deep Purple…</string>
+    <string name="popularesArtists">Queen, Deep Purple…</string>
+    <string name="rapArtists">Queen, Deep Purple…</string>
+    <string name="reggaetonArtists">Queen, Deep Purple…</string>
+
 </resources>
