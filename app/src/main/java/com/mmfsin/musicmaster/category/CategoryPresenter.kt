@@ -6,19 +6,19 @@ class CategoryPresenter(private val categoryView: CategoryView?): CategoryIntera
 
     private val categoryInteractor = CategoryInteractor(this)
 
-    fun setRecyclerViewsData() {
-        categoryInteractor.getRecyclerViewsData()
+    fun setEnglishRVData() {
+        categoryInteractor.getEnglishRVData()
     }
 
-    fun navigateToSelector(){
+    fun setSpanishRVData() {
+        categoryInteractor.getSpanishRVData()
+    }
+
+    fun navigateToSelector() {
 
     }
 
-    override fun onEnglishDataSuccess(data : List<CategoryDTO>) {
-        categoryView?.completeEnglishRV(data)
-    }
-
-    override fun onSpanishDataSuccess(data: List<CategoryDTO>) {
-        categoryView?.completeSpanishRV(data)
+    override fun onSuccess(data: List<CategoryDTO>) {
+        categoryView?.initRecyclerView(data)
     }
 }

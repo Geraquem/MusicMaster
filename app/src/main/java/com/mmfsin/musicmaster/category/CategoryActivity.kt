@@ -2,51 +2,29 @@ package com.mmfsin.musicmaster.category
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
-import com.mmfsin.musicmaster.category.adapter.RViewAdapter
-import com.mmfsin.musicmaster.category.model.CategoryDTO
-import com.mmfsin.musicmaster.databinding.ActivityCategoryBinding
+import com.mmfsin.musicmaster.category.adapter.ViewPagerAdapter
+import kotlinx.android.synthetic.main.activity_category.*
 
-class CategoryActivity : AppCompatActivity(), CategoryView {
+class CategoryActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityCategoryBinding
-
-    private val presenter = CategoryPresenter(this)
-
-    private lateinit var adapter: RViewAdapter
+    private val pagerAdapter by lazy { ViewPagerAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCategoryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_category)
 
-        binding.englishHeader.language.text = getString(R.string.english)
-        binding.spanishHeader.language.text = getString(R.string.spanish)
-
-        presenter.setRecyclerViewsData()
-    }
-
-    private fun initRecyclerView(recyclerView: RecyclerView, data: List<CategoryDTO>) {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = RViewAdapter(this, presenter, data)
-        recyclerView.adapter = adapter
-    }
-
-    override fun completeEnglishRV(data: List<CategoryDTO>) {
-        initRecyclerView(binding.englishRecycler, data)
-    }
-
-    override fun completeSpanishRV(data: List<CategoryDTO>) {
-        initRecyclerView(binding.spanishRecycler, data)
-    }
-
-    override fun showFragmentSelector() {
-
-    }
-
-    override fun navigateToDashboard() {
-
+        viewPager.adapter = pagerAdapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.setText(R.string.english)
+                }
+                1 -> {
+                    tab.setText(R.string.spanish)
+                }
+            }
+        }.attach()
     }
 }

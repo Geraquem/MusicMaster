@@ -8,14 +8,14 @@
     <string name="spanish">EN ESPAÑOL</string>
 
     <string name="mix">Hazme un mix</string>
-    <string name="rock">ROCK</string>
-    <string name="pop">POP</string>
-    <string name="hiphop">HIP HOP</string>
-    <string name="before2000">ANTES DE LOS 2000</string>
-    <string name="after2000">DESPUÉS DE LOS 2000</string>
-    <string name="popular">POPULARES</string>
-    <string name="rap">RAP</string>
-    <string name="reggaeton">REGGAETON</string>
+    <string name="rock"><b>ROCK</b></string>
+    <string name="pop"><b>POP</b></string>
+    <string name="hiphop"><b>HIP HOP</b></string>
+    <string name="before2000"><b>ANTES DE LOS 2000</b></string>
+    <string name="after2000"><b>DESPUÉS DE LOS 2000</b></string>
+    <string name="popular"><b>POPULARES</b></string>
+    <string name="rap"><b>RAP</b></string>
+    <string name="reggaeton"><b>REGGAETON</b></string>
 
     <string name="mixArtists">Canciones de miles de artistas recopilados en esta aplicación</string>
     <string name="rockArtists">Queen, Deep Purple…</string>

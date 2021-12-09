@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".category.CategoryActivity">
 
-    <LinearLayout
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="?android:attr/windowBackground">
 
         <TextView
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/text"
             android:text="@string/app_name"
-            android:textSize="40sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/rock"
             android:textAllCaps="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"/>
+            android:textColor="@color/black"
+            android:textSize="35sp" />
 
-        <include
-            android:id="@+id/englishHeader"
-            layout="@layout/include_recycler_header" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginHorizontal="15dp"
-            android:id="@+id/englishRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBar" />
 
-        <include
-            android:id="@+id/spanishHeader"
-            layout="@layout/include_recycler_header" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayout" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginHorizontal="15dp"
-            android:id="@+id/spanishRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

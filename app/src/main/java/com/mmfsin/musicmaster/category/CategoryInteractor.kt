@@ -6,13 +6,15 @@ import com.mmfsin.musicmaster.category.model.CategoryDTO
 
 class CategoryInteractor(val listener: OnDataRetrieved) {
 
-    fun getRecyclerViewsData() {
-        listener.onEnglishDataSuccess(getEnglishData())
-        listener.onSpanishDataSuccess(getSpanishData())
+    fun getEnglishRVData() {
+        listener.onSuccess(getEnglishData())
+    }
+
+    fun getSpanishRVData() {
+        listener.onSuccess(getSpanishData())
     }
 
     interface OnDataRetrieved {
-        fun onEnglishDataSuccess(data: List<CategoryDTO>)
-        fun onSpanishDataSuccess(data: List<CategoryDTO>)
+        fun onSuccess(data: List<CategoryDTO>)
     }
 }
