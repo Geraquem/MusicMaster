@@ -1,17 +1,21 @@
 package com.mmfsin.musicmaster.category.adapter
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.CategoryPresenter
 import com.mmfsin.musicmaster.category.model.CategoryDTO
 import com.mmfsin.musicmaster.databinding.RowCategoryBinding
 
-class RViewAdapter(val context: Context, val presenter: CategoryPresenter, val data: List<CategoryDTO>) :
+class RViewAdapter(
+    private val context: Context,
+    private val presenter: CategoryPresenter,
+    private val data: List<CategoryDTO>
+) :
     RecyclerView.Adapter<RViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -19,6 +23,7 @@ class RViewAdapter(val context: Context, val presenter: CategoryPresenter, val d
         fun bind(context: Context, category: CategoryDTO) {
             binding.image.setBackgroundResource(category.image)
             binding.name.text = context.getString(category.name)
+            binding.name.typeface = ResourcesCompat.getFont(context, category.fontFamily)
             binding.artists.text = context.getString(category.artists)
         }
     }

@@ -1,7 +1,11 @@
 <resources>
 
     <string name="app_name">Music Master</string>
-    <string name="contentDescription">image</string>
+    <string name="contentDescription">contentDescription</string>
+
+    <string name="songsIn">CANCIONES</string>
+    <string name="english">EN INGLÉS</string>
+    <string name="spanish">EN ESPAÑOL</string>
 
     <string name="mix">Hazme un mix</string>
     <string name="rock">ROCK</string>
@@ -9,7 +13,7 @@
     <string name="hiphop">HIP HOP</string>
     <string name="before2000">ANTES DE LOS 2000</string>
     <string name="after2000">DESPUÉS DE LOS 2000</string>
-    <string name="populares">POPULARES</string>
+    <string name="popular">POPULARES</string>
     <string name="rap">RAP</string>
     <string name="reggaeton">REGGAETON</string>
 
@@ -20,7 +24,7 @@
     <string name="beforeArtists">Queen, Deep Purple…</string>
     <string name="afterArtists">Queen, Deep Purple…</string>
     <string name="popularesArtists">Queen, Deep Purple…</string>
-    <string name="rapArtists">Queen, Deep Purple…</string>
+    <string name="rapArtists">Temas de rap en español con artistas como Kase.O, Nach, Mala Rodriguez, SFDK, Sharif, Hard GZ, Ayax y Prok, Foyone, Rapsusklei, Duo Kie, Kaze…</string>
     <string name="reggaetonArtists">Queen, Deep Purple…</string>
 
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.RViewAdapter
 import com.mmfsin.musicmaster.category.model.CategoryDTO
 import com.mmfsin.musicmaster.databinding.ActivityCategoryBinding
@@ -20,6 +21,9 @@ class CategoryActivity : AppCompatActivity(), CategoryView {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.englishHeader.language.text = getString(R.string.english)
+        binding.spanishHeader.language.text = getString(R.string.spanish)
 
         presenter.setRecyclerViewsData()
     }

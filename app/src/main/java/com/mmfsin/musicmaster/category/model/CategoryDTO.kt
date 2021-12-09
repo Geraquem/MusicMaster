@@ -1,9 +1,9 @@
 package com.mmfsin.musicmaster.category.model
 
-import android.widget.ImageView
-
 data class CategoryDTO(
+    val id: String,
     val image: Int,
+    val fontFamily: Int,
     val name: Int,
     val artists: Int,
 )
