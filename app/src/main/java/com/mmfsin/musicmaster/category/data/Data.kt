@@ -11,10 +11,8 @@ object Data {
         englishData.add(CategoryDTO("rock", R.drawable.ic_rock, R.font.rock, R.string.rock, R.string.rockArtists))
         englishData.add(CategoryDTO("pop", R.drawable.ic_pop, R.font.pop, R.string.pop, R.string.popArtists))
         englishData.add(CategoryDTO("hiphop", R.drawable.ic_hiphop, R.font.hiphop, R.string.hiphop, R.string.hiphopArtists))
-        englishData.add(CategoryDTO("hiphop", R.drawable.ic_hiphop, R.font.hiphop, R.string.hiphop, R.string.hiphopArtists))
-        englishData.add(CategoryDTO("hiphop", R.drawable.ic_hiphop, R.font.hiphop, R.string.hiphop, R.string.hiphopArtists))
-        englishData.add(CategoryDTO("hiphop", R.drawable.ic_hiphop, R.font.hiphop, R.string.hiphop, R.string.hiphopArtists))
-        englishData.add(CategoryDTO("hiphop", R.drawable.ic_hiphop, R.font.hiphop, R.string.hiphop, R.string.hiphopArtists))
+        englishData.add(CategoryDTO("antes2000", R.drawable.ic_antes, R.font.antes, R.string.before2000, R.string.beforeArtists))
+        englishData.add(CategoryDTO("despues2000", R.drawable.ic_despues, R.font.despues, R.string.after2000, R.string.afterArtists))
         return englishData
     }
 
