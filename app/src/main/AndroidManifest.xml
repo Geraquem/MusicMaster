@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicMaster" >
         <activity
-            android:name=".dashboard.DashboardActivity"
+            android:name=".title.TitleGuesserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".year.YearGuesserActivity"
             android:exported="false" />
         <activity
             android:name=".category.CategoryActivity"

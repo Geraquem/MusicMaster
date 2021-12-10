@@ -1,12 +1,14 @@
 package com.mmfsin.musicmaster.category
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.ViewPagerAdapter
 import com.mmfsin.musicmaster.fragmentselector.FragmentSelector
+import com.mmfsin.musicmaster.title.TitleGuesserActivity
+import com.mmfsin.musicmaster.year.YearGuesserActivity
 import kotlinx.android.synthetic.main.activity_category.*
 
 class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment,
@@ -42,7 +44,18 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
         supportFragmentManager.popBackStack()
     }
 
+    private fun generateIntent(isYear: Boolean, id: String): Intent {
+        val intent = if (isYear) {
+            Intent(this, YearGuesserActivity::class.java)
+        } else {
+            Intent(this, TitleGuesserActivity::class.java)
+        }
+        return intent.apply {
+            putExtra("id", id)
+        }
+    }
+
     override fun openActivityDashboard(isYear: Boolean, id: String) {
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
+        startActivity(generateIntent(isYear, id))
     }
 }

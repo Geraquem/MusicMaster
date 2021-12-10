@@ -43,15 +43,17 @@ class CategoryFragment(private val listener : ICategoryFragment, private val lan
         listener.openFragmentSelector(id)
     }
 
-    override fun navigateToDashboard() {
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
     }
 
-    interface ICategoryFragment{
+    interface ICategoryFragment {
         fun openFragmentSelector(id: String)
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

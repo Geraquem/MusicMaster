@@ -31,4 +31,8 @@
     <string name="year">En qué año salió la canción</string>
     <string name="title">El título de la canción</string>
 
+    <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
+    <string name="check">COMPROBAR</string>
+    <string name="songIsFrom">LA CANCIÓN ES DEL</string>
+
 </resources>

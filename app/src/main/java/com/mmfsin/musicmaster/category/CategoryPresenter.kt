@@ -2,7 +2,7 @@ package com.mmfsin.musicmaster.category
 
 import com.mmfsin.musicmaster.category.model.CategoryDTO
 
-class CategoryPresenter(private val categoryView: CategoryView?): CategoryInteractor.OnDataRetrieved{
+class CategoryPresenter(private var categoryView: CategoryView?): CategoryInteractor.OnDataRetrieved{
 
     private val categoryInteractor = CategoryInteractor(this)
 
@@ -16,6 +16,11 @@ class CategoryPresenter(private val categoryView: CategoryView?): CategoryIntera
 
     fun navigateToFragmentSelector(id: String) {
         categoryView?.showFragmentSelector(id)
+    }
+
+
+    fun onDestroy(){
+        categoryView = null
     }
 
     override fun onSuccess(data: List<CategoryDTO>) {
