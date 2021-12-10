@@ -18,7 +18,7 @@ object Data {
 
     fun getSpanishData(): List<CategoryDTO> {
         val englishData = mutableListOf<CategoryDTO>()
-        englishData.add(CategoryDTO("popular", R.drawable.ic_popular, R.font.popular, R.string.popular, R.string.popularesArtists))
+        englishData.add(CategoryDTO("populares", R.drawable.ic_popular, R.font.popular, R.string.populares, R.string.popularesArtists))
         englishData.add(CategoryDTO("rap", R.drawable.ic_rap, R.font.rap, R.string.rap, R.string.rapArtists))
         englishData.add(CategoryDTO("reggaeton", R.drawable.ic_reggaeton, R.font.reggaeton, R.string.reggaeton, R.string.reggaetonArtists))
         return englishData

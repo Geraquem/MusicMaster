@@ -12,7 +12,7 @@ import com.mmfsin.musicmaster.category.adapter.RViewAdapter
 import com.mmfsin.musicmaster.category.model.CategoryDTO
 import kotlinx.android.synthetic.main.fragment_rv_category.*
 
-class CategoryFragment(private val language: String) : Fragment(), CategoryView {
+class CategoryFragment(private val listener : ICategoryFragment, private val language: String) : Fragment(), CategoryView {
 
     private val presenter = CategoryPresenter(this)
     lateinit var mContext: Context
@@ -39,8 +39,8 @@ class CategoryFragment(private val language: String) : Fragment(), CategoryView 
         recyclerView.adapter = adapter
     }
 
-    override fun showFragmentSelector() {
-
+    override fun showFragmentSelector(id: String) {
+        listener.openFragmentSelector(id)
     }
 
     override fun navigateToDashboard() {
@@ -49,5 +49,9 @@ class CategoryFragment(private val language: String) : Fragment(), CategoryView 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
+    }
+
+    interface ICategoryFragment{
+        fun openFragmentSelector(id: String)
     }
 }
