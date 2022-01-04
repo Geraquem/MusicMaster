@@ -49,10 +49,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorFullWidth="true"
-        app:tabIndicatorColor="#52000000"
+        app:tabIndicatorColor="#009C9A9A"
         app:tabIndicatorHeight="3dp"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorGravity="top"
+        app:tabIndicatorGravity="stretch"
         app:tabSelectedTextColor="@color/black"
         app:tabTextAppearance="@style/tab_text"
         android:layout_below="@+id/appBar" />
@@ -67,6 +67,6 @@
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appBar"/>
+        android:layout_below="@id/appBar" />
 
 </RelativeLayout>

@@ -1,7 +1,7 @@
 package com.mmfsin.musicmaster.category.model
 
 data class CategoryDTO(
-    val id: String,
+    val category: String,
     val image: Int,
     val fontFamily: Int,
     val name: Int,

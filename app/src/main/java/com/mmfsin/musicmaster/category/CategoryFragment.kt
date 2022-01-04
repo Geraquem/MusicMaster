@@ -40,8 +40,8 @@ class CategoryFragment(private val listener : ICategoryFragment, private val lan
         recyclerView.adapter = adapter
     }
 
-    override fun showFragmentSelector(id: String) {
-        listener.openFragmentSelector(id)
+    override fun showFragmentSelector(category: String) {
+        listener.openFragmentSelector(category)
     }
 
     override fun onAttach(context: Context) {

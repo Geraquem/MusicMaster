@@ -4,5 +4,5 @@ import com.mmfsin.musicmaster.category.model.CategoryDTO
 
 interface CategoryView {
     fun initRecyclerView(data : List<CategoryDTO>)
-    fun showFragmentSelector(id: String)
+    fun showFragmentSelector(category: String)
 }

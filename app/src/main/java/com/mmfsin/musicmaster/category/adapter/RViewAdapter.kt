@@ -38,7 +38,7 @@ class RViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(context, data[position])
         holder.binding.row.setOnClickListener {
-            presenter.navigateToFragmentSelector(data[position].id)
+            presenter.navigateToFragmentSelector(data[position].category)
         }
     }
 

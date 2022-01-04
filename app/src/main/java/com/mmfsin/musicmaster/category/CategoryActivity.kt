@@ -33,9 +33,9 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
         }.attach()
     }
 
-    override fun openFragmentSelector(id: String) {
+    override fun openFragmentSelector(category: String) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, FragmentSelector(this, id))
+            .replace(R.id.fragmentContainer, FragmentSelector(this, category))
             .addToBackStack(null)
             .commit()
     }
@@ -44,18 +44,16 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
         supportFragmentManager.popBackStack()
     }
 
-    private fun generateIntent(isYear: Boolean, id: String): Intent {
-        val intent = if (isYear) {
-            Intent(this, YearGuesserActivity::class.java)
-        } else {
-            Intent(this, TitleGuesserActivity::class.java)
-        }
-        return intent.apply {
-            putExtra("id", id)
-        }
-    }
-
     override fun openActivityDashboard(isYear: Boolean, id: String) {
         startActivity(generateIntent(isYear, id))
+    }
+
+    private fun generateIntent(isYear: Boolean, category: String): Intent {
+        val intent = if (isYear) {
+            Intent(this, YearGuesserActivity(category)::class.java)
+        } else {
+            Intent(this, TitleGuesserActivity(category)::class.java)
+        }
+        return intent
     }
 }

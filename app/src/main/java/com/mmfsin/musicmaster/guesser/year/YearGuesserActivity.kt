@@ -7,7 +7,7 @@ import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.R
 import kotlinx.android.synthetic.main.activity_year_guesser.*
 
-class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
+class YearGuesserActivity(category: String) : AppCompatActivity(), YearGuesserView {
 
     private val presenter by lazy { YearGuesserPresenter(this) }
 

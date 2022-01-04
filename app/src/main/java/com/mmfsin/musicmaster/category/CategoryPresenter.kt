@@ -14,8 +14,8 @@ class CategoryPresenter(private var categoryView: CategoryView?): CategoryIntera
         categoryInteractor.getSpanishRVData()
     }
 
-    fun navigateToFragmentSelector(id: String) {
-        categoryView?.showFragmentSelector(id)
+    fun navigateToFragmentSelector(category: String) {
+        categoryView?.showFragmentSelector(category)
     }
 
     override fun onSuccess(data: List<CategoryDTO>) {

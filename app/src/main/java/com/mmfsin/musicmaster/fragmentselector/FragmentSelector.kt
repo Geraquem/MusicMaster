@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.mmfsin.musicmaster.R
 import kotlinx.android.synthetic.main.fragment_selector.*
 
-class FragmentSelector(private val listener: IFragmentSelector, val id: String) : Fragment() {
+class FragmentSelector(private val listener: IFragmentSelector, val category: String) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,12 +32,12 @@ class FragmentSelector(private val listener: IFragmentSelector, val id: String) 
     }
 
     private fun openActivityDashboard(isYear: Boolean){
-        listener.openActivityDashboard(isYear, id)
+        listener.openActivityDashboard(isYear, category)
         listener.closeFragmentSelector()
     }
 
     interface IFragmentSelector {
-        fun openActivityDashboard(isYear: Boolean, id: String)
+        fun openActivityDashboard(isYear: Boolean, category: String)
         fun closeFragmentSelector()
     }
 }
