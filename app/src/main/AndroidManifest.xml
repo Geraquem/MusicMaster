@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicMaster" >
         <activity
-            android:name=".title.TitleGuesserActivity"
+            android:name="com.mmfsin.musicmaster.guesser.title.TitleGuesserActivity"
             android:exported="false" />
         <activity
-            android:name=".year.YearGuesserActivity"
+            android:name="com.mmfsin.musicmaster.guesser.year.YearGuesserActivity"
             android:exported="false" />
         <activity
             android:name=".category.CategoryActivity"

@@ -7,8 +7,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.ViewPagerAdapter
 import com.mmfsin.musicmaster.fragmentselector.FragmentSelector
-import com.mmfsin.musicmaster.title.TitleGuesserActivity
-import com.mmfsin.musicmaster.year.YearGuesserActivity
+import com.mmfsin.musicmaster.guesser.title.TitleGuesserActivity
+import com.mmfsin.musicmaster.guesser.year.YearGuesserActivity
 import kotlinx.android.synthetic.main.activity_category.*
 
 class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment,

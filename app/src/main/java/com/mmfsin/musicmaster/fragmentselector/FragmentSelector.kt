@@ -37,7 +37,7 @@ class FragmentSelector(private val listener: IFragmentSelector, val id: String) 
     }
 
     interface IFragmentSelector {
-        fun closeFragmentSelector()
         fun openActivityDashboard(isYear: Boolean, id: String)
+        fun closeFragmentSelector()
     }
 }

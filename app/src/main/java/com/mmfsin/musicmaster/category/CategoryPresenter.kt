@@ -18,11 +18,6 @@ class CategoryPresenter(private var categoryView: CategoryView?): CategoryIntera
         categoryView?.showFragmentSelector(id)
     }
 
-
-    fun onDestroy(){
-        categoryView = null
-    }
-
     override fun onSuccess(data: List<CategoryDTO>) {
         categoryView?.initRecyclerView(data)
     }

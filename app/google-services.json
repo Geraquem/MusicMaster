@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "83418692921",
+    "firebase_url": "https://musicmaster-4e5b1-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "musicmaster-4e5b1",
+    "storage_bucket": "musicmaster-4e5b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83418692921:android:be8bd5b4f2e117ffe1fce8",
+        "android_client_info": {
+          "package_name": "com.mmfsin.musicmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83418692921-rsstpa94s6lde712ptba1bohnunrja49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmfsin.musicmaster",
+            "certificate_hash": "f5bd6c9971b43c591fc3ac406ea0e9de752577a3"
+          }
+        },
+        {
+          "client_id": "83418692921-dfvfojndg97h78hhghrnqlgm2qq0sdn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgVzHnRVTafMaSmq-EQKGlsi8hceCpnvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83418692921-dfvfojndg97h78hhghrnqlgm2qq0sdn2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.fragment_rv_category.*
 
 class CategoryFragment(private val listener : ICategoryFragment, private val language: String) : Fragment(), CategoryView {
 
-    private val presenter = CategoryPresenter(this)
+    private val presenter by lazy { CategoryPresenter(this) }
+
     lateinit var mContext: Context
 
     private lateinit var adapter: RViewAdapter
@@ -50,10 +51,5 @@ class CategoryFragment(private val listener : ICategoryFragment, private val lan
 
     interface ICategoryFragment {
         fun openFragmentSelector(id: String)
-    }
-
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
     }
 }
