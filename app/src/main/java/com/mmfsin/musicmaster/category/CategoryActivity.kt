@@ -50,10 +50,12 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
 
     private fun generateIntent(isYear: Boolean, category: String): Intent {
         val intent = if (isYear) {
-            Intent(this, YearGuesserActivity(category)::class.java)
+            Intent(this, YearGuesserActivity()::class.java)
         } else {
-            Intent(this, TitleGuesserActivity(category)::class.java)
+            Intent(this, TitleGuesserActivity()::class.java)
         }
-        return intent
+        return intent.apply {
+            putExtra("category", category)
+        }
     }
 }

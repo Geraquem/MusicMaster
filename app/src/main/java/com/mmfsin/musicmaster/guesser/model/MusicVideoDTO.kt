@@ -1,6 +1,6 @@
 package com.mmfsin.musicmaster.guesser.model
 
-data class VideoDTO(
+data class MusicVideoDTO(
     val titulo : String = "",
     val artista : String = "",
     val year : String = "",

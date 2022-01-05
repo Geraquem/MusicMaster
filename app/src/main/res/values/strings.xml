@@ -2,6 +2,7 @@
 
     <string name="app_name">Music Master</string>
     <string name="contentDescription">contentDescription</string>
+    <string name="somethingWentWrong">Vaya, algo ha salido mal</string>
 
     <string name="songsIn">CANCIONES</string>
     <string name="english">EN INGLÉS</string>
@@ -34,5 +35,51 @@
     <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
     <string name="check">COMPROBAR</string>
     <string name="songIsFrom">LA CANCIÓN ES DEL</string>
+
+    <!--  GOOD PHRASES  -->
+    <string-array name="goodPhrases">
+        <item>MUY BIEN</item>
+        <item>PERFECTÍSIMO</item>
+        <item>MARAVILLOSO</item>
+        <item>FANTABULOSO</item>
+        <item>OLÉ</item>
+        <item>PERFECTÍSIMO</item>
+        <item>GENIAL GENIAL</item>
+        <item>ESTUPENDITO</item>
+        <item>EN EL CLAVO</item>
+        <item>JUSTO</item>
+        <item>LO TIENES</item>
+    </string-array>
+
+    <!--  ALMOST PHRASES  -->
+    <string-array name="almostPhrases">
+        <item>UUYYYYYYY</item>
+        <item>CASI, PERO NO</item>
+        <item>CASI CASI</item>
+        <item>HAS ESTADO CERQUITA</item>
+        <item>AL PALO</item>
+        <item>NO HA ESTADO MAL</item>
+        <item>BUEN INTENTO</item>
+        <item>A LA PRÓXIMA</item>
+        <item>NO ESTÁ MAL, PERO TAMPOCO BIEN</item>
+        <item>ROZANDO</item>
+    </string-array>
+
+    <!--  BAD PHRASES  -->
+    <string-array name="badPhrases">
+        <item>QUE DESASTRE…</item>
+        <item>FATAL FATAL FATAL</item>
+        <item>TODOS SABEMOS QUE HAS HECHO LO QUE HAS PODIDO</item>
+        <item>FRACASO ABSOLUTO</item>
+        <item>HORRIBLE</item>
+        <item>NO TIENES NI IDEA</item>
+        <item>MADRE MÍA…</item>
+        <item>AL MENOS LO HAS INTENTADO</item>
+        <item>PPFFFFF…</item>
+        <item>SI ESTO FUESE UN EXAMEN ESTARÍA SUSPENSO</item>
+        <item>FRACASO ABSOLUTO</item>
+        <item>ESTO NO ES LO TUYO EH</item>
+        <item>POR FAVOR CONCÉNTRESE</item>
+    </string-array>
 
 </resources>

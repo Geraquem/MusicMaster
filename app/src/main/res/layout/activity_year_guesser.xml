@@ -23,11 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textSize="18sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <ScrollView
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/appBar">
@@ -39,22 +38,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="ALL MY SINGLE LADIES"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
             <TextView
-                android:id="@+id/artist"
+                android:id="@+id/artistText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="BEYONCÉ"
                 android:textSize="20sp" />
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -99,6 +97,7 @@
                 app:viewType="rectangle" />
 
             <Button
+                android:id="@+id/comprobarButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -109,6 +108,7 @@
 
             <include
                 android:id="@+id/solution"
+                android:visibility="gone"
                 layout="@layout/include_solution_year" />
 
         </LinearLayout>
