@@ -27,8 +27,9 @@
         android:textSize="18sp" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/appBar">
 
         <LinearLayout
@@ -108,8 +109,8 @@
 
             <include
                 android:id="@+id/solution"
-                android:visibility="gone"
-                layout="@layout/include_solution_year" />
+                layout="@layout/include_solution_year"
+                android:visibility="gone" />
 
         </LinearLayout>
 
