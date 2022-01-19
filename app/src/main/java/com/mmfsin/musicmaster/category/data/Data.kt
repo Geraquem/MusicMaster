@@ -7,7 +7,7 @@ object Data {
 
     fun getEnglishData(): List<CategoryDTO> {
         val englishData = mutableListOf<CategoryDTO>()
-        englishData.add(CategoryDTO("mix", R.drawable.ic_category_rock, R.font.mix, R.string.mix, R.string.mixArtists))
+        englishData.add(CategoryDTO("mix", R.drawable.ic_category_mix, R.font.mix, R.string.mix, R.string.mixArtists))
         englishData.add(CategoryDTO("rock", R.drawable.ic_category_rock, R.font.rock, R.string.rock, R.string.rockArtists))
         englishData.add(CategoryDTO("pop", R.drawable.ic_category_pop, R.font.pop, R.string.pop, R.string.popArtists))
         englishData.add(CategoryDTO("hiphop", R.drawable.ic_category_hiphop, R.font.hiphop, R.string.hiphop, R.string.hiphopArtists))

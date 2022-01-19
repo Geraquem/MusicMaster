@@ -1,11 +1,23 @@
 package com.mmfsin.musicmaster.guesser.year
 
+import android.content.Context
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 import com.mmfsin.musicmaster.guesser.repository.FirebaseRepo
 
 class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRepo {
 
     private val repository by lazy { FirebaseRepo(this) }
+
+    fun showSweetAlert(context: Context) {
+        SweetAlertDialog(context, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+            .setCustomImage(R.drawable.ic_swipe_left)
+            .setContentText(context.getString(R.string.swipeLeft))
+            .setConfirmText(context.getString(R.string.ok))
+            .setConfirmClickListener { sDialog -> sDialog.dismissWithAnimation() }
+            .show()
+    }
 
     fun getMusicVideoList(category: String) {
         repository.getMusicVideoList(category)

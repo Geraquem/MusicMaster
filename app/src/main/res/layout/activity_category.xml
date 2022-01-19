@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorFullWidth="true"
-        app:tabIndicatorColor="#009C9A9A"
+        app:tabIndicatorColor="#81BDB7B7"
         app:tabIndicatorHeight="3dp"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorGravity="stretch"

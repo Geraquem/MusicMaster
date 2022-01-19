@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.guesser.adapter.SwipeListener
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
@@ -15,6 +16,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import kotlinx.android.synthetic.main.activity_year_guesser.*
 import kotlinx.android.synthetic.main.include_solution_year.view.*
+
 
 class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
 
@@ -33,7 +35,9 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_year_guesser)
 
-        //loading VISIBLE
+        presenter.showSweetAlert(this)
+
+        loading.visibility = View.VISIBLE
 
         pinView.addTextChangedListener(textWatcher)
 
@@ -59,7 +63,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
             override fun onSwipeLeft() {
                 position++
                 if (position < videoList.size) {
-                    //loading VISIBLE
+                    loading.visibility = View.VISIBLE
                     initialAttributes()
                     presenter.getMusicVideo(category, videoList[position])
                 }
@@ -101,7 +105,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
         correctYear = musicVideo.year
         solution.solutionYear.text = correctYear
 
-        //loading GONE
+        loading.visibility = View.GONE
     }
 
     override fun setSolutionMessage(solutionResult: Int) {
@@ -139,5 +143,10 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Toast.makeText(this, "SALIR", Toast.LENGTH_SHORT).show()
     }
 }
