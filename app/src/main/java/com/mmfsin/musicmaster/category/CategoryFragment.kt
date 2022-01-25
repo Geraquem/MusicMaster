@@ -50,6 +50,6 @@ class CategoryFragment(private val listener : ICategoryFragment, private val lan
     }
 
     interface ICategoryFragment {
-        fun openFragmentSelector(id: String)
+        fun openFragmentSelector(category: String)
     }
 }

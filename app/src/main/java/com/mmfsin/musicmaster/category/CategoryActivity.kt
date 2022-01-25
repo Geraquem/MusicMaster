@@ -44,8 +44,8 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
         supportFragmentManager.popBackStack()
     }
 
-    override fun openActivityDashboard(isYear: Boolean, id: String) {
-        startActivity(generateIntent(isYear, id))
+    override fun openActivityDashboard(isYear: Boolean, category: String) {
+        startActivity(generateIntent(isYear, category))
     }
 
     private fun generateIntent(isYear: Boolean, category: String): Intent {

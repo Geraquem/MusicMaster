@@ -6,6 +6,16 @@ import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 
 class FirebaseRepo(val listener: IRepo) {
 
+    fun getRPBAVideoList(category: String) {
+//        Firebase.database.reference.child(category).get()
+//            .addOnSuccessListener {
+//                listener.musicVideoList(it.childrenCount)
+//
+//            }.addOnFailureListener {
+//                listener.somethingWentWrong()
+//            }
+    }
+
     fun getMusicVideoList(category: String) {
         Firebase.database.reference.child(category).get()
             .addOnSuccessListener {

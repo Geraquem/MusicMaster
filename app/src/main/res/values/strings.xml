@@ -2,7 +2,8 @@
 
     <string name="app_name">Music Master</string>
     <string name="contentDescription">contentDescription</string>
-    <string name="somethingWentWrong">Vaya, algo ha salido mal</string>
+    <string name="oops">Vaya</string>
+    <string name="somethingWentWrong">Parece que algo ha salido mal</string>
 
     <string name="songsIn">CANCIONES</string>
     <string name="english">EN INGLÉS</string>
@@ -33,10 +34,14 @@
     <string name="title">El título de la canción</string>
     <string name="swipeLeft">Desliza hacia la izquierda para pasar de canción</string>
     <string name="ok">OK</string>
+    <string name="wannaExit">¿Seguro que quieres salir?</string>
+    <string name="yes">SI</string>
+    <string name="no">NO</string>
 
     <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
     <string name="check">COMPROBAR</string>
     <string name="songIsFrom">LA CANCIÓN ES DEL</string>
+    <string name="zero">0</string>
 
     <!--  GOOD PHRASES  -->
     <string-array name="goodPhrases">

@@ -4,7 +4,7 @@ import com.mmfsin.musicmaster.category.data.Data.getEnglishData
 import com.mmfsin.musicmaster.category.data.Data.getSpanishData
 import com.mmfsin.musicmaster.category.model.CategoryDTO
 
-class CategoryInteractor(val listener: OnDataRetrieved) {
+class CategoryInteractor(private val listener: OnDataRetrieved) {
 
     fun getEnglishRVData() {
         listener.onSuccess(getEnglishData())

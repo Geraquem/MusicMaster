@@ -22,6 +22,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/linearScore"
         android:layout_below="@+id/appBar">
 
         <LinearLayout
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
+                android:background="@color/white"
                 android:cursorVisible="false"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:inputType="number"
@@ -108,12 +110,65 @@
 
     </ScrollView>
 
+    <LinearLayout
+        android:id="@+id/linearScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/bg_puntuacion"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="4dp">
+
+        <TextView
+            android:id="@+id/goodScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:drawableEndCompat="@drawable/ic_bullseye_green" />
+
+        <TextView
+            android:id="@+id/almostScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:drawableEndCompat="@drawable/ic_bullseye_yellow" />
+
+        <TextView
+            android:id="@+id/badScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:drawableEndCompat="@drawable/ic_bullseye_red" />
+
+    </LinearLayout>
+
     <include
         android:id="@+id/loading"
-        android:visibility="gone"
         layout="@layout/include_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appBar" />
+        android:layout_below="@id/appBar"
+        android:visibility="gone" />
 
 </RelativeLayout>

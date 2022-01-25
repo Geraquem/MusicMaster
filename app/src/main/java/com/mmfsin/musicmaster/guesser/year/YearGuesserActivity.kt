@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
@@ -31,11 +30,15 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     private lateinit var correctYear: String
     private var position = 0
 
+    private var scoreGood = 0
+    private var scoreAlmost = 0
+    private var scoreBad = 0
+
+    private var showOnce = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_year_guesser)
-
-        presenter.showSweetAlert(this)
 
         loading.visibility = View.VISIBLE
 
@@ -46,7 +49,13 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
             goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
             almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
             badPhrases = resources.getStringArray(R.array.badPhrases).toList()
-            presenter.getMusicVideoList(category)
+
+            //RPBA = Rock Pop Before2000 After2000
+            if (presenter.isRPBA(category)) {
+                presenter.getRPBAVideoList(category)
+            } else {
+                presenter.getMusicVideoList(category)
+            }
         } else {
             somethingWentWrong()
         }
@@ -88,6 +97,10 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     override fun setMusicVideoList(list: List<String>) {
         videoList = list
         if (videoList.isNotEmpty()) {
+            if(showOnce){
+                showOnce = false
+                presenter.showSweetAlertSwipe(this)
+            }
             presenter.getMusicVideo(category, videoList[position])
         } else {
             somethingWentWrong()
@@ -113,14 +126,20 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
             0 -> {
                 solution.messageText.text = goodPhrases[(goodPhrases.indices).random()]
                 solution.messageText.setTextColor(resources.getColor(R.color.goodPhrase, null))
+                scoreGood++
+                goodScore.text = scoreGood.toString()
             }
             1 -> {
                 solution.messageText.text = almostPhrases[(almostPhrases.indices).random()]
                 solution.messageText.setTextColor(resources.getColor(R.color.almostPhrase, null))
+                scoreAlmost++
+                almostScore.text = scoreAlmost.toString()
             }
             2 -> {
                 solution.messageText.text = badPhrases[(badPhrases.indices).random()]
                 solution.messageText.setTextColor(resources.getColor(R.color.badPhrase, null))
+                scoreBad++
+                badScore.text = scoreBad.toString()
             }
         }
         solution.visibility = View.VISIBLE
@@ -135,7 +154,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     }
 
     override fun somethingWentWrong() {
-        Toast.makeText(this, getString(R.string.somethingWentWrong), Toast.LENGTH_SHORT).show()
+        presenter.showSweetAlertError(this)
     }
 
     private fun closeKeyboard() {
@@ -146,7 +165,11 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        Toast.makeText(this, "SALIR", Toast.LENGTH_SHORT).show()
+        SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+            .setTitleText(getString(R.string.wannaExit))
+            .setConfirmText(getString(R.string.yes))
+            .setConfirmClickListener { finish() }
+            .setCancelButton(getString(R.string.no)) { sDialog -> sDialog.dismissWithAnimation() }
+            .show()
     }
 }

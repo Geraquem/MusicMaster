@@ -10,7 +10,17 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
 
     private val repository by lazy { FirebaseRepo(this) }
 
-    fun showSweetAlert(context: Context) {
+    fun isRPBA(category: String): Boolean {
+        return when (category) {
+            "rock" -> true
+            "pop" -> true
+            "antes2000" -> true
+            "despues2000" -> true
+            else -> false
+        }
+    }
+
+    fun showSweetAlertSwipe(context: Context) {
         SweetAlertDialog(context, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
             .setCustomImage(R.drawable.ic_swipe_left)
             .setContentText(context.getString(R.string.swipeLeft))
@@ -19,6 +29,9 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
             .show()
     }
 
+    fun getRPBAVideoList(category: String) {
+        repository.getRPBAVideoList(category)
+    }
     fun getMusicVideoList(category: String) {
         repository.getMusicVideoList(category)
     }
@@ -42,7 +55,7 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
             } else {
                 view.setSolutionMessage(2)
             }
-        }else{
+        } else {
             view.somethingWentWrong()
         }
     }
@@ -54,6 +67,13 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
         }
         list.shuffle()
         view.setMusicVideoList(list)
+    }
+
+    fun showSweetAlertError(context: Context) {
+        SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+            .setTitleText(context.getString(R.string.oops))
+            .setContentText(context.getString(R.string.somethingWentWrong))
+            .show()
     }
 
     override fun musicVideo(musicVideo: MusicVideoDTO) {
