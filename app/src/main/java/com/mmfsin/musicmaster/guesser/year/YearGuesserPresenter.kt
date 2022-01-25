@@ -1,6 +1,7 @@
 package com.mmfsin.musicmaster.guesser.year
 
 import android.content.Context
+import android.text.BoringLayout
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
@@ -29,9 +30,6 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
             .show()
     }
 
-    fun getRPBAVideoList(category: String) {
-        repository.getRPBAVideoList(category)
-    }
     fun getMusicVideoList(category: String) {
         repository.getMusicVideoList(category)
     }
@@ -60,12 +58,7 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
         }
     }
 
-    override fun musicVideoList(size: Long) {
-        val list = mutableListOf<String>()
-        for (i in 1..size) {
-            list.add("video$i")
-        }
-        list.shuffle()
+    override fun musicVideoList(list: List<String>) {
         view.setMusicVideoList(list)
     }
 

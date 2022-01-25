@@ -15,6 +15,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import kotlinx.android.synthetic.main.activity_year_guesser.*
 import kotlinx.android.synthetic.main.include_solution_year.view.*
+import kotlin.properties.Delegates
 
 
 class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
@@ -36,6 +37,9 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
 
     private var showOnce = true
 
+    //RPBA = Rock Pop Before2000 After2000
+    private var isRPBA by Delegates.notNull<Boolean>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_year_guesser)
@@ -46,16 +50,11 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
 
         category = intent.getStringExtra("category").toString()
         if (category != "null") {
+            isRPBA = presenter.isRPBA(category)
             goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
             almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
             badPhrases = resources.getStringArray(R.array.badPhrases).toList()
-
-            //RPBA = Rock Pop Before2000 After2000
-            if (presenter.isRPBA(category)) {
-                presenter.getRPBAVideoList(category)
-            } else {
-                presenter.getMusicVideoList(category)
-            }
+            presenter.getMusicVideoList(category)
         } else {
             somethingWentWrong()
         }
@@ -74,7 +73,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
                 if (position < videoList.size) {
                     loading.visibility = View.VISIBLE
                     initialAttributes()
-                    presenter.getMusicVideo(category, videoList[position])
+                    setMusicVideo()
                 }
             }
 
@@ -97,13 +96,22 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     override fun setMusicVideoList(list: List<String>) {
         videoList = list
         if (videoList.isNotEmpty()) {
-            if(showOnce){
+            if (showOnce) {
                 showOnce = false
                 presenter.showSweetAlertSwipe(this)
             }
-            presenter.getMusicVideo(category, videoList[position])
+            setMusicVideo()
+
         } else {
             somethingWentWrong()
+        }
+    }
+
+    private fun setMusicVideo() {
+        if (isRPBA) {
+            presenter.getMusicVideo("mix", videoList[position])
+        } else {
+            presenter.getMusicVideo(category, videoList[position])
         }
     }
 

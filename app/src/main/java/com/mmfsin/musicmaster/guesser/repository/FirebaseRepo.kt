@@ -4,22 +4,17 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 
-class FirebaseRepo(val listener: IRepo) {
-
-    fun getRPBAVideoList(category: String) {
-//        Firebase.database.reference.child(category).get()
-//            .addOnSuccessListener {
-//                listener.musicVideoList(it.childrenCount)
-//
-//            }.addOnFailureListener {
-//                listener.somethingWentWrong()
-//            }
-    }
+class FirebaseRepo(private val listener: IRepo) {
 
     fun getMusicVideoList(category: String) {
         Firebase.database.reference.child(category).get()
             .addOnSuccessListener {
-                listener.musicVideoList(it.childrenCount)
+                val list = mutableListOf<String>()
+                for (video in it.children) {
+                    video.key?.let { element -> list.add(element) }
+                }
+                list.shuffle()
+                listener.musicVideoList(list)
 
             }.addOnFailureListener {
                 listener.somethingWentWrong()
@@ -37,8 +32,8 @@ class FirebaseRepo(val listener: IRepo) {
     }
 
     interface IRepo {
+        fun musicVideoList(list: List<String>)
         fun musicVideo(musicVideo: MusicVideoDTO)
-        fun musicVideoList(size: Long)
         fun somethingWentWrong()
     }
 }
