@@ -5,6 +5,16 @@
     <string name="oops">Vaya</string>
     <string name="somethingWentWrong">Parece que algo ha salido mal</string>
 
+    <string name="bbdd_mix">mix</string>
+    <string name="bbdd_rock">rock</string>
+    <string name="bbdd_pop">pop</string>
+    <string name="bbdd_hiphop">hiphop</string>
+    <string name="bbdd_antes2000">antes2000</string>
+    <string name="bbdd_despues2000">despues2000</string>
+    <string name="bbdd_populares">populares</string>
+    <string name="bbdd_rap">rap</string>
+    <string name="bbdd_reggaeton">reggaeton</string>
+
     <string name="songsIn">CANCIONES</string>
     <string name="english">EN INGLÉS</string>
     <string name="spanish">EN ESPAÑOL</string>

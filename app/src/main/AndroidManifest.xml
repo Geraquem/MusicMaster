@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicMaster">
         <activity
+            android:screenOrientation="portrait"
             android:name="com.mmfsin.musicmaster.guesser.title.TitleGuesserActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:screenOrientation="portrait"
             android:name="com.mmfsin.musicmaster.guesser.year.YearGuesserActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".category.CategoryActivity"
             android:exported="true">
             <intent-filter>

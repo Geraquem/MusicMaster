@@ -16,6 +16,7 @@
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/bg_tab_indicator.xml" value="0.28378378378378377" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_bullseye_focus_svgrepo_com.xml" value="0.33" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_bullseye_green.xml" value="0.287109375" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_bullseye_red.xml" value="0.287109375" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_bullseye_with_target_symbol_svgrepo_com.xml" value="0.287109375" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_bullseye_yellow.xml" value="0.287109375" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_category_pop.xml" value="0.287109375" />
@@ -24,6 +25,8 @@
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_pause.xml" value="0.2140625" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_puntuacion_a.xml" value="0.28378378378378377" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_puntuacion_g.xml" value="0.287109375" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_puntuacion_r.xml" value="0.287109375" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_rap.xml" value="0.28378378378378377" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_spain.xml" value="0.3828125" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/drawable/ic_swipe_left.xml" value="0.287109375" />
@@ -42,6 +45,7 @@
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/include_black_line.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/include_loading.xml" value="0.275" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/include_recycler_header.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/include_score_board.xml" value="0.275" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/include_solution_year.xml" value="0.25" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/include_toolbar_dashboard.xml" value="0.275" />
         <entry key="..\:/Users/Gershon/Desktop/projects/MusicMaster/app/src/main/res/layout/row_category.xml" value="0.33" />

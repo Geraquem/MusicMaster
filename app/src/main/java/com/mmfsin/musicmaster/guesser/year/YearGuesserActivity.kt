@@ -10,17 +10,20 @@ import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.guesser.adapter.SwipeListener
+import com.mmfsin.musicmaster.guesser.common.Common
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import kotlinx.android.synthetic.main.activity_year_guesser.*
+import kotlinx.android.synthetic.main.include_score_board.view.*
 import kotlinx.android.synthetic.main.include_solution_year.view.*
+import kotlinx.android.synthetic.main.include_toolbar_dashboard.view.*
 import kotlin.properties.Delegates
 
 
 class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
 
-    private val presenter by lazy { YearGuesserPresenter(this) }
+    private val presenter by lazy { YearGuesserPresenter(this, this) }
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
@@ -48,8 +51,11 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
 
         pinView.addTextChangedListener(textWatcher)
 
+        toolbar.arrowBack.setOnClickListener { onBackPressed() }
+
         category = intent.getStringExtra("category").toString()
         if (category != "null") {
+            Common().getCategoryTitle(this, toolbar.category, category)
             isRPBA = presenter.isRPBA(category)
             goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
             almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
@@ -135,19 +141,22 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
                 solution.messageText.text = goodPhrases[(goodPhrases.indices).random()]
                 solution.messageText.setTextColor(resources.getColor(R.color.goodPhrase, null))
                 scoreGood++
-                goodScore.text = scoreGood.toString()
+                includeScore.goodScore.text = scoreGood.toString()
+                includeScore.lottieGood.playAnimation()
             }
             1 -> {
                 solution.messageText.text = almostPhrases[(almostPhrases.indices).random()]
                 solution.messageText.setTextColor(resources.getColor(R.color.almostPhrase, null))
                 scoreAlmost++
-                almostScore.text = scoreAlmost.toString()
+                includeScore.almostScore.text = scoreAlmost.toString()
+                includeScore.lottieAlmost.playAnimation()
             }
             2 -> {
                 solution.messageText.text = badPhrases[(badPhrases.indices).random()]
                 solution.messageText.setTextColor(resources.getColor(R.color.badPhrase, null))
                 scoreBad++
-                badScore.text = scoreBad.toString()
+                includeScore.badScore.text = scoreBad.toString()
+                includeScore.lottieBad.playAnimation()
             }
         }
         solution.visibility = View.VISIBLE
@@ -162,7 +171,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     }
 
     override fun somethingWentWrong() {
-        presenter.showSweetAlertError(this)
+        presenter.showSweetAlertError()
     }
 
     private fun closeKeyboard() {

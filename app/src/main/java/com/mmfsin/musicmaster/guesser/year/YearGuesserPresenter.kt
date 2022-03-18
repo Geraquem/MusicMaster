@@ -1,22 +1,22 @@
 package com.mmfsin.musicmaster.guesser.year
 
 import android.content.Context
-import android.text.BoringLayout
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 import com.mmfsin.musicmaster.guesser.repository.FirebaseRepo
 
-class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRepo {
+class YearGuesserPresenter(private val context: Context, private val view: YearGuesserView) :
+    FirebaseRepo.IRepo {
 
     private val repository by lazy { FirebaseRepo(this) }
 
     fun isRPBA(category: String): Boolean {
         return when (category) {
-            "rock" -> true
-            "pop" -> true
-            "antes2000" -> true
-            "despues2000" -> true
+            context.getString(R.string.bbdd_rock) -> true
+            context.getString(R.string.bbdd_pop) -> true
+            context.getString(R.string.bbdd_antes2000) -> true
+            context.getString(R.string.bbdd_despues2000) -> true
             else -> false
         }
     }
@@ -62,7 +62,7 @@ class YearGuesserPresenter(private val view: YearGuesserView) : FirebaseRepo.IRe
         view.setMusicVideoList(list)
     }
 
-    fun showSweetAlertError(context: Context) {
+    fun showSweetAlertError() {
         SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
             .setTitleText(context.getString(R.string.oops))
             .setContentText(context.getString(R.string.somethingWentWrong))
