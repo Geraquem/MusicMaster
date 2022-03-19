@@ -3,9 +3,11 @@ package com.mmfsin.musicmaster.guesser.common
 import android.content.Context
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat.getFont
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
 
 class Common {
+
     fun getCategoryTitle(context: Context, tv: TextView, category: String) {
         tv.text = getTitleFromCategory(context, category)
         tv.typeface = when (category) {
@@ -35,5 +37,31 @@ class Common {
             context.getString(R.string.bbdd_reggaeton) -> context.getString(R.string.reggaeton)
             else -> context.getString(R.string.somethingWentWrong)
         }
+    }
+
+    fun isRPBA(context: Context, category: String): Boolean {
+        return when (category) {
+            context.getString(R.string.bbdd_rock) -> true
+            context.getString(R.string.bbdd_pop) -> true
+            context.getString(R.string.bbdd_antes2000) -> true
+            context.getString(R.string.bbdd_despues2000) -> true
+            else -> false
+        }
+    }
+
+    fun showSweetAlertSwipe(context: Context) {
+        SweetAlertDialog(context, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+            .setCustomImage(R.drawable.ic_swipe_left)
+            .setContentText(context.getString(R.string.swipeLeft))
+            .setConfirmText(context.getString(R.string.ok))
+            .setConfirmClickListener { sDialog -> sDialog.dismissWithAnimation() }
+            .show()
+    }
+
+    fun showSweetAlertError(context: Context) {
+        SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+            .setTitleText(context.getString(R.string.oops))
+            .setContentText(context.getString(R.string.somethingWentWrong))
+            .show()
     }
 }

@@ -9,26 +9,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="4dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="@string/songIsFrom"
+        android:text="@string/titleIs"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/solutionYear"
+        android:id="@+id/solutionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed-medium"
         android:textColor="@color/black"
-        android:textSize="35sp"
-        tools:text="2012" />
+        android:textSize="24sp"
+        tools:text="DOS HOMBRE Y UN DESTINO" />
 
     <FrameLayout
-        android:layout_marginVertical="4dp"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="4dp"
         android:background="@color/black" />
 
     <TextView
@@ -39,7 +40,7 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        tools:text="FATAL FATAL FATAL"
-        android:textSize="34sp" />
+        android:textSize="34sp"
+        tools:text="FATAL FATAL FATAL" />
 
 </LinearLayout>

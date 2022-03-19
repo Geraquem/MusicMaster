@@ -24,7 +24,7 @@ class FirebaseRepo(private val listener: IRepo) {
     fun getMusicVideo(category: String, video: String) {
         Firebase.database.reference.child(category).child(video).get()
             .addOnSuccessListener {
-                it.getValue(MusicVideoDTO::class.java)?.let { it1 -> listener.musicVideo(it1) }
+                it.getValue(MusicVideoDTO::class.java)?.let { it1 -> listener.musicVideoData(it1) }
 
             }.addOnFailureListener {
                 listener.somethingWentWrong()
@@ -33,7 +33,7 @@ class FirebaseRepo(private val listener: IRepo) {
 
     interface IRepo {
         fun musicVideoList(list: List<String>)
-        fun musicVideo(musicVideo: MusicVideoDTO)
+        fun musicVideoData(musicVideo: MusicVideoDTO)
         fun somethingWentWrong()
     }
 }

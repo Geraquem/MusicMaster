@@ -49,8 +49,11 @@
     <string name="no">NO</string>
 
     <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
+    <string name="whatIsTheTitleOfTheSong">¿CÓMO SE LLAMA ESTA CANCIÓN?</string>
     <string name="check">COMPROBAR</string>
     <string name="songIsFrom">LA CANCIÓN ES DEL</string>
+    <string name="titleIs">EL TÍTULO ES</string>
+    <string name="threeDots">…</string>
     <string name="zero">0</string>
 
     <!--  GOOD PHRASES  -->

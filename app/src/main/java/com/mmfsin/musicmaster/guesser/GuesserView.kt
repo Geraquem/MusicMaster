@@ -1,8 +1,8 @@
-package com.mmfsin.musicmaster.guesser.year
+package com.mmfsin.musicmaster.guesser
 
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 
-interface YearGuesserView {
+interface GuesserView {
     fun setMusicVideoData(musicVideo: MusicVideoDTO)
     fun setMusicVideoList(list: List<String>)
 

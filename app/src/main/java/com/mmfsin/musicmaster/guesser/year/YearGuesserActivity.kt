@@ -9,8 +9,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mmfsin.musicmaster.R
+import com.mmfsin.musicmaster.guesser.GuesserView
 import com.mmfsin.musicmaster.guesser.adapter.SwipeListener
 import com.mmfsin.musicmaster.guesser.common.Common
+import com.mmfsin.musicmaster.guesser.common.CommonPresenter
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
@@ -21,9 +23,10 @@ import kotlinx.android.synthetic.main.include_toolbar_dashboard.view.*
 import kotlin.properties.Delegates
 
 
-class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
+class YearGuesserActivity : AppCompatActivity(), GuesserView {
 
-    private val presenter by lazy { YearGuesserPresenter(this, this) }
+    private val helper by lazy { YearGuesserHelper(this) }
+    private val presenter by lazy { CommonPresenter(this, this) }
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
@@ -56,7 +59,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
         category = intent.getStringExtra("category").toString()
         if (category != "null") {
             Common().getCategoryTitle(this, toolbar.category, category)
-            isRPBA = presenter.isRPBA(category)
+            isRPBA = Common().isRPBA(this, category)
             goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
             almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
             badPhrases = resources.getStringArray(R.array.badPhrases).toList()
@@ -66,10 +69,10 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
         }
 
         comprobarButton.setOnClickListener {
-            if (presenter.isValidYear(pinView.text.toString())) {
+            if (helper.isValidYear(pinView.text.toString())) {
                 pinView.isEnabled = false
                 comprobarButton.isEnabled = false
-                presenter.setSolutionMessage(pinView.text.toString(), correctYear)
+                helper.setSolutionMessage(pinView.text.toString(), correctYear)
             }
         }
 
@@ -79,7 +82,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
                 if (position < videoList.size) {
                     loading.visibility = View.VISIBLE
                     initialAttributes()
-                    setMusicVideo()
+                    getMusicVideoData()
                 }
             }
 
@@ -93,7 +96,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            if (presenter.isValidYear(pinView.text.toString())) {
+            if (helper.isValidYear(pinView.text.toString())) {
                 closeKeyboard()
             }
         }
@@ -104,20 +107,20 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
         if (videoList.isNotEmpty()) {
             if (showOnce) {
                 showOnce = false
-                presenter.showSweetAlertSwipe(this)
+                Common().showSweetAlertSwipe(this)
             }
-            setMusicVideo()
+            getMusicVideoData()
 
         } else {
             somethingWentWrong()
         }
     }
 
-    private fun setMusicVideo() {
+    private fun getMusicVideoData() {
         if (isRPBA) {
-            presenter.getMusicVideo("mix", videoList[position])
+            presenter.getMusicVideoData("mix", videoList[position])
         } else {
-            presenter.getMusicVideo(category, videoList[position])
+            presenter.getMusicVideoData(category, videoList[position])
         }
     }
 
@@ -171,7 +174,7 @@ class YearGuesserActivity : AppCompatActivity(), YearGuesserView {
     }
 
     override fun somethingWentWrong() {
-        presenter.showSweetAlertError()
+        Common().showSweetAlertError(this)
     }
 
     private fun closeKeyboard() {
