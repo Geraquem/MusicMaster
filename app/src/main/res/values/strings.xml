@@ -40,8 +40,8 @@
     <string name="reggaetonArtists">Desde las canciones de reggaeton más míticas hasta las más actuales. Becky G, Nicky Jam, Don Omar, Ozuna, Arcángel, Bad Bunny, Sech, Daddy Yankee…</string>
 
     <string name="wannaGuess">Quiero adivinar</string>
-    <string name="year">En qué año salió la canción</string>
-    <string name="title">El título de la canción</string>
+    <string name="year">En qué <b>año</b> salió la canción</string>
+    <string name="title">El <b>título</b> de la canción</string>
     <string name="swipeLeft">Desliza hacia la izquierda para pasar de canción</string>
     <string name="ok">OK</string>
     <string name="wannaExit">¿Seguro que quieres salir?</string>

@@ -9,7 +9,10 @@
     <color name="gray">#7E7E7E</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="splashBackground">#F2ECFA</color>
+
     <color name="goodPhrase">#6BAF63</color>
     <color name="almostPhrase">#DCAA13</color>
     <color name="badPhrase">#B80707</color>
+
 </resources>

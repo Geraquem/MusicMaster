@@ -20,11 +20,11 @@
             <ImageView
                 android:id="@+id/icon"
                 android:layout_width="40dp"
-                android:layout_height="43dp"
+                android:layout_height="45dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/logo_app"
+                android:background="@drawable/ic_logo_app"
                 android:contentDescription="@string/contentDescription" />
 
             <TextView
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorFullWidth="true"
-        app:tabIndicatorColor="#81BDB7B7"
+        app:tabIndicatorColor="#81AAA4A4"
         app:tabIndicatorHeight="3dp"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorGravity="stretch"

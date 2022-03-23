@@ -1,24 +1,19 @@
 package com.mmfsin.musicmaster.category
 
-import com.mmfsin.musicmaster.category.model.CategoryDTO
+import com.mmfsin.musicmaster.category.data.Data.getEnglishData
+import com.mmfsin.musicmaster.category.data.Data.getSpanishData
 
-class CategoryPresenter(private var categoryView: CategoryView?): CategoryInteractor.OnDataRetrieved{
-
-    private val categoryInteractor = CategoryInteractor(this)
+class CategoryPresenter(private var categoryView: CategoryView?) {
 
     fun setEnglishRVData() {
-        categoryInteractor.getEnglishRVData()
+        categoryView?.initRecyclerView(getEnglishData())
     }
 
     fun setSpanishRVData() {
-        categoryInteractor.getSpanishRVData()
+        categoryView?.initRecyclerView(getSpanishData())
     }
 
     fun navigateToFragmentSelector(category: String) {
         categoryView?.showFragmentSelector(category)
-    }
-
-    override fun onSuccess(data: List<CategoryDTO>) {
-        categoryView?.initRecyclerView(data)
     }
 }

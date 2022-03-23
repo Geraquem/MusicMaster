@@ -17,6 +17,8 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
     private val pagerAdapter by lazy { ViewPagerAdapter(this, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(1500)
+        setTheme(R.style.Theme_MusicMaster)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 

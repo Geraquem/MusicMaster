@@ -14,6 +14,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="SplashScreenTheme" parent="Theme.MusicMaster">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/text</item>
         <item name="android:color">@color/black</item>
