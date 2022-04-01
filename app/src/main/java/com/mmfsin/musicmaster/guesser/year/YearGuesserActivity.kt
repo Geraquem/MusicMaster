@@ -8,14 +8,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.guesser.GuesserView
 import com.mmfsin.musicmaster.guesser.adapter.SwipeListener
 import com.mmfsin.musicmaster.guesser.common.Common
 import com.mmfsin.musicmaster.guesser.common.CommonPresenter
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import kotlinx.android.synthetic.main.activity_year_guesser.*
 import kotlinx.android.synthetic.main.include_score_board.view.*
 import kotlinx.android.synthetic.main.include_solution_year.view.*
@@ -24,6 +27,11 @@ import kotlin.properties.Delegates
 
 
 class YearGuesserActivity : AppCompatActivity(), GuesserView {
+
+    /******* INSTERTICIAL (CRTL + SHIFT + R)
+     * REAL  ca-app-pub-4515698012373396/4423898926
+     * PRUEBAS ca-app-pub-3940256099942544/1033173712
+     */
 
     private val helper by lazy { YearGuesserHelper(this) }
     private val presenter by lazy { CommonPresenter(this, this) }
@@ -46,11 +54,16 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
     //RPBA = Rock Pop Before2000 After2000
     private var isRPBA by Delegates.notNull<Boolean>()
 
+    private var mInterstitialAd: InterstitialAd? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_year_guesser)
 
         loading.visibility = View.VISIBLE
+
+        MobileAds.initialize(this) {}
+        loadInterstitial(AdRequest.Builder().build())
 
         pinView.addTextChangedListener(textWatcher)
 
@@ -81,6 +94,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
                 position++
                 if (position < videoList.size) {
                     loading.visibility = View.VISIBLE
+                    showIntersticial()
                     initialAttributes()
                     getMusicVideoData()
                 }
@@ -127,11 +141,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
     override fun setMusicVideoData(musicVideo: MusicVideoDTO) {
         titleText.text = musicVideo.titulo
         artistText.text = musicVideo.artista
-        youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
-            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(musicVideo.url, 0f)
-            }
-        })
+        helper.playVideo(youtubePlayerView, musicVideo.url)
         correctYear = musicVideo.year
         solution.solutionYear.text = correctYear
 
@@ -191,5 +201,30 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
             .setConfirmClickListener { finish() }
             .setCancelButton(getString(R.string.no)) { sDialog -> sDialog.dismissWithAnimation() }
             .show()
+    }
+
+    private fun loadInterstitial(adRequest: AdRequest) {
+        InterstitialAd.load(
+            this,
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                    loadInterstitial(AdRequest.Builder().build())
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                }
+            })
+    }
+
+    private fun showIntersticial() {
+        if ((position % 20) == 0 && mInterstitialAd != null) {
+            mInterstitialAd!!.show(this)
+            loadInterstitial(AdRequest.Builder().build())
+            helper.pauseVideo(youtubePlayerView)
+        }
     }
 }

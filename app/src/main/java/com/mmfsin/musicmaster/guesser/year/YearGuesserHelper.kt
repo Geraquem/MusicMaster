@@ -1,13 +1,30 @@
 package com.mmfsin.musicmaster.guesser.year
 
-import android.content.Context
 import com.mmfsin.musicmaster.guesser.GuesserView
-import com.mmfsin.musicmaster.guesser.repository.FirebaseRepo
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class YearGuesserHelper(private val view: GuesserView) {
 
     fun isValidYear(pinViewText: String): Boolean {
         return (pinViewText.length == 4)
+    }
+
+    fun playVideo(youtubePlayerView: YouTubePlayerView, url: String) {
+        youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
+            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadVideo(url, 0f)
+            }
+        })
+    }
+
+    fun pauseVideo(youtubePlayerView: YouTubePlayerView) {
+        youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
+            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.pause()
+            }
+        })
     }
 
     fun setSolutionMessage(userYearStr: String, correctYearStr: String) {

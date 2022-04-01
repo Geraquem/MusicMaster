@@ -22,13 +22,13 @@ class TitleGuesserHelper(private val view: GuesserView) {
         youTubePlayerView: YouTubePlayerView
     ) {
         if (shouldPause) {
-            pauseMusic(youTubePlayerView)
             playButton.tag = "paused"
             playButton.setImageResource(R.drawable.ic_play)
+            pauseMusic(youTubePlayerView)
         } else {
-            playMusic(youTubePlayerView)
             playButton.tag = "playing"
             playButton.setImageResource(R.drawable.ic_pause)
+            playMusic(youTubePlayerView)
         }
     }
 
@@ -40,7 +40,7 @@ class TitleGuesserHelper(private val view: GuesserView) {
         })
     }
 
-    fun playMusic(youTubePlayerView: YouTubePlayerView) {
+    private fun playMusic(youTubePlayerView: YouTubePlayerView) {
         youTubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
             override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
                 youTubePlayer.play()
