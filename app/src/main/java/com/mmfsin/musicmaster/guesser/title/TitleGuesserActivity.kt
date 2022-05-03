@@ -209,7 +209,7 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
     private fun loadInterstitial(adRequest: AdRequest) {
         InterstitialAd.load(
             this,
-            "ca-app-pub-3940256099942544/1033173712",
+            "ca-app-pub-4515698012373396/3110817258",
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -219,6 +219,7 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
+                    helper.shouldPauseMusic(true, play_pause_button, youTubePlayerView)
                 }
             })
     }
@@ -227,7 +228,6 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
         if ((position % 20) == 0 && mInterstitialAd != null) {
             mInterstitialAd!!.show(this)
             loadInterstitial(AdRequest.Builder().build())
-            helper.shouldPauseMusic(true, play_pause_button, youTubePlayerView)
         }
     }
 }

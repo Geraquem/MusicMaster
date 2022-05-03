@@ -206,7 +206,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
     private fun loadInterstitial(adRequest: AdRequest) {
         InterstitialAd.load(
             this,
-            "ca-app-pub-3940256099942544/1033173712",
+            "ca-app-pub-4515698012373396/4423898926",
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -216,6 +216,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
+                    helper.pauseVideo(youtubePlayerView)
                 }
             })
     }
@@ -224,7 +225,6 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
         if ((position % 20) == 0 && mInterstitialAd != null) {
             mInterstitialAd!!.show(this)
             loadInterstitial(AdRequest.Builder().build())
-            helper.pauseVideo(youtubePlayerView)
         }
     }
 }
