@@ -25,12 +25,8 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
         viewPager.adapter = pagerAdapter
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-                0 -> {
-                    tab.setText(R.string.english)
-                }
-                1 -> {
-                    tab.setText(R.string.spanish)
-                }
+                0 -> tab.setText(R.string.english)
+                1 -> tab.setText(R.string.spanish)
             }
         }.attach()
     }
@@ -42,9 +38,7 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
             .commit()
     }
 
-    override fun closeFragmentSelector() {
-        supportFragmentManager.popBackStack()
-    }
+    override fun closeFragmentSelector() = supportFragmentManager.popBackStack()
 
     override fun openActivityDashboard(isYear: Boolean, category: String) {
         startActivity(generateIntent(isYear, category))
