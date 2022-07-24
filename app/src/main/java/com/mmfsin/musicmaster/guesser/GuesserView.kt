@@ -7,6 +7,7 @@ interface GuesserView {
     fun setMusicVideoList(list: List<String>)
 
     fun setSolutionMessage(solutionResult: Int)
+    fun setMultiSolutionMessage(gOnePoints: Int, gTwoPoints: Int)
 
     fun somethingWentWrong()
 }

@@ -221,4 +221,6 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
             loadInterstitial(AdRequest.Builder().build())
         }
     }
+
+    override fun setMultiSolutionMessage(g1Points: Int, gTwoPoints: Int) {}
 }

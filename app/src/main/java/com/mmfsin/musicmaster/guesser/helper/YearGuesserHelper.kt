@@ -42,4 +42,30 @@ class YearGuesserHelper(private val view: GuesserView) {
             view.somethingWentWrong()
         }
     }
+
+    fun setMultiSolutionMessage(gOneYearStr: String, gTwoYearStr: String, correctYearStr: String) {
+        val gOneYear = gOneYearStr.toIntOrNull()
+        val gTwoYear = gTwoYearStr.toIntOrNull()
+        val correctYear = correctYearStr.toInt()
+
+        if (gOneYear != null && gTwoYear != null) {
+            view.setMultiSolutionMessage(
+                getPoints(gOneYear, correctYear),
+                getPoints(gTwoYear, correctYear)
+            )
+        } else {
+            view.somethingWentWrong()
+        }
+    }
+
+
+    private fun getPoints(userYear: Int, correctYear: Int): Int {
+        return if (userYear == correctYear) {
+            2
+        } else if (userYear > (correctYear - 3) && userYear < (correctYear + 3) && userYear != correctYear) {
+            1
+        } else {
+            0
+        }
+    }
 }

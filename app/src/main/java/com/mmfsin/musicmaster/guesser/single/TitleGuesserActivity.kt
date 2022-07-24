@@ -233,4 +233,6 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
             loadInterstitial(AdRequest.Builder().build())
         }
     }
+
+    override fun setMultiSolutionMessage(gOnePoints: Int, gTwoPoints: Int) {}
 }
