@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Music Master</string>
+
     <string name="contentDescription">image</string>
     <string name="oops">Vaya</string>
     <string name="somethingWentWrong">Parece que algo ha salido mal</string>
+
+    <string name="wannaExit">¿Seguro que quieres salir?</string>
+    <string name="yes">SI</string>
+    <string name="no">NO</string>
 
     <string name="bbdd_mix">mix</string>
     <string name="bbdd_rock">rock</string>
@@ -38,15 +43,15 @@
     <string name="rapArtists">Temas de rap en español con artistas como Kase.O, Nach, Mala Rodriguez, SFDK, Sharif, Hard GZ, Ayax y Prok, Foyone, Rapsusklei, Duo Kie, Kaze…</string>
     <string name="reggaetonArtists">Desde las canciones de reggaeton más míticas hasta las más actuales. Becky G, Nicky Jam, Don Omar, Ozuna, Arcángel, Bad Bunny, Sech, Daddy Yankee…</string>
 
+    <!-- SELECTOR -->
     <string name="wannaGuess">Quiero adivinar</string>
     <string name="year">En qué <b>año</b> salió la canción</string>
     <string name="title">El <b>título</b> de la canción</string>
-    <string name="swipeLeft">Desliza hacia la izquierda para pasar de canción</string>
-    <string name="ok">OK</string>
-    <string name="wannaExit">¿Seguro que quieres salir?</string>
-    <string name="yes">SI</string>
-    <string name="no">NO</string>
+    <string name="mode">Modo de juego</string>
+    <string name="mode_one">INDIVIDUAL</string>
+    <string name="mode_multiplayer">POR GRUPOS</string>
 
+    <!-- GUESSER -->
     <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
     <string name="whatIsTheTitleOfTheSong">¿CÓMO SE LLAMA ESTA CANCIÓN?</string>
     <string name="check">COMPROBAR</string>

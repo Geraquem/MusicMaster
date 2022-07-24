@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,64 +8,125 @@
     android:clickable="true"
     android:focusable="true">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="25dp"
-        android:background="@drawable/bg_linear"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="40dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/text"
-            android:text="@string/wannaGuess"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/buttonYear"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_button"
-            android:elevation="5dp"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="12dp"
-            android:text="@string/year"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_linear"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="26dp">
 
-        <TextView
-            android:id="@+id/buttonTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_button"
-            android:elevation="5dp"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="12dp"
-            android:text="@string/title"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/text"
+                android:text="@string/wannaGuess"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/buttonYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_button"
+                android:drawablePadding="8dp"
+                android:elevation="5dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
+                android:text="@string/year"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/ic_year" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/buttonTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/bg_button"
+                android:drawablePadding="8dp"
+                android:elevation="5dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
+                android:text="@string/title"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/ic_title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/text"
+                android:text="@string/mode"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/buttonSingleplayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_button"
+                android:elevation="5dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
+                android:text="@string/mode_one"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/ic_single_player" />
+
+            <TextView
+                android:id="@+id/buttonMultiplayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_button"
+                android:elevation="5dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp"
+                android:text="@string/mode_multiplayer"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/ic_multiplayer" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
