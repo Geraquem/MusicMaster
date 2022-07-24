@@ -5,33 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mmfsin.musicmaster.R
-import kotlinx.android.synthetic.main.fragment_selector.*
+import com.mmfsin.musicmaster.databinding.FragmentSelectorBinding
 
 class FragmentSelector(private val listener: IFragmentSelector, val category: String) : Fragment() {
 
+    private var _bdg: FragmentSelectorBinding? = null
+    private val binding get() = _bdg!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_selector, container, false)
+    ): View {
+        _bdg = FragmentSelectorBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        background.setOnClickListener {
+        binding.background.setOnClickListener {
             listener.closeFragmentSelector()
         }
 
-        buttonYear.setOnClickListener {
+        binding.buttonYear.setOnClickListener {
             openActivityDashboard(true)
         }
-        buttonTitle.setOnClickListener {
+        binding.buttonTitle.setOnClickListener {
             openActivityDashboard(false)
         }
     }
 
-    private fun openActivityDashboard(isYear: Boolean){
+    private fun openActivityDashboard(isYear: Boolean) {
         listener.openActivityDashboard(isYear, category)
         listener.closeFragmentSelector()
     }

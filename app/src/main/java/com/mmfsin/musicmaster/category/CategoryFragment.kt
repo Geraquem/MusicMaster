@@ -10,9 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.RViewAdapter
 import com.mmfsin.musicmaster.category.model.CategoryDTO
-import kotlinx.android.synthetic.main.fragment_rv_category.*
+import com.mmfsin.musicmaster.databinding.FragmentRvCategoryBinding
 
-class CategoryFragment(private val listener : ICategoryFragment, private val language: String) : Fragment(), CategoryView {
+class CategoryFragment(private val listener: ICategoryFragment, private val language: String) :
+    Fragment(), CategoryView {
+
+    private var _bdg: FragmentRvCategoryBinding? = null
+    private val binding get() = _bdg!!
 
     private val presenter by lazy { CategoryPresenter(this) }
 
@@ -22,8 +26,9 @@ class CategoryFragment(private val listener : ICategoryFragment, private val lan
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_rv_category, container, false)
+    ): View {
+        _bdg = FragmentRvCategoryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,9 +40,9 @@ class CategoryFragment(private val listener : ICategoryFragment, private val lan
     }
 
     override fun initRecyclerView(data: List<CategoryDTO>) {
-        recyclerView.layoutManager = LinearLayoutManager(mContext)
+        binding.recyclerView.layoutManager = LinearLayoutManager(mContext)
         adapter = RViewAdapter(mContext, presenter, data)
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 
     override fun showFragmentSelector(category: String) {

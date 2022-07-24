@@ -49,15 +49,6 @@ class Common {
         }
     }
 
-    fun showSweetAlertSwipe(context: Context) {
-        SweetAlertDialog(context, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-            .setCustomImage(R.drawable.ic_swipe_left)
-            .setContentText(context.getString(R.string.swipeLeft))
-            .setConfirmText(context.getString(R.string.ok))
-            .setConfirmClickListener { sDialog -> sDialog.dismissWithAnimation() }
-            .show()
-    }
-
     fun showSweetAlertError(context: Context) {
         SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
             .setTitleText(context.getString(R.string.oops))

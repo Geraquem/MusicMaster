@@ -6,13 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.ViewPagerAdapter
+import com.mmfsin.musicmaster.databinding.ActivityCategoryBinding
 import com.mmfsin.musicmaster.fragmentselector.FragmentSelector
 import com.mmfsin.musicmaster.guesser.title.TitleGuesserActivity
 import com.mmfsin.musicmaster.guesser.year.YearGuesserActivity
-import kotlinx.android.synthetic.main.activity_category.*
 
 class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment,
     FragmentSelector.IFragmentSelector {
+
+    private lateinit var binding: ActivityCategoryBinding
 
     private val pagerAdapter by lazy { ViewPagerAdapter(this, this) }
 
@@ -20,10 +22,11 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
         Thread.sleep(1500)
         setTheme(R.style.Theme_MusicMaster)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category)
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        viewPager.adapter = pagerAdapter
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        binding.viewPager.adapter = pagerAdapter
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.setText(R.string.english)
                 1 -> tab.setText(R.string.spanish)

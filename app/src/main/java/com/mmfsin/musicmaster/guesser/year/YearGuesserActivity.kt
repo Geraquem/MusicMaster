@@ -14,15 +14,11 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mmfsin.musicmaster.R
+import com.mmfsin.musicmaster.databinding.ActivityYearGuesserBinding
 import com.mmfsin.musicmaster.guesser.GuesserView
-import com.mmfsin.musicmaster.guesser.adapter.SwipeListener
 import com.mmfsin.musicmaster.guesser.common.Common
 import com.mmfsin.musicmaster.guesser.common.CommonPresenter
 import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
-import kotlinx.android.synthetic.main.activity_year_guesser.*
-import kotlinx.android.synthetic.main.include_score_board.view.*
-import kotlinx.android.synthetic.main.include_solution_year.view.*
-import kotlinx.android.synthetic.main.include_toolbar_dashboard.view.*
 import kotlin.properties.Delegates
 
 
@@ -33,8 +29,10 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
      * PRUEBAS ca-app-pub-3940256099942544/1033173712
      */
 
+    private lateinit var binding: ActivityYearGuesserBinding
+
     private val helper by lazy { YearGuesserHelper(this) }
-    private val presenter by lazy { CommonPresenter(this, this) }
+    private val presenter by lazy { CommonPresenter(this) }
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
@@ -58,59 +56,59 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_year_guesser)
+        binding = ActivityYearGuesserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        loading.visibility = View.VISIBLE
+        binding.loading.root.visibility = View.VISIBLE
 
         MobileAds.initialize(this) {}
         loadInterstitial(AdRequest.Builder().build())
 
-        pinView.addTextChangedListener(textWatcher)
-
-        toolbar.arrowBack.setOnClickListener { onBackPressed() }
+        binding.pinView.addTextChangedListener(textWatcher)
+        binding.toolbar.arrowBack.setOnClickListener { onBackPressed() }
 
         category = intent.getStringExtra("category").toString()
         if (category != "null") {
-            Common().getCategoryTitle(this, toolbar.category, category)
+            Common().getCategoryTitle(this, binding.toolbar.category, category)
             isRPBA = Common().isRPBA(this, category)
             goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
             almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
             badPhrases = resources.getStringArray(R.array.badPhrases).toList()
+
+            /** START */
             presenter.getMusicVideoList(category)
         } else {
             somethingWentWrong()
         }
 
-        comprobarButton.setOnClickListener {
-            if (helper.isValidYear(pinView.text.toString())) {
-                pinView.isEnabled = false
-                comprobarButton.isEnabled = false
-                helper.setSolutionMessage(pinView.text.toString(), correctYear)
+        listeners()
+    }
+
+    private fun listeners() {
+        binding.comprobarButton.setOnClickListener {
+            if (helper.isValidYear(binding.pinView.text.toString())) {
+                binding.pinView.isEnabled = false
+                binding.comprobarButton.isEnabled = false
+                helper.setSolutionMessage(binding.pinView.text.toString(), correctYear)
             }
         }
 
-        scrollView.setOnTouchListener(object : SwipeListener(this) {
-            override fun onSwipeLeft() {
-                position++
-                if (position < videoList.size) {
-                    loading.visibility = View.VISIBLE
-                    showIntersticial()
-                    initialAttributes()
-                    getMusicVideoData()
-                }
+        binding.btnNext.setOnClickListener {
+            position++
+            if (position < videoList.size) {
+                binding.loading.root.visibility = View.VISIBLE
+                showIntersticial()
+                initialAttributes()
+                getMusicVideoData()
             }
-
-            override fun onSwipeRight() {}
-            override fun onSwipeUp() {}
-            override fun onSwipeDown() {}
-        })
+        }
     }
 
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            if (helper.isValidYear(pinView.text.toString())) {
+            if (helper.isValidYear(binding.pinView.text.toString())) {
                 closeKeyboard()
             }
         }
@@ -118,16 +116,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
 
     override fun setMusicVideoList(list: List<String>) {
         videoList = list
-        if (videoList.isNotEmpty()) {
-            if (showOnce) {
-                showOnce = false
-                Common().showSweetAlertSwipe(this)
-            }
-            getMusicVideoData()
-
-        } else {
-            somethingWentWrong()
-        }
+        if (videoList.isNotEmpty()) getMusicVideoData() else somethingWentWrong()
     }
 
     private fun getMusicVideoData() {
@@ -139,48 +128,54 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
     }
 
     override fun setMusicVideoData(musicVideo: MusicVideoDTO) {
-        titleText.text = musicVideo.titulo
-        artistText.text = musicVideo.artista
-        helper.playVideo(youtubePlayerView, musicVideo.url)
+        binding.titleText.text = musicVideo.titulo
+        binding.artistText.text = musicVideo.artista
+        helper.playVideo(binding.youtubePlayerView, musicVideo.url)
         correctYear = musicVideo.year
-        solution.solutionYear.text = correctYear
+        binding.solution.solutionYear.text = correctYear
 
-        loading.visibility = View.GONE
+        binding.loading.root.visibility = View.GONE
     }
 
     override fun setSolutionMessage(solutionResult: Int) {
         when (solutionResult) {
             0 -> {
-                solution.messageText.text = goodPhrases[(goodPhrases.indices).random()]
-                solution.messageText.setTextColor(resources.getColor(R.color.goodPhrase, null))
+                binding.solution.messageText.text = goodPhrases[(goodPhrases.indices).random()]
+                binding.solution.messageText.setTextColor(
+                    resources.getColor(R.color.goodPhrase, null)
+                )
                 scoreGood++
-                includeScore.goodScore.text = scoreGood.toString()
-                includeScore.lottieGood.playAnimation()
+                binding.includeScore.goodScore.text = scoreGood.toString()
+                binding.includeScore.lottieGood.playAnimation()
             }
             1 -> {
-                solution.messageText.text = almostPhrases[(almostPhrases.indices).random()]
-                solution.messageText.setTextColor(resources.getColor(R.color.almostPhrase, null))
+                binding.solution.messageText.text = almostPhrases[(almostPhrases.indices).random()]
+                binding.solution.messageText.setTextColor(
+                    resources.getColor(R.color.almostPhrase, null)
+                )
                 scoreAlmost++
-                includeScore.almostScore.text = scoreAlmost.toString()
-                includeScore.lottieAlmost.playAnimation()
+                binding.includeScore.almostScore.text = scoreAlmost.toString()
+                binding.includeScore.lottieAlmost.playAnimation()
             }
             2 -> {
-                solution.messageText.text = badPhrases[(badPhrases.indices).random()]
-                solution.messageText.setTextColor(resources.getColor(R.color.badPhrase, null))
+                binding.solution.messageText.text = badPhrases[(badPhrases.indices).random()]
+                binding.solution.messageText.setTextColor(
+                    resources.getColor(R.color.badPhrase, null)
+                )
                 scoreBad++
-                includeScore.badScore.text = scoreBad.toString()
-                includeScore.lottieBad.playAnimation()
+                binding.includeScore.badScore.text = scoreBad.toString()
+                binding.includeScore.lottieBad.playAnimation()
             }
         }
-        solution.visibility = View.VISIBLE
+        binding.solution.root.visibility = View.VISIBLE
     }
 
     private fun initialAttributes() {
         closeKeyboard()
-        pinView.isEnabled = true
-        pinView.text = null
-        comprobarButton.isEnabled = true
-        solution.visibility = View.GONE
+        binding.pinView.isEnabled = true
+        binding.pinView.text = null
+        binding.comprobarButton.isEnabled = true
+        binding.solution.root.visibility = View.GONE
     }
 
     override fun somethingWentWrong() {
@@ -216,7 +211,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
-                    helper.pauseVideo(youtubePlayerView)
+                    helper.pauseVideo(binding.youtubePlayerView)
                 }
             })
     }

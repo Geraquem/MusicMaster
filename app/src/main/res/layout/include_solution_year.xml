@@ -25,10 +25,10 @@
         tools:text="2012" />
 
     <FrameLayout
-        android:layout_marginVertical="4dp"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="4dp"
         android:background="@color/black" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        tools:text="FATAL FATAL FATAL"
-        android:textSize="34sp" />
+        android:textSize="28sp"
+        tools:text="FATAL FATAL FATAL" />
 
 </LinearLayout>
