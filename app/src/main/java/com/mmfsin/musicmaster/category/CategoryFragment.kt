@@ -11,8 +11,9 @@ import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.RViewAdapter
 import com.mmfsin.musicmaster.category.model.CategoryDTO
 import com.mmfsin.musicmaster.databinding.FragmentRvCategoryBinding
+import com.mmfsin.musicmaster.selector.IFragmentSelector
 
-class CategoryFragment(private val listener: ICategoryFragment, private val language: String) :
+class CategoryFragment(private val listener: IFragmentSelector, private val language: String) :
     Fragment(), CategoryView {
 
     private var _bdg: FragmentRvCategoryBinding? = null
@@ -52,9 +53,5 @@ class CategoryFragment(private val listener: ICategoryFragment, private val lang
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
-    }
-
-    interface ICategoryFragment {
-        fun openFragmentSelector(category: String)
     }
 }

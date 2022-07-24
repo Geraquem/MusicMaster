@@ -5,8 +5,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.CategoryFragment
+import com.mmfsin.musicmaster.selector.IFragmentSelector
 
-class ViewPagerAdapter(private val listener : CategoryFragment.ICategoryFragment, private val fragmentActivity: FragmentActivity) :
+class ViewPagerAdapter(
+    private val listener: IFragmentSelector,
+    private val fragmentActivity: FragmentActivity
+) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = 2

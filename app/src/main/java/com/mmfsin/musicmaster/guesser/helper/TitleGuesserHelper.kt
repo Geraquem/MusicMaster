@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.guesser.title
+package com.mmfsin.musicmaster.guesser.helper
 
 import android.view.View
 import android.widget.ImageView

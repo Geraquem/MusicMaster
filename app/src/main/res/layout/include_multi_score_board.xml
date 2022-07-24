@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_puntuacion"
+    android:elevation="5dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingHorizontal="24dp"
+    android:layout_marginHorizontal="15dp"
+    android:paddingVertical="6dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieGoodOne"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="4dp"
+        app:lottie_autoPlay="true"
+        app:lottie_colorFilter="@color/goodPhrase"
+        app:lottie_rawRes="@raw/result" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/text"
+        android:text="@string/gOne"
+        android:textColor="@color/gray"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/scoreOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/text"
+        android:text="@string/zero"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieGoodTwo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="4dp"
+        app:lottie_autoPlay="true"
+        app:lottie_colorFilter="@color/goodPhrase"
+        app:lottie_rawRes="@raw/result" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/text"
+        android:text="@string/gTwo"
+        android:textColor="@color/gray"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/scoreTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/text"
+        android:text="@string/zero"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+</LinearLayout>

@@ -50,6 +50,7 @@
     <string name="mode">Modo de juego</string>
     <string name="mode_one">INDIVIDUAL</string>
     <string name="mode_multiplayer">POR GRUPOS</string>
+    <string name="btn_continue">VAMOS</string>
 
     <!-- GUESSER -->
     <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
@@ -59,6 +60,11 @@
     <string name="titleIs">EL TÍTULO ES</string>
     <string name="threeDots">…</string>
     <string name="zero">0</string>
+    
+    <string name="groupOne">GRUPO 1</string>
+    <string name="groupTwo">GRUPO 2</string>
+    <string name="gOne">G1</string>
+    <string name="gTwo">G2</string>
 
     <!--  GOOD PHRASES  -->
     <string-array name="goodPhrases">

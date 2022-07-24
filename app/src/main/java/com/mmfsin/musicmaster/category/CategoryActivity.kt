@@ -7,12 +7,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.category.adapter.ViewPagerAdapter
 import com.mmfsin.musicmaster.databinding.ActivityCategoryBinding
-import com.mmfsin.musicmaster.fragmentselector.FragmentSelector
-import com.mmfsin.musicmaster.guesser.title.TitleGuesserActivity
-import com.mmfsin.musicmaster.guesser.year.YearGuesserActivity
+import com.mmfsin.musicmaster.guesser.multiplayer.MultiYearGuesser
+import com.mmfsin.musicmaster.guesser.single.TitleGuesserActivity
+import com.mmfsin.musicmaster.guesser.single.YearGuesserActivity
+import com.mmfsin.musicmaster.selector.FragmentSelector
+import com.mmfsin.musicmaster.selector.IFragmentSelector
 
-class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment,
-    FragmentSelector.IFragmentSelector {
+class CategoryActivity : AppCompatActivity(), IFragmentSelector {
 
     private lateinit var binding: ActivityCategoryBinding
 
@@ -44,12 +45,27 @@ class CategoryActivity : AppCompatActivity(), CategoryFragment.ICategoryFragment
     override fun closeFragmentSelector() = supportFragmentManager.popBackStack()
 
     override fun openActivityDashboard(isYear: Boolean, category: String) {
-        startActivity(generateIntent(isYear, category))
+        startActivity(generateSingleModeIntent(isYear, category))
     }
 
-    private fun generateIntent(isYear: Boolean, category: String): Intent {
+    override fun openActivityDashMultiplayer(isYear: Boolean, category: String) {
+        startActivity(generateMultiplayerModeIntent(isYear, category))
+    }
+
+    private fun generateSingleModeIntent(isYear: Boolean, category: String): Intent {
         val intent = if (isYear) {
             Intent(this, YearGuesserActivity()::class.java)
+        } else {
+            Intent(this, TitleGuesserActivity()::class.java)
+        }
+        return intent.apply {
+            putExtra("category", category)
+        }
+    }
+
+    private fun generateMultiplayerModeIntent(isYear: Boolean, category: String): Intent {
+        val intent = if (isYear) {
+            Intent(this, MultiYearGuesser()::class.java)
         } else {
             Intent(this, TitleGuesserActivity()::class.java)
         }

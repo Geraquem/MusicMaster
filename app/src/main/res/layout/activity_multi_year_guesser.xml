@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".guesser.single.YearGuesserActivity">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -81,36 +80,96 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center"
                 android:text="@string/whatYearIsThisSong"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <com.chaos.view.PinView
-                android:id="@+id/pinView"
-                style="@style/PinWidget.PinView"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:background="@color/white"
-                android:cursorVisible="false"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:inputType="number"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:cursorWidth="0dp"
-                app:hideLineWhenFilled="true"
-                app:itemCount="4"
-                app:itemRadius="4dp"
-                app:itemSpacing="0dp"
-                app:itemWidth="48dp"
-                app:lineColor="@color/black"
-                app:lineWidth="2dp"
-                app:viewType="rectangle" />
+                android:layout_marginBottom="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="@string/groupOne"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <com.chaos.view.PinView
+                    android:id="@+id/pinViewOne"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:cursorVisible="false"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:cursorWidth="0dp"
+                    app:hideLineWhenFilled="true"
+                    app:itemCount="4"
+                    app:itemRadius="4dp"
+                    app:itemSpacing="0dp"
+                    app:itemWidth="48dp"
+                    app:lineColor="@color/black"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="@string/groupTwo"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <com.chaos.view.PinView
+                    android:id="@+id/pinViewTwo"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:cursorVisible="false"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:cursorWidth="0dp"
+                    app:hideLineWhenFilled="true"
+                    app:itemCount="4"
+                    app:itemRadius="4dp"
+                    app:itemSpacing="0dp"
+                    app:itemWidth="48dp"
+                    app:lineColor="@color/black"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/comprobarButton"
@@ -142,7 +201,7 @@
 
         <include
             android:id="@+id/includeScore"
-            layout="@layout/include_score_board"
+            layout="@layout/include_multi_score_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
