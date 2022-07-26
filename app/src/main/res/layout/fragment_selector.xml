@@ -33,54 +33,6 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/text"
-                android:text="@string/mode"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/buttonSingleplayer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/bg_button_selected"
-                android:elevation="5dp"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="8dp"
-                android:text="@string/mode_one"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:drawableStartCompat="@drawable/ic_single_player" />
-
-            <TextView
-                android:id="@+id/buttonMultiplayer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/bg_button_unselected"
-                android:elevation="5dp"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="8dp"
-                android:text="@string/mode_multiplayer"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:drawableStartCompat="@drawable/ic_multiplayer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/text"
                 android:text="@string/wannaGuess"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
@@ -91,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_button_unselected"
                 android:elevation="5dp"
                 android:fontFamily="sans-serif-condensed"
@@ -100,9 +52,65 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="12dp"
                 android:text="@string/year"
-                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/buttonSingleplayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.45"
+                    android:background="@drawable/bg_button_selected"
+                    android:elevation="5dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="12dp"
+                    android:text="@string/mode_one"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_single_player" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+                <TextView
+                    android:id="@+id/buttonMultiplayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.45"
+                    android:background="@drawable/bg_button_unselected"
+                    android:elevation="5dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="12dp"
+                    android:text="@string/mode_multiplayer"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_multiplayer" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginVertical="24dp"
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/buttonTitle"
@@ -117,7 +125,6 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="12dp"
                 android:text="@string/title"
-                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
