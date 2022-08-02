@@ -52,7 +52,9 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
     private var isRPBA by Delegates.notNull<Boolean>()
 
     private var mInterstitialAd: InterstitialAd? = null
-    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
+
+    //    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
+    private val mInterstitalId = "ca-app-pub-4515698012373396/4423898926"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -47,7 +47,9 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
     private var isRPBA by Delegates.notNull<Boolean>()
 
     private var mInterstitialAd: InterstitialAd? = null
-    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
+
+    //    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
+    private val mInterstitalId = "ca-app-pub-4515698012373396/4423898926"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -244,7 +246,7 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
     }
 
     private fun showIntersticial() {
-        if ((position % 2) == 0 && mInterstitialAd != null) {
+        if ((position % 20) == 0 && mInterstitialAd != null) {
             mInterstitialAd!!.show(this)
             loadInterstitial(AdRequest.Builder().build())
         }
