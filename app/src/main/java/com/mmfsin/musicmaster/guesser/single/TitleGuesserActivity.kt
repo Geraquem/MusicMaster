@@ -52,6 +52,7 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
     private var isRPBA by Delegates.notNull<Boolean>()
 
     private var mInterstitialAd: InterstitialAd? = null
+    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -210,21 +211,17 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
 
 
     private fun loadInterstitial(adRequest: AdRequest) {
-        InterstitialAd.load(
-            this,
-            "ca-app-pub-4515698012373396/3110817258",
-            adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    mInterstitialAd = null
-                    loadInterstitial(AdRequest.Builder().build())
-                }
+        InterstitialAd.load(this, mInterstitalId, adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+                loadInterstitial(AdRequest.Builder().build())
+            }
 
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    mInterstitialAd = interstitialAd
-                    helper.shouldPauseMusic(true, binding.playPauseButton, youTubePlayerView)
-                }
-            })
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+                helper.shouldPauseMusic(true, binding.playPauseButton, youTubePlayerView)
+            }
+        })
     }
 
     private fun showIntersticial() {

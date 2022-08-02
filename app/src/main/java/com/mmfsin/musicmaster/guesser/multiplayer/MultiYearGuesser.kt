@@ -9,6 +9,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ActivityMultiYearGuesserBinding
 import com.mmfsin.musicmaster.guesser.GuesserView
@@ -19,6 +23,11 @@ import com.mmfsin.musicmaster.guesser.model.MusicVideoDTO
 import kotlin.properties.Delegates
 
 class MultiYearGuesser : AppCompatActivity(), GuesserView {
+
+    /******* INSTERTICIAL (CRTL + SHIFT + R)
+     * REAL  ca-app-pub-4515698012373396/4423898926
+     * PRUEBAS ca-app-pub-3940256099942544/1033173712
+     */
 
     private lateinit var binding: ActivityMultiYearGuesserBinding
 
@@ -37,6 +46,9 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
     //RPBA = Rock Pop Before2000 After2000
     private var isRPBA by Delegates.notNull<Boolean>()
 
+    private var mInterstitialAd: InterstitialAd? = null
+    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMultiYearGuesserBinding.inflate(layoutInflater)
@@ -44,8 +56,8 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
 
         binding.loading.root.visibility = View.VISIBLE
 
-//        MobileAds.initialize(this) {}
-//        loadInterstitial(AdRequest.Builder().build())
+        MobileAds.initialize(this) {}
+        loadInterstitial(AdRequest.Builder().build())
 
         binding.pinViewOne.addTextChangedListener(textWatcherOne)
         binding.pinViewTwo.addTextChangedListener(textWatcherTwo)
@@ -104,7 +116,7 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
             position++
             if (position < videoList.size) {
                 binding.loading.root.visibility = View.VISIBLE
-//                showIntersticial()
+                showIntersticial()
                 initialAttributes()
                 getMusicVideoData()
             }
@@ -218,27 +230,23 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
     }
 
     private fun loadInterstitial(adRequest: AdRequest) {
-//        InterstitialAd.load(
-//            this,
-//            "ca-app-pub-4515698012373396/4423898926",
-//            adRequest,
-//            object : InterstitialAdLoadCallback() {
-//                override fun onAdFailedToLoad(adError: LoadAdError) {
-//                    mInterstitialAd = null
-//                    loadInterstitial(AdRequest.Builder().build())
-//                }
-//
-//                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-//                    mInterstitialAd = interstitialAd
-//                    helper.pauseVideo(binding.youtubePlayerView)
-//                }
-//            })
+        InterstitialAd.load(this, mInterstitalId, adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+                loadInterstitial(AdRequest.Builder().build())
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+                helper.pauseVideo(binding.youtubePlayerView)
+            }
+        })
     }
 
     private fun showIntersticial() {
-//        if ((position % 20) == 0 && mInterstitialAd != null) {
-//            mInterstitialAd!!.show(this)
-//            loadInterstitial(AdRequest.Builder().build())
-//        }
+        if ((position % 2) == 0 && mInterstitialAd != null) {
+            mInterstitialAd!!.show(this)
+            loadInterstitial(AdRequest.Builder().build())
+        }
     }
 }
