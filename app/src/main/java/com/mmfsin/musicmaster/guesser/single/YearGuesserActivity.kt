@@ -79,10 +79,7 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
 
             /** START */
             presenter.getMusicVideoList(category)
-        } else {
-            somethingWentWrong()
-        }
-
+        } else somethingWentWrong()
         listeners()
     }
 
@@ -221,5 +218,5 @@ class YearGuesserActivity : AppCompatActivity(), GuesserView {
         }
     }
 
-    override fun setMultiSolutionMessage(g1Points: Int, gTwoPoints: Int) {}
+    override fun setMultiSolutionMessage(gOnePoints: Int, gTwoPoints: Int) {}
 }

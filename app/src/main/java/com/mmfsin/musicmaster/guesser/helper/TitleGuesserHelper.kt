@@ -124,13 +124,23 @@ class TitleGuesserHelper(private val view: GuesserView) {
     fun setSolutionMessage(userTitleStr: String, correctTitleStr: String) {
         val discordance = LevenshteinDistance()
         val percentage = discordance.apply(
-            userTitleStr.map { it.uppercase() }.toString(),
-            correctTitleStr.map { it.uppercase() }.toString()
+            doMagic(userTitleStr.trim().map { it.lowercase() }.toString()),
+            doMagic(correctTitleStr.trim().map { it.lowercase() }.toString())
         )
         when {
             (percentage == 0 || percentage == 1) -> view.setSolutionMessage(0)
             (percentage == 2 || percentage == 3 || percentage == 4) -> view.setSolutionMessage(1)
             else -> view.setSolutionMessage(2)
         }
+    }
+
+    private fun doMagic(text: String): String {
+        return text.replace(" ","")
+            .replace(",","")
+            .replace("á", "a")
+            .replace("é", "e")
+            .replace("í", "i")
+            .replace("ó", "o")
+            .replace("ú", "u")
     }
 }
