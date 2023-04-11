@@ -5,16 +5,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
-import com.mmfsin.musicmaster.databinding.ActivityCategoryBinding
+import com.mmfsin.musicmaster.databinding.ActivityMainBinding
 import com.mmfsin.musicmaster.presentation.category.adapter.ViewPagerAdapter
 import com.mmfsin.musicmaster.presentation.guesser.multiplayer.MultiYearGuesser
 import com.mmfsin.musicmaster.presentation.guesser.single.TitleGuesserActivity
 import com.mmfsin.musicmaster.presentation.guesser.single.YearGuesserActivity
 import com.mmfsin.musicmaster.presentation.selector.IFragmentSelector
+import com.mmfsin.musicmaster.presentation.selector.SelectorDialog
 
 class MainActivity : AppCompatActivity(), IFragmentSelector {
 
-    private lateinit var binding: ActivityCategoryBinding
+    private lateinit var binding: ActivityMainBinding
 
     private val pagerAdapter by lazy { ViewPagerAdapter(this, this) }
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
         setTheme(R.style.Theme_MusicMaster)
 
         super.onCreate(savedInstanceState)
-        binding = ActivityCategoryBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //Realm.init
@@ -38,25 +39,15 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
     }
 
     override fun openFragmentSelector(category: String) {
-
-
-
-
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragmentContainer, FragmentSelector(this, category))
-//            .addToBackStack(null)
-//            .commit()
+        val dialog = SelectorDialog()
+        dialog.show(supportFragmentManager, "")
     }
 
-    override fun closeFragmentSelector() = supportFragmentManager.popBackStack()
-
-    override fun openActivityDashboard(isYear: Boolean, category: String) {
+    override fun openActivityDashboard(isYear: Boolean, category: String) =
         startActivity(generateSingleModeIntent(isYear, category))
-    }
 
-    override fun openActivityDashMultiplayer(isYear: Boolean, category: String) {
+    override fun openActivityDashMultiplayer(isYear: Boolean, category: String) =
         startActivity(generateMultiplayerModeIntent(isYear, category))
-    }
 
     private fun generateSingleModeIntent(isYear: Boolean, category: String): Intent {
         val intent = if (isYear) {
@@ -64,9 +55,7 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
         } else {
             Intent(this, TitleGuesserActivity()::class.java)
         }
-        return intent.apply {
-            putExtra("category", category)
-        }
+        return intent.apply { putExtra("category", category) }
     }
 
     private fun generateMultiplayerModeIntent(isYear: Boolean, category: String): Intent {

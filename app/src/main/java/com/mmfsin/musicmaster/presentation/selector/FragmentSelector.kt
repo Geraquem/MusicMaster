@@ -28,9 +28,6 @@ class FragmentSelector(private val listener: IFragmentSelector, val category: St
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.background.setOnClickListener { listener.closeFragmentSelector() }
-
         listeners()
     }
 
@@ -62,7 +59,6 @@ class FragmentSelector(private val listener: IFragmentSelector, val category: St
         }else{
             listener.openActivityDashMultiplayer(isYear, category)
         }
-        listener.closeFragmentSelector()
     }
 
     override fun onAttach(context: Context) {
