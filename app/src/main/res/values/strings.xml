@@ -19,9 +19,9 @@
     <string name="bbdd_rap">rap</string>
     <string name="bbdd_reggaeton">reggaeton</string>
 
-    <string name="songsIn">CANCIONES</string>
-    <string name="english">ÉS</string>
-    <string name="spanish"> ESPA</string>
+    <string name="songs_in">CANCIONES EN</string>
+    <string name="english">INGLÉS</string>
+    <string name="spanish">ESPAÑOL</string>
 
     <string name="mix">Hazme un mix</string>
     <string name="rock"><b>ROCK</b></string>

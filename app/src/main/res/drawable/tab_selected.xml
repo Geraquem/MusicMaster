@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <corners android:radius="@dimen/margin_padding_large" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:bottom="@dimen/margin_padding_xsmall"
+        android:left="@dimen/margin_padding_xsmall"
+        android:right="@dimen/margin_padding_xsmall"
+        android:top="@dimen/margin_padding_xsmall">
+        <shape>
+            <solid android:color="@color/soft_grey" />
+            <corners android:radius="@dimen/margin_padding_large" />
+
+        </shape>
+    </item>
+</layer-list>
