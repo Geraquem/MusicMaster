@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:clipChildren="false"
     android:clipToPadding="false"
     tools:context=".presentation.MainActivity">
@@ -20,7 +21,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/margin_padding_small">
+            android:background="@color/white"
+            android:paddingVertical="@dimen/margin_padding_xmedium">
 
             <ImageView
                 android:id="@+id/icon"
@@ -51,16 +53,23 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appBar"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin_padding_large"
+        android:layout_marginTop="@dimen/margin_padding_medium"
+        android:background="@drawable/tab_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:tabGravity="fill"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabIndicator="@drawable/tab_selected"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorColor="#81AAA4A4"
         app:tabIndicatorFullWidth="true"
+        app:tabRippleColor="@null"
         app:tabIndicatorGravity="stretch"
-        app:tabIndicatorHeight="3dp"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextAppearance="@style/tab_text" />
+        app:tabInlineLabel="true"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

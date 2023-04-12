@@ -12,6 +12,7 @@
 
     <color name="splashBackground">#F2ECFA</color>
     <color name="background">#EEEEEE</color>
+    <color name="transparent">#00FFFFFF</color>
 
     <color name="goodPhrase">#6BAF63</color>
     <color name="almostPhrase">#DCAA13</color>
