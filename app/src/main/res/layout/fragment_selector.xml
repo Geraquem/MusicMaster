@@ -5,8 +5,10 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent"
+    android:background="@color/almost_transparent"
     android:clickable="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:focusable="true">
 
     <androidx.constraintlayout.widget.Guideline
@@ -27,10 +29,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_selector"
+        android:clickable="true"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="@dimen/elevation"
+        android:focusable="true"
         android:paddingVertical="@dimen/margin_padding_xlarge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right">
+        app:layout_constraintRight_toRightOf="@id/gl_right"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_right2"
@@ -49,6 +57,8 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="@id/gl_left2"
             app:layout_constraintRight_toRightOf="@id/gl_right2"
@@ -59,23 +69,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_padding_large"
+                android:layout_marginBottom="@dimen/margin_padding_xlarge"
                 android:fontFamily="@font/text"
                 android:gravity="center"
                 android:text="@string/wanna_guess"
-                android:textAllCaps="true" />
+                android:textAllCaps="true"
+                android:textSize="28sp" />
 
             <LinearLayout
                 android:id="@+id/btn_year_single"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_medium"
+                android:layout_marginBottom="@dimen/margin_padding_large"
                 android:background="@drawable/bg_button"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:elevation="@dimen/elevation"
                 android:orientation="vertical"
-                android:paddingVertical="@dimen/margin_padding_xmedium">
+                android:paddingVertical="@dimen/margin_padding_medium">
 
                 <TextView
                     style="@style/MediumTextView"
@@ -111,11 +122,11 @@
                 android:id="@+id/btn_year_multiplayer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_large"
+                android:layout_marginBottom="@dimen/margin_padding_xlarge"
                 android:background="@drawable/bg_button"
                 android:elevation="@dimen/elevation"
                 android:orientation="vertical"
-                android:paddingVertical="@dimen/margin_padding_xmedium">
+                android:paddingVertical="@dimen/margin_padding_medium">
 
                 <TextView
                     style="@style/MediumTextView"
@@ -159,7 +170,7 @@
                 android:elevation="@dimen/elevation"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingVertical="@dimen/margin_padding_xmedium"
+                android:paddingVertical="@dimen/margin_padding_medium"
                 android:text="@string/guess_title"
                 android:textAllCaps="true"
                 tools:ignore="AllCaps" />

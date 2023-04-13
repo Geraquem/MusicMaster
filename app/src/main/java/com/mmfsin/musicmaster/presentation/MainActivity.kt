@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
 
     override fun openFragmentSelector(category: String) {
         supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.slide_up, 0, 0, R.anim.slide_down)
             .replace(R.id.fragment_container, FragmentSelector(this, category))
             .addToBackStack(null)
             .commit()

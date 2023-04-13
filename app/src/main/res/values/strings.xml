@@ -44,7 +44,7 @@
     <string name="reggaetonArtists">Desde las canciones de reggaeton más míticas hasta las más actuales. Becky G, Nicky Jam, Don Omar, Ozuna, Arcángel, Bad Bunny, Sech, Daddy Yankee…</string>
 
     <!-- SELECTOR -->
-    <string name="wanna_guess">Modo de juego</string>
+    <string name="wanna_guess">Quiero adivinar</string>
     <string name="guess_year">EN QUÉ <b>AÑO</b> SALIÓ LA CANCIÓN</string>
     <string name="guess_title">EL <b>TÍTULO</b> DE LA CANCIÓN</string>
     <string name="single_mode">INDIVIDUAL</string>

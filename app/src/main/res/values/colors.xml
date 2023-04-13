@@ -8,13 +8,14 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="soft_white">#DDDDDD</color>
+    <color name="soft_white">#E4E4E4</color>
     <color name="grey">#7E7E7E</color>
     <color name="soft_grey">#AAAAAA</color>
 
     <color name="splashBackground">#F2ECFA</color>
     <color name="background">#EEEEEE</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="almost_transparent">#8D000000</color>
 
     <color name="goodPhrase">#6BAF63</color>
     <color name="almostPhrase">#DCAA13</color>
