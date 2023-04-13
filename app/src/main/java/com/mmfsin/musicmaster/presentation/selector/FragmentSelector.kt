@@ -1,21 +1,18 @@
 package com.mmfsin.musicmaster.presentation.selector
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mmfsin.musicmaster.databinding.FragmentSelectorBinding
+import com.mmfsin.musicmaster.domain.types.GameMode
+import com.mmfsin.musicmaster.domain.types.GameMode.*
 
 class FragmentSelector(private val listener: IFragmentSelector, val category: String) : Fragment() {
 
     private var _bdg: FragmentSelectorBinding? = null
     private val binding get() = _bdg!!
-
-    private var singleMode = true
-
-    private lateinit var mContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,38 +29,11 @@ class FragmentSelector(private val listener: IFragmentSelector, val category: St
     private fun listeners() {
         binding.apply {
             background.setOnClickListener { listener.closeFragmentSelector() }
+            btnYearSingle.setOnClickListener { openDashboard(GUESS_YEAR_SINGLE) }
+            btnYearMultiplayer.setOnClickListener { openDashboard(GUESS_YEAR_MULTIPLAYER) }
+            btnTitle.setOnClickListener { openDashboard(GUESS_TITLE) }
         }
-//        val unselected = getDrawable(mContext, R.drawable.bg_button_unselected)
-//        val selected = getDrawable(mContext, R.drawable.bg_button_selected)
-//
-//        with(binding) {
-//            buttonSingleplayer.setOnClickListener {
-//                buttonSingleplayer.background = selected
-//                buttonMultiplayer.background = unselected
-//                singleMode = true
-//            }
-//
-//            buttonMultiplayer.setOnClickListener {
-//                buttonSingleplayer.background = unselected
-//                buttonMultiplayer.background = selected
-//                singleMode = false
-//            }
-//
-//            buttonYear.setOnClickListener { openActivityDashboard(true) }
-//            buttonTitle.setOnClickListener { openActivityDashboard(false) }
-//        }
     }
 
-    private fun openActivityDashboard(isYear: Boolean) {
-//        if (singleMode) {
-//            listener.openActivityDashboard(isYear, category)
-//        }else{
-//            listener.openActivityDashMultiplayer(isYear, category)
-//        }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mContext = context
-    }
+    private fun openDashboard(mode: GameMode) = listener.openActivityDashboard(mode, category)
 }

@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ActivityMainBinding
+import com.mmfsin.musicmaster.domain.types.GameMode
+import com.mmfsin.musicmaster.domain.utils.CATEGORY
+import com.mmfsin.musicmaster.domain.utils.GAME_MODE
 import com.mmfsin.musicmaster.presentation.category.adapter.ViewPagerAdapter
+import com.mmfsin.musicmaster.presentation.dashboard.DashboardActivity
 import com.mmfsin.musicmaster.presentation.guesser.multiplayer.MultiYearGuesser
 import com.mmfsin.musicmaster.presentation.guesser.single.TitleGuesserActivity
 import com.mmfsin.musicmaster.presentation.guesser.single.YearGuesserActivity
@@ -47,29 +51,10 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
 
     override fun closeFragmentSelector() = supportFragmentManager.popBackStack()
 
-    override fun openActivityDashboard(isYear: Boolean, category: String) =
-        startActivity(generateSingleModeIntent(isYear, category))
-
-    override fun openActivityDashMultiplayer(isYear: Boolean, category: String) =
-        startActivity(generateMultiplayerModeIntent(isYear, category))
-
-    private fun generateSingleModeIntent(isYear: Boolean, category: String): Intent {
-        val intent = if (isYear) {
-            Intent(this, YearGuesserActivity()::class.java)
-        } else {
-            Intent(this, TitleGuesserActivity()::class.java)
-        }
-        return intent.apply { putExtra("category", category) }
-    }
-
-    private fun generateMultiplayerModeIntent(isYear: Boolean, category: String): Intent {
-        val intent = if (isYear) {
-            Intent(this, MultiYearGuesser()::class.java)
-        } else {
-            Intent(this, TitleGuesserActivity()::class.java)
-        }
-        return intent.apply {
-            putExtra("category", category)
-        }
+    override fun openActivityDashboard(mode: GameMode, category: String) {
+        startActivity(Intent(this, DashboardActivity()::class.java).apply {
+            putExtra(GAME_MODE, mode.name)
+            putExtra(CATEGORY, category)
+        })
     }
 }
