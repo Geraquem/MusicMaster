@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
-import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.FragmentSelectorBinding
 
 class FragmentSelector(private val listener: IFragmentSelector, val category: String) : Fragment() {
@@ -32,33 +30,36 @@ class FragmentSelector(private val listener: IFragmentSelector, val category: St
     }
 
     private fun listeners() {
-        val unselected = getDrawable(mContext, R.drawable.bg_button_unselected)
-        val selected = getDrawable(mContext, R.drawable.bg_button_selected)
-
-        with(binding) {
-            buttonSingleplayer.setOnClickListener {
-                buttonSingleplayer.background = selected
-                buttonMultiplayer.background = unselected
-                singleMode = true
-            }
-
-            buttonMultiplayer.setOnClickListener {
-                buttonSingleplayer.background = unselected
-                buttonMultiplayer.background = selected
-                singleMode = false
-            }
-
-            buttonYear.setOnClickListener { openActivityDashboard(true) }
-            buttonTitle.setOnClickListener { openActivityDashboard(false) }
+        binding.apply {
+            background.setOnClickListener { listener.closeFragmentSelector() }
         }
+//        val unselected = getDrawable(mContext, R.drawable.bg_button_unselected)
+//        val selected = getDrawable(mContext, R.drawable.bg_button_selected)
+//
+//        with(binding) {
+//            buttonSingleplayer.setOnClickListener {
+//                buttonSingleplayer.background = selected
+//                buttonMultiplayer.background = unselected
+//                singleMode = true
+//            }
+//
+//            buttonMultiplayer.setOnClickListener {
+//                buttonSingleplayer.background = unselected
+//                buttonMultiplayer.background = selected
+//                singleMode = false
+//            }
+//
+//            buttonYear.setOnClickListener { openActivityDashboard(true) }
+//            buttonTitle.setOnClickListener { openActivityDashboard(false) }
+//        }
     }
 
     private fun openActivityDashboard(isYear: Boolean) {
-        if (singleMode) {
-            listener.openActivityDashboard(isYear, category)
-        }else{
-            listener.openActivityDashMultiplayer(isYear, category)
-        }
+//        if (singleMode) {
+//            listener.openActivityDashboard(isYear, category)
+//        }else{
+//            listener.openActivityDashMultiplayer(isYear, category)
+//        }
     }
 
     override fun onAttach(context: Context) {

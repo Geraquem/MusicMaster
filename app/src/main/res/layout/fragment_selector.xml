@@ -1,136 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B7CDCDCD"
+    android:background="@color/transparent"
     android:clickable="true"
     android:focusable="true">
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_right"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_left"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_selector"
+        android:paddingVertical="@dimen/margin_padding_xlarge"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintLeft_toLeftOf="@id/gl_left"
+        app:layout_constraintRight_toRightOf="@id/gl_right">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_right2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_left2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_linear"
-            android:clickable="true"
-            android:focusable="true"
             android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="26dp">
+            app:layout_constraintLeft_toLeftOf="@id/gl_left2"
+            app:layout_constraintRight_toRightOf="@id/gl_right2"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                style="@style/BigTextView_Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="@dimen/margin_padding_large"
                 android:fontFamily="@font/text"
-                android:text="@string/wannaGuess"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="28sp" />
+                android:gravity="center"
+                android:text="@string/wanna_guess"
+                android:textAllCaps="true" />
 
             <LinearLayout
+                android:id="@+id/btn_year_single"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_marginBottom="@dimen/margin_padding_medium"
+                android:background="@drawable/bg_button"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="@dimen/elevation"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/margin_padding_xmedium">
 
                 <TextView
-                    android:id="@+id/buttonSingleplayer"
+                    style="@style/MediumTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/guess_year"
+                    android:textAllCaps="true"
+                    tools:ignore="AllCaps" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.75dp"
+                    android:layout_marginHorizontal="@dimen/margin_padding_xxlarge"
+                    android:layout_marginVertical="@dimen/margin_padding_xsmall"
+                    android:background="@color/black" />
+
+                <TextView
+                    style="@style/MediumTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="0.45"
-                    android:background="@drawable/bg_button_selected"
-                    android:elevation="5dp"
-                    android:fontFamily="sans-serif-condensed"
+                    android:drawablePadding="@dimen/margin_padding_xxxsmall"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="8dp"
-                    android:text="@string/mode_one"
+                    android:text="@string/single_mode"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_single_player" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_year_multiplayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_padding_large"
+                android:background="@drawable/bg_button"
+                android:elevation="@dimen/elevation"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/margin_padding_xmedium">
 
                 <TextView
-                    android:id="@+id/buttonMultiplayer"
+                    style="@style/MediumTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/guess_year"
+                    android:textAllCaps="true"
+                    tools:ignore="AllCaps" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.75dp"
+                    android:layout_marginHorizontal="@dimen/margin_padding_xxlarge"
+                    android:layout_marginVertical="@dimen/margin_padding_xsmall"
+                    android:background="@color/black" />
+
+                <TextView
+                    style="@style/MediumTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="0.45"
-                    android:background="@drawable/bg_button_unselected"
-                    android:elevation="5dp"
-                    android:fontFamily="sans-serif-condensed"
+                    android:drawablePadding="@dimen/margin_padding_xsmall"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="8dp"
-                    android:text="@string/mode_multiplayer"
+                    android:text="@string/multiplayer_mode"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_multiplayer" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/buttonYear"
+                style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_padding_xxsmall"
                 android:background="@drawable/bg_button"
-                android:elevation="5dp"
-                android:fontFamily="sans-serif-condensed"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="@dimen/elevation"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="12dp"
-                android:text="@string/year"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginVertical="24dp"
-                android:background="@color/black" />
-
-            <TextView
-                android:id="@+id/buttonTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/bg_button"
-                android:elevation="5dp"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="12dp"
-                android:text="@string/title"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/margin_padding_xmedium"
+                android:text="@string/guess_title"
+                android:textAllCaps="true"
+                tools:ignore="AllCaps" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

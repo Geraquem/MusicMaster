@@ -10,8 +10,8 @@ import com.mmfsin.musicmaster.presentation.category.adapter.ViewPagerAdapter
 import com.mmfsin.musicmaster.presentation.guesser.multiplayer.MultiYearGuesser
 import com.mmfsin.musicmaster.presentation.guesser.single.TitleGuesserActivity
 import com.mmfsin.musicmaster.presentation.guesser.single.YearGuesserActivity
+import com.mmfsin.musicmaster.presentation.selector.FragmentSelector
 import com.mmfsin.musicmaster.presentation.selector.IFragmentSelector
-import com.mmfsin.musicmaster.presentation.selector.SelectorDialog
 
 class MainActivity : AppCompatActivity(), IFragmentSelector {
 
@@ -39,9 +39,14 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
     }
 
     override fun openFragmentSelector(category: String) {
-        val dialog = SelectorDialog()
-        dialog.show(supportFragmentManager, "")
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_up, 0, 0, R.anim.slide_down)
+            .replace(R.id.fragment_container, FragmentSelector(this, category))
+            .addToBackStack(null)
+            .commit()
     }
+
+    override fun closeFragmentSelector() = supportFragmentManager.popBackStack()
 
     override fun openActivityDashboard(isYear: Boolean, category: String) =
         startActivity(generateSingleModeIntent(isYear, category))

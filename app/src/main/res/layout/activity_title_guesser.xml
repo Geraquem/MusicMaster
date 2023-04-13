@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".guesser.single.TitleGuesserActivity">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -94,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:autofillHints="name"
-                android:background="@drawable/bg_et_titulo"
+                android:background="@drawable/bg_et_title"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:hint="@string/threeDots"

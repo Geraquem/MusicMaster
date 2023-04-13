@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mmfsin.musicmaster.R
-import com.mmfsin.musicmaster.databinding.RowCategoryBinding
+import com.mmfsin.musicmaster.databinding.ItemCategoryBinding
 import com.mmfsin.musicmaster.domain.models.CategoryDTO
 import com.mmfsin.musicmaster.presentation.category.CategoryPresenter
 
@@ -19,7 +19,7 @@ class RViewAdapter(
     RecyclerView.Adapter<RViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = RowCategoryBinding.bind(view)
+        val binding = ItemCategoryBinding.bind(view)
         fun bind(context: Context, category: CategoryDTO) {
             binding.image.setBackgroundResource(category.image)
             binding.name.text = context.getString(category.name)
@@ -31,7 +31,7 @@ class RViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.row_category, parent, false)
+                .inflate(R.layout.item_category, parent, false)
         )
     }
 
