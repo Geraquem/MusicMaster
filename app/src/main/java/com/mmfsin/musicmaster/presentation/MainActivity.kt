@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
         binding.viewPager.adapter = pagerAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
-                0 -> tab.setText(R.string.english)
-                1 -> tab.setText(R.string.spanish)
+                0 -> tab.setText(R.string.spanish)
+                1 -> tab.setText(R.string.english)
             }
         }.attach()
     }

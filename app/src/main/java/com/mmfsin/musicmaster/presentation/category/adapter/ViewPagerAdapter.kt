@@ -17,9 +17,9 @@ class ViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> CategoryFragment(listener, fragmentActivity.getString(R.string.english))
-            1 -> CategoryFragment(listener, fragmentActivity.getString(R.string.spanish))
-            else -> CategoryFragment(listener, fragmentActivity.getString(R.string.english))
+            0 -> CategoryFragment(listener, fragmentActivity.getString(R.string.spanish))
+            1 -> CategoryFragment(listener, fragmentActivity.getString(R.string.english))
+            else -> CategoryFragment(listener, fragmentActivity.getString(R.string.spanish))
         }
     }
 }

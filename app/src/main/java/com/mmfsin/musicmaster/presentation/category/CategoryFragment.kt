@@ -5,45 +5,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.musicmaster.R
-import com.mmfsin.musicmaster.databinding.FragmentRvCategoryBinding
+import com.mmfsin.musicmaster.common.BaseFragment
+import com.mmfsin.musicmaster.databinding.FragmentCategoriesBinding
 import com.mmfsin.musicmaster.domain.models.CategoryDTO
 import com.mmfsin.musicmaster.presentation.category.adapter.RViewAdapter
 import com.mmfsin.musicmaster.presentation.selector.IFragmentSelector
 
 class CategoryFragment(private val listener: IFragmentSelector, private val language: String) :
-    Fragment(), CategoryView {
-
-    private var _bdg: FragmentRvCategoryBinding? = null
-    private val binding get() = _bdg!!
+    BaseFragment<FragmentCategoriesBinding>(), CategoryView {
 
     private val presenter by lazy { CategoryPresenter(this) }
 
     lateinit var mContext: Context
 
-    private lateinit var adapter: RViewAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        _bdg = FragmentRvCategoryBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflateView(
+        inflater: LayoutInflater, container: ViewGroup?
+    ) = FragmentCategoriesBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.setEnglishRVData()
         when {
             (language == getString(R.string.english)) -> presenter.setEnglishRVData()
             (language == getString(R.string.spanish)) -> presenter.setSpanishRVData()
         }
     }
 
-    override fun initRecyclerView(data: List<CategoryDTO>) {
-        binding.recyclerView.layoutManager = LinearLayoutManager(mContext)
-        adapter = RViewAdapter(mContext, presenter, data)
-        binding.recyclerView.adapter = adapter
+    override fun setUI() {
+        binding.apply {
+            loading.root.visibility = View.VISIBLE
+        }
+    }
+
+    override fun getCategoriesInfo(data: List<CategoryDTO>) {
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(mContext)
+            adapter = RViewAdapter(mContext, presenter, data)
+            binding.recyclerView.adapter = adapter
+        }
     }
 
     override fun showFragmentSelector(category: String) {

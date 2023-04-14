@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ItemCategoryBinding
@@ -21,10 +20,10 @@ class RViewAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCategoryBinding.bind(view)
         fun bind(context: Context, category: CategoryDTO) {
-            binding.image.setBackgroundResource(category.image)
-            binding.name.text = context.getString(category.name)
-            binding.name.typeface = ResourcesCompat.getFont(context, category.fontFamily)
-            binding.artists.text = context.getString(category.artists)
+//            binding.image.setBackgroundResource(category.image)
+//            binding.name.text = context.getString(category.name)
+//            binding.name.typeface = ResourcesCompat.getFont(context, category.fontFamily)
+//            binding.artists.text = context.getString(category.artists)
         }
     }
 
@@ -38,7 +37,7 @@ class RViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(context, data[position])
         holder.binding.row.setOnClickListener {
-            presenter.navigateToFragmentSelector(data[position].category)
+//            presenter.navigateToFragmentSelector(data[position].category)
         }
     }
 

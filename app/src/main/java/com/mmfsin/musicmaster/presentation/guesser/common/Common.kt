@@ -25,18 +25,19 @@ class Common {
     }
 
     private fun getTitleFromCategory(context: Context, category: String): String {
-        return when (category) {
-            context.getString(R.string.bbdd_mix) -> context.getString(R.string.mix)
-            context.getString(R.string.bbdd_rock) -> context.getString(R.string.rock)
-            context.getString(R.string.bbdd_pop) -> context.getString(R.string.pop)
-            context.getString(R.string.bbdd_hiphop) -> context.getString(R.string.hiphop)
-            context.getString(R.string.bbdd_antes2000) -> context.getString(R.string.before2000)
-            context.getString(R.string.bbdd_despues2000) -> context.getString(R.string.after2000)
-            context.getString(R.string.bbdd_populares) -> context.getString(R.string.populares)
-            context.getString(R.string.bbdd_rap) -> context.getString(R.string.rap)
-            context.getString(R.string.bbdd_reggaeton) -> context.getString(R.string.reggaeton)
-            else -> context.getString(R.string.somethingWentWrong)
-        }
+        return ""
+//        return when (category) {
+//            context.getString(R.string.bbdd_mix) -> context.getString(R.string.mix)
+//            context.getString(R.string.bbdd_rock) -> context.getString(R.string.rock)
+//            context.getString(R.string.bbdd_pop) -> context.getString(R.string.pop)
+//            context.getString(R.string.bbdd_hiphop) -> context.getString(R.string.hiphop)
+//            context.getString(R.string.bbdd_antes2000) -> context.getString(R.string.before2000)
+//            context.getString(R.string.bbdd_despues2000) -> context.getString(R.string.after2000)
+//            context.getString(R.string.bbdd_populares) -> context.getString(R.string.populares)
+//            context.getString(R.string.bbdd_rap) -> context.getString(R.string.rap)
+//            context.getString(R.string.bbdd_reggaeton) -> context.getString(R.string.reggaeton)
+//            else -> context.getString(R.string.somethingWentWrong)
+//        }
     }
 
     fun isRPBA(context: Context, category: String): Boolean {

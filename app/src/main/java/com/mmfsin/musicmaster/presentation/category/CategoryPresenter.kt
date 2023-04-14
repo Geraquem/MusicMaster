@@ -1,16 +1,17 @@
 package com.mmfsin.musicmaster.presentation.category
 
-import com.mmfsin.musicmaster.data.local.CategoryData.getEnglishData
-import com.mmfsin.musicmaster.data.local.CategoryData.getSpanishData
-
 class CategoryPresenter(private var categoryView: CategoryView?) {
 
+    fun getCategories(){
+
+    }
+
     fun setEnglishRVData() {
-        categoryView?.initRecyclerView(getEnglishData())
+        categoryView?.getCategoriesInfo(emptyList())
     }
 
     fun setSpanishRVData() {
-        categoryView?.initRecyclerView(getSpanishData())
+        categoryView?.getCategoriesInfo(emptyList())
     }
 
     fun navigateToFragmentSelector(category: String) {
