@@ -1,9 +1,14 @@
 package com.mmfsin.musicmaster.domain.models
 
-data class CategoryDTO(
-    val key: String = "",
-    val language: String = "",
-    val title: String = "",
-    val description: String = "",
-    val icon: String = "",
-)
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+
+open class CategoryDTO(
+    @PrimaryKey
+    var id: String = "",
+    var order: Int = 0,
+    var language: String = "",
+    var title: String = "",
+    var description: String = "",
+    var icon: String = "",
+) : RealmObject()

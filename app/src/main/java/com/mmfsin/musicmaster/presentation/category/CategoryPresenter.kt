@@ -1,20 +1,30 @@
 package com.mmfsin.musicmaster.presentation.category
 
-class CategoryPresenter(private var categoryView: CategoryView?) {
+import com.mmfsin.musicmaster.data.repository.CategoryRepository
+import com.mmfsin.musicmaster.domain.interfaces.ICategoryRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-    fun getCategories(){
+class CategoryPresenter(private var view: CategoriesView) : ICategoryRepository, CoroutineScope {
 
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
+
+    private val repository by lazy { CategoryRepository(this) }
+
+    fun getCategories() {
+        launch(Dispatchers.IO) { repository.getCategoriesInfo() }
     }
 
-    fun setEnglishRVData() {
-        categoryView?.getCategoriesInfo(emptyList())
+    fun getEnglishCategories() = view.getCategoriesInfo(repository.getEnglishCategories())
+
+    fun getSpanishCategories() = view.getCategoriesInfo(repository.getSpanishCategories())
+
+    override fun categoriesReady() {
+        launch { view.categoriesReady() }
     }
 
-    fun setSpanishRVData() {
-        categoryView?.getCategoriesInfo(emptyList())
-    }
-
-    fun navigateToFragmentSelector(category: String) {
-        categoryView?.showFragmentSelector(category)
+    override fun somethingWentWrong() {
     }
 }

@@ -16,6 +16,7 @@ import com.mmfsin.musicmaster.presentation.guesser.single.TitleGuesserActivity
 import com.mmfsin.musicmaster.presentation.guesser.single.YearGuesserActivity
 import com.mmfsin.musicmaster.presentation.selector.FragmentSelector
 import com.mmfsin.musicmaster.presentation.selector.IFragmentSelector
+import io.realm.Realm
 
 class MainActivity : AppCompatActivity(), IFragmentSelector {
 
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Realm.init
+        Realm.init(this)
 
         binding.viewPager.adapter = pagerAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
