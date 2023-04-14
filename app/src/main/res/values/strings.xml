@@ -23,26 +23,6 @@
     <string name="english">INGLÉS</string>
     <string name="spanish">ESPAÑOL</string>
 
-    <string name="mix">Hazme un mix</string>
-    <string name="rock"><b>ROCK</b></string>
-    <string name="pop"><b>POP</b></string>
-    <string name="hiphop"><b>HIP HOP</b></string>
-    <string name="before2000"><b>ANTES DE LOS 2000</b></string>
-    <string name="after2000"><b>DESPUÉS DE LOS 2000</b></string>
-    <string name="populares"><b>POPULARES</b></string>
-    <string name="rap"><b>RAP</b></string>
-    <string name="reggaeton"><b>REGGAETON</b></string>
-
-    <string name="mixArtists">Canciones de miles de artistas recopilados en esta aplicación</string>
-    <string name="rockArtists">Grandes artistas mundialmente conocidos como Queen, AC/DC, Deep Purple, Foo Fighters, Nirvana, SOAD, The Rolling Stones, Kiss y muchos más</string>
-    <string name="popArtists">Clasicazos de Michael Jackson, Madonna, Shakira, Maroon 5, Beyoncé, Katy Perry, Christina Aguilera…</string>
-    <string name="hiphopArtists">Artistas de rap americano como Lil Wayne, Snoop Dog, Eminem, Kendrik Lamar, Mac Miller, 21 Savage, Drake, A$AP Rocky…</string>
-    <string name="beforeArtists">Los clásicos más sonados que salieron antes del siglo XXI.</string>
-    <string name="afterArtists">Canciones míticas publicadas desde el año 2000 hasta hoy.</string>
-    <string name="popularesArtists">Las canciones más famosas de la música española. Leyendas como Sabina, Fito, Melendi, ECDL, La Oreja de Van Gogh, Amaral, Estopa…</string>
-    <string name="rapArtists">Temas de rap en español con artistas como Kase.O, Nach, Mala Rodriguez, SFDK, Sharif, Hard GZ, Ayax y Prok, Foyone, Rapsusklei, Duo Kie, Kaze…</string>
-    <string name="reggaetonArtists">Desde las canciones de reggaeton más míticas hasta las más actuales. Becky G, Nicky Jam, Don Omar, Ozuna, Arcángel, Bad Bunny, Sech, Daddy Yankee…</string>
-
     <!-- SELECTOR -->
     <string name="wanna_guess">Quiero adivinar</string>
     <string name="guess_year">EN QUÉ <b>AÑO</b> SALIÓ LA CANCIÓN</string>

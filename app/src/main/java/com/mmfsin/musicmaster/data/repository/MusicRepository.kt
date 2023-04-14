@@ -1,10 +1,10 @@
-package com.mmfsin.musicmaster.presentation.guesser.repository
+package com.mmfsin.musicmaster.data.repository
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.presentation.guesser.model.MusicVideoDTO
 
-class FirebaseRepo(private val listener: IRepo) {
+class MusicRepository(private val listener: IRepo) {
 
     fun getMusicVideoList(category: String) {
         Firebase.database.reference.child(category).get()

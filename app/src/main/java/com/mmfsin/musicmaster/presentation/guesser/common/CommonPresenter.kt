@@ -2,12 +2,12 @@ package com.mmfsin.musicmaster.presentation.guesser.common
 
 import com.mmfsin.musicmaster.presentation.guesser.GuesserView
 import com.mmfsin.musicmaster.presentation.guesser.model.MusicVideoDTO
-import com.mmfsin.musicmaster.presentation.guesser.repository.FirebaseRepo
+import com.mmfsin.musicmaster.data.repository.MusicRepository
 
 class CommonPresenter(private val view: GuesserView) :
-    FirebaseRepo.IRepo {
+    MusicRepository.IRepo {
 
-    private val repository by lazy { FirebaseRepo(this) }
+    private val repository by lazy { MusicRepository(this) }
 
     fun getMusicVideoList(category: String) {
         repository.getMusicVideoList(category)
