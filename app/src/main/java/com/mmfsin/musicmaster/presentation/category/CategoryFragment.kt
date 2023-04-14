@@ -13,14 +13,15 @@ import com.mmfsin.musicmaster.domain.types.Languages
 import com.mmfsin.musicmaster.domain.types.Languages.ENGLISH
 import com.mmfsin.musicmaster.domain.types.Languages.SPANISH
 import com.mmfsin.musicmaster.presentation.category.adapter.RViewAdapter
+import com.mmfsin.musicmaster.presentation.category.interfaces.ICategoryListener
 import com.mmfsin.musicmaster.presentation.selector.IFragmentSelector
 
 class CategoryFragment(private val listener: IFragmentSelector, private val language: Languages) :
-    BaseFragment<FragmentCategoriesBinding>(), CategoriesView {
+    BaseFragment<FragmentCategoriesBinding>(), CategoriesView, ICategoryListener {
 
     private val presenter by lazy { CategoryPresenter(this) }
 
-    lateinit var mContext: Context
+    private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -39,8 +40,8 @@ class CategoryFragment(private val listener: IFragmentSelector, private val lang
 
     override fun categoriesReady() {
         when (language) {
-            SPANISH -> presenter.getEnglishCategories()
-            ENGLISH -> presenter.getSpanishCategories()
+            SPANISH -> presenter.getSpanishCategories()
+            ENGLISH -> presenter.getEnglishCategories()
         }
     }
 
@@ -48,11 +49,15 @@ class CategoryFragment(private val listener: IFragmentSelector, private val lang
         binding.apply {
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(mContext)
-                adapter = RViewAdapter(info)
+                adapter = RViewAdapter(info, this@CategoryFragment)
                 binding.recyclerView.adapter = adapter
             }
             loading.root.visibility = View.GONE
         }
+    }
+
+    override fun onCategoryClick(category: String) {
+        listener.openFragmentSelector(category)
     }
 
     override fun onAttach(context: Context) {
