@@ -7,6 +7,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import cn.pedant.SweetAlert.SweetAlertDialog
+import cn.pedant.SweetAlert.SweetAlertDialog.WARNING_TYPE
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ActivityDashboardBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
@@ -27,6 +29,8 @@ class DashboardActivity : AppCompatActivity(), IDashboardListener {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        binding.toolbar.icon.setOnClickListener { exit() }
         getArgs()
     }
 
@@ -65,5 +69,14 @@ class DashboardActivity : AppCompatActivity(), IDashboardListener {
             tvTitle.typeface =
                 ResourcesCompat.getFont(this@DashboardActivity, category.getFontFamily())
         }
+    }
+
+    override fun exit() = finish()
+
+    override fun onBackPressed() {
+        SweetAlertDialog(this, WARNING_TYPE).setTitleText(getString(R.string.exit))
+            .setConfirmText(getString(R.string.yes)).setConfirmClickListener { finish() }
+            .setCancelButton(getString(R.string.no)) { sDialog -> sDialog.dismissWithAnimation() }
+            .show()
     }
 }

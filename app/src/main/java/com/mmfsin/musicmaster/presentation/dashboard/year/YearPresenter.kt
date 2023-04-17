@@ -19,7 +19,6 @@ class YearPresenter(private val view: YearView) : IMusicRepository, CoroutineSco
     fun getMusicData(category: String) =
         launch(Dispatchers.IO) { repository.getMusicData(category) }
 
-
     override fun musicData(list: List<MusicDTO>) {
         launch { view.musicData(list) }
     }

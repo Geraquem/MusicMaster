@@ -1,6 +1,5 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year.single
 
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.common.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
@@ -20,14 +18,13 @@ import com.mmfsin.musicmaster.presentation.dashboard.year.YearView
 class YearSingleFragment(val category: String, val listener: IDashboardListener) :
     BaseFragment<FragmentYearSingleBinding>(), YearView {
 
-    //    private val helper by lazy { YearGuesserHelper(this) }
     private val presenter by lazy { YearPresenter(this) }
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
     private lateinit var badPhrases: List<String>
 
-    private lateinit var videoList: List<String>
+    private lateinit var videoList: List<MusicDTO>
     private lateinit var correctYear: String
     private var position = 0
 
