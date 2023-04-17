@@ -51,9 +51,6 @@ class Common {
     }
 
     fun showSweetAlertError(context: Context) {
-        SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
-            .setTitleText(context.getString(R.string.oops))
-            .setContentText(context.getString(R.string.somethingWentWrong))
-            .show()
+
     }
 }

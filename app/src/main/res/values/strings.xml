@@ -3,7 +3,7 @@
 
     <string name="contentDescription">image</string>
     <string name="oops">Vaya</string>
-    <string name="somethingWentWrong">Parece que algo ha salido mal</string>
+    <string name="sww">Parece que algo ha salido mal</string>
 
     <string name="wannaExit">¿Seguro que quieres salir?</string>
     <string name="yes">SI</string>
