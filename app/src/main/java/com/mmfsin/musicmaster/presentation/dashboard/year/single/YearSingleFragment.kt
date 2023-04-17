@@ -63,7 +63,7 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
                 if (presenter.year4digits(pinView.text.toString())) {
                     pinView.isEnabled = false
                     btnCheck.isEnabled = false
-                    presenter.solution(binding.pinView.text.toString(), correctYear)
+                    presenter.solution(pinView.text.toString(), correctYear)
                 }
             }
 
@@ -127,6 +127,8 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
             }
         }
     }
+
+    override fun multiSolution(solutions: Pair<ResultType?, ResultType?>) { }
 
     private fun randomPhrase(phrases: List<String>): String {
         return phrases[(phrases.indices).random()]

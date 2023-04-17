@@ -93,7 +93,7 @@
                     android:textSize="18sp" />
 
                 <com.chaos.view.PinView
-                    android:id="@+id/pinViewOne"
+                    android:id="@+id/pinview_one"
                     style="@style/pinview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                     android:textSize="18sp" />
 
                 <com.chaos.view.PinView
-                    android:id="@+id/pinViewTwo"
+                    android:id="@+id/pinview_two"
                     style="@style/pinview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
         app:layout_constraintRight_toRightOf="@id/gl_right">
 
         <include
-            android:id="@+id/includeScore"
+            android:id="@+id/score"
             layout="@layout/include_scoreboard_multi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

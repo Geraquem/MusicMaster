@@ -3,6 +3,7 @@ package com.mmfsin.musicmaster.presentation.dashboard.year
 import com.mmfsin.musicmaster.data.repository.MusicRepository
 import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
 import com.mmfsin.musicmaster.domain.models.MusicDTO
+import com.mmfsin.musicmaster.domain.types.ResultType
 import com.mmfsin.musicmaster.domain.types.ResultType.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
@@ -31,19 +32,39 @@ class YearPresenter(private val view: YearView) : IMusicRepository, CoroutineSco
     fun solution(userAnswerStr: String, correctYear: Long) {
         val userAnswer = userAnswerStr.toIntOrNull()
         userAnswer?.let { userYear ->
-            val type = when ((userYear - correctYear.toInt()).absoluteValue) {
-                0 -> GOOD
-                1 -> ALMOST_GOOD
-                2 -> ALMOST_GOOD
-                3 -> ALMOST_GOOD
-                else -> BAD
-            }
+            val type = getTypeFromSolution(userYear - correctYear.toInt())
             view.solution(type)
         } ?: run {
             view.somethingWentWrong()
         }
     }
 
+    fun multiSolution(answers: Pair<String, String>, correctYear: Long) {
+        val group1Answer = answers.first.toIntOrNull()
+        val group2Answer = answers.second.toIntOrNull()
+
+        var type1: ResultType? = null
+        var type2: ResultType? = null
+        group1Answer?.let { yearG1 ->
+            type1 = getTypeFromSolution(yearG1 - correctYear.toInt())
+            group2Answer?.let { yearG2 ->
+                type2 = getTypeFromSolution(yearG2 - correctYear.toInt())
+            }
+            view.multiSolution(Pair(type1, type2))
+        } ?: run {
+            view.somethingWentWrong()
+        }
+    }
+
+    private fun getTypeFromSolution(solution: Int): ResultType {
+        return when (solution.absoluteValue) {
+            0 -> GOOD
+            1 -> ALMOST_GOOD
+            2 -> ALMOST_GOOD
+            3 -> ALMOST_GOOD
+            else -> BAD
+        }
+    }
 
     fun playVideo(youtubePlayerView: YouTubePlayerView, url: String) {
         youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {

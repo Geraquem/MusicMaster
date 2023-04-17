@@ -30,9 +30,8 @@ class YearMultiplayerFragment(val category: String, val listener: IDashboardList
     private var correctYear: Long = 0
     private var position = 0
 
-    private var scoreGood = 0
-    private var scoreAlmost = 0
-    private var scoreBad = 0
+    private var scoreGroup1 = 0
+    private var scoreGroup2 = 0
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -52,18 +51,23 @@ class YearMultiplayerFragment(val category: String, val listener: IDashboardList
         binding.apply {
             listener.changeToolbar(category)
             solution.root.visibility = View.GONE
-            pinView.addTextChangedListener(textWatcher)
-            pinView.isCursorVisible = false
+            pinviewOne.addTextChangedListener(textWatcher1)
+            pinviewTwo.addTextChangedListener(textWatcher2)
+            pinviewOne.isCursorVisible = false
+            pinviewTwo.isCursorVisible = false
         }
     }
 
     override fun setListeners() {
         binding.apply {
             btnCheck.setOnClickListener {
-                if (presenter.year4digits(pinView.text.toString())) {
-                    pinView.isEnabled = false
+                val text1 = pinviewOne.text.toString()
+                val text2 = pinviewTwo.text.toString()
+                if (presenter.year4digits(text1) && presenter.year4digits(text2)) {
+                    pinviewOne.isEnabled = false
+                    pinviewTwo.isEnabled = false
                     btnCheck.isEnabled = false
-                    presenter.solution(binding.pinView.text.toString(), correctYear)
+                    presenter.multiSolution(Pair(text2, text2), correctYear)
                 }
             }
 
@@ -80,8 +84,10 @@ class YearMultiplayerFragment(val category: String, val listener: IDashboardList
     private fun initialAttributes() {
         binding.apply {
             listener.closeKeyboard()
-            pinView.isEnabled = true
-            pinView.text = null
+            pinviewOne.isEnabled = true
+            pinviewTwo.isEnabled = true
+            pinviewOne.text = null
+            pinviewTwo.text = null
             btnCheck.isEnabled = true
             solution.root.visibility = View.GONE
         }
@@ -103,52 +109,65 @@ class YearMultiplayerFragment(val category: String, val listener: IDashboardList
         }
     }
 
-    override fun solution(type: ResultType) {
+    override fun solution(type: ResultType) {}
+
+    override fun multiSolution(solutions: Pair<ResultType?, ResultType?>) {
         binding.apply {
-            when (type) {
+            when (solutions.first) {
                 GOOD -> {
-                    solutionUI(randomPhrase(goodPhrases), getColor(R.color.goodPhrase))
-                    scoreGood++
-                    score.goodScore.text = scoreGood.toString()
-                    score.lottieGood.playAnimation()
+                    scoreGroup1 += 2
+                    solution.pointsGroupOne.setTextColor(getColor(R.color.goodPhrase))
+                    score.lottieGoodOne.playAnimation()
                 }
                 ALMOST_GOOD -> {
-                    solutionUI(randomPhrase(almostPhrases), getColor(R.color.almostPhrase))
-                    scoreAlmost++
-                    score.almostScore.text = scoreAlmost.toString()
-                    score.lottieAlmost.playAnimation()
+                    scoreGroup1 += 1
+                    solution.pointsGroupOne.setTextColor(getColor(R.color.almostPhrase))
+                    score.lottieGoodOne.playAnimation()
                 }
-                BAD -> {
-                    solutionUI(randomPhrase(badPhrases), getColor(R.color.badPhrase))
-                    scoreBad++
-                    score.badScore.text = scoreBad.toString()
-                    score.lottieBad.playAnimation()
-                }
+                else -> solution.pointsGroupOne.setTextColor(getColor(R.color.badPhrase))
             }
-        }
-    }
 
-    private fun randomPhrase(phrases: List<String>): String {
-        return phrases[(phrases.indices).random()]
+            when (solutions.second) {
+                GOOD -> {
+                    scoreGroup1 += 2
+                    solution.pointsGroupTwo.setTextColor(getColor(R.color.goodPhrase))
+                    score.lottieGoodTwo.playAnimation()
+                }
+                ALMOST_GOOD -> {
+                    scoreGroup1 += 1
+                    solution.pointsGroupTwo.setTextColor(getColor(R.color.almostPhrase))
+                    score.lottieGoodTwo.playAnimation()
+                }
+                else -> solution.pointsGroupTwo.setTextColor(getColor(R.color.badPhrase))
+            }
+
+            solution.pointsGroupOne.text =
+                getString(R.string.g_one_solution, scoreGroup1.toString())
+            solution.pointsGroupTwo.text =
+                getString(R.string.g_two_solution, scoreGroup2.toString())
+
+            solution.root.visibility = View.VISIBLE
+        }
     }
 
     private fun getColor(color: Int) =
         ContextCompat.getColor(this@YearMultiplayerFragment.requireContext(), color)
 
-    private fun solutionUI(message: String, color: Int) {
-        binding.solution.apply {
-            tvCorrectYear.text = correctYear.toString()
-            tvMessage.text = message
-            tvMessage.setTextColor(color)
-            root.visibility = View.VISIBLE
-        }
-    }
-
-    private val textWatcher = object : TextWatcher {
+    private val textWatcher1 = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
-            if (presenter.year4digits(binding.pinView.text.toString())) {
+            if (presenter.year4digits(binding.pinviewOne.text.toString())) {
+                listener.closeKeyboard()
+            }
+        }
+    }
+
+    private val textWatcher2 = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun afterTextChanged(p0: Editable?) {
+            if (presenter.year4digits(binding.pinviewTwo.text.toString())) {
                 listener.closeKeyboard()
             }
         }
