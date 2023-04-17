@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
     android:elevation="5dp"
     android:gravity="center"
     android:orientation="horizontal"
     android:paddingHorizontal="24dp"
-    android:layout_marginHorizontal="15dp"
     android:paddingVertical="6dp">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -18,14 +18,14 @@
         android:layout_marginEnd="4dp"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/goodPhrase"
-        app:lottie_rawRes="@raw/result" />
+        app:lottie_fileName="result.json" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/text"
-        android:text="@string/gOne"
+        android:text="@string/g_one"
         android:textColor="@color/grey"
         android:textSize="18sp" />
 
@@ -47,14 +47,14 @@
         android:layout_marginEnd="4dp"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/goodPhrase"
-        app:lottie_rawRes="@raw/result" />
+        app:lottie_fileName="result.json" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/text"
-        android:text="@string/gTwo"
+        android:text="@string/g_two"
         android:textColor="@color/grey"
         android:textSize="18sp" />
 

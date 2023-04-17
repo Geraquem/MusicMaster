@@ -68,7 +68,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center"
-                android:text="@string/whatIsTheTitleOfTheSong"
+                android:text="@string/what_title"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -81,7 +81,7 @@
                 android:background="@drawable/bg_et_title"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
-                android:hint="@string/threeDots"
+                android:hint="..."
                 android:inputType="text"
                 android:lines="1"
                 android:maxLines="1"
@@ -119,7 +119,7 @@
 
         <include
             android:id="@+id/includeScore"
-            layout="@layout/include_score_board"
+            layout="@layout/include_single_score_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

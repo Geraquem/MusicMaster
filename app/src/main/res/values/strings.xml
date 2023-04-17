@@ -22,78 +22,31 @@
     <string name="reggaeton">reggaeton</string>
 
     <!-- Main -->
-    <string name="songs_in">CANCIONES EN</string>
-    <string name="english">INGLÉS</string>
-    <string name="spanish">ESPAÑOL</string>
+    <string name="songs_in">Canciones en</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
 
     <!-- SELECTOR -->
     <string name="wanna_guess">Quiero adivinar</string>
-    <string name="guess_year">EN QUÉ <b>AÑO</b> SALIÓ LA CANCIÓN</string>
-    <string name="guess_title">EL <b>TÍTULO</b> DE LA CANCIÓN</string>
-    <string name="single_mode">INDIVIDUAL</string>
-    <string name="multiplayer_mode">POR EQUIPOS</string>
+    <string name="guess_year">En qué <b>año</b> salió la canción</string>
+    <string name="guess_title">El <b>título</b> de la canción</string>
+    <string name="single_mode">Individual</string>
+    <string name="multiplayer_mode">Por equipos</string>
 
 
     <!-- GUESSER -->
-    <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>
-    <string name="whatIsTheTitleOfTheSong">¿CÓMO SE LLAMA ESTA CANCIÓN?</string>
-    <string name="check">COMPROBAR</string>
-    <string name="songIsFrom">LA CANCIÓN ES DEL</string>
-    <string name="titleIs">EL TÍTULO ES</string>
-    <string name="threeDots">…</string>
+    <string name="what_year">¿De qué año es esta canción?</string>
+    <string name="what_title">¿Cómo se llama esta canción?</string>
+    <string name="check">Comprobar</string>
+    <string name="song_year">La canción es del</string>
+    <string name="song_title">El título es</string>
     <string name="zero">0</string>
 
-    <string name="groupOne">EQUIPO 1</string>
-    <string name="groupTwo">EQUIPO 2</string>
-    <string name="gOne">E1</string>
-    <string name="gTwo">E2</string>
-    <string name="gOneSolution">EQUIPO 1 \t %1$s PUNTOS</string>
-    <string name="gTwoSolution">EQUIPO 2 \t %1$s PUNTOS</string>
-
-    <!--  GOOD PHRASES  -->
-    <string-array name="goodPhrases">
-        <item>MUY BIEN</item>
-        <item>PERFECTÍSIMO</item>
-        <item>MARAVILLOSO</item>
-        <item>FANTABULOSO</item>
-        <item>OLÉ</item>
-        <item>PERFECTÍSIMO</item>
-        <item>GENIAL GENIAL</item>
-        <item>ESTUPENDITO</item>
-        <item>EN EL CLAVO</item>
-        <item>JUSTO</item>
-        <item>LO TIENES</item>
-    </string-array>
-
-    <!--  ALMOST PHRASES  -->
-    <string-array name="almostPhrases">
-        <item>UUYYYYYYY</item>
-        <item>CASI, PERO NO</item>
-        <item>CASI CASI</item>
-        <item>HAS ESTADO CERQUITA</item>
-        <item>AL PALO</item>
-        <item>NO HA ESTADO MAL</item>
-        <item>BUEN INTENTO</item>
-        <item>A LA PRÓXIMA</item>
-        <item>NO ESTÁ MAL, PERO TAMPOCO BIEN</item>
-        <item>ROZANDO</item>
-    </string-array>
-
-    <!--  BAD PHRASES  -->
-    <string-array name="badPhrases">
-        <item>QUE DESASTRE…</item>
-        <item>FATAL FATAL FATAL</item>
-        <item>TODOS SABEMOS QUE HAS HECHO LO QUE HAS PODIDO</item>
-        <item>FRACASO ABSOLUTO</item>
-        <item>HORRIBLE</item>
-        <item>NI IDEA TIENES</item>
-        <item>MADRE MÍA…</item>
-        <item>AL MENOS LO HAS INTENTADO</item>
-        <item>PPFFFFF…</item>
-        <item>SI ESTO FUESE UN EXAMEN ESTARÍA SUSPENSO</item>
-        <item>FRACASO ABSOLUTO</item>
-        <item>ESTO NO ES LO TUYO EH</item>
-        <item>POR FAVOR, CONCÉNTRESE</item>
-    </string-array>
+    <string name="group_one">Equipo 1</string>
+    <string name="group_two">Equipo 2</string>
+    <string name="g_one">E1</string>
+    <string name="g_two">E2</string>
+    <string name="g_one_solution">Equipo 1 \t %1$s Puntos</string>
+    <string name="g_two_solution">Equipo 2 \t %1$s Puntos</string>
 
 </resources>

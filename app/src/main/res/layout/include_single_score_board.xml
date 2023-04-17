@@ -3,63 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:elevation="5dp"
-    android:gravity="center"
+    android:background="@drawable/bg_single_score_board"
+    android:elevation="@dimen/elevation"
     android:orientation="horizontal"
-    android:paddingHorizontal="24dp"
-    android:layout_marginHorizontal="15dp"
-    android:paddingVertical="6dp">
+    android:paddingHorizontal="@dimen/margin_padding_xlarge"
+    android:paddingVertical="@dimen/margin_padding_xsmall">
 
     <TextView
-        android:id="@+id/goodScore"
+        android:id="@+id/good_score"
+        style="@style/BigTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
         android:text="@string/zero"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieGood"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/goodPhrase"
-        app:lottie_rawRes="@raw/result" />
+        app:lottie_fileName="result.json" />
 
     <TextView
-        android:id="@+id/almostScore"
+        android:id="@+id/almost_score"
+        style="@style/BigTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
         android:text="@string/zero"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAlmost"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/almostPhrase"
-        app:lottie_rawRes="@raw/result" />
+        app:lottie_fileName="result.json" />
 
     <TextView
-        android:id="@+id/badScore"
+        android:id="@+id/bad_score"
+        style="@style/BigTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
         android:text="@string/zero"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieBad"
@@ -67,6 +65,6 @@
         android:layout_height="35dp"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/badPhrase"
-        app:lottie_rawRes="@raw/result" />
+        app:lottie_fileName="result.json" />
 
 </LinearLayout>

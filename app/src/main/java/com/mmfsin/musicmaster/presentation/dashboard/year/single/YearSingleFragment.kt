@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.common.BaseFragment
-import com.mmfsin.musicmaster.databinding.ActivityYearGuesserBinding
+import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
 import com.mmfsin.musicmaster.presentation.dashboard.IDashboardListener
 import com.mmfsin.musicmaster.presentation.dashboard.year.YearPresenter
 import com.mmfsin.musicmaster.presentation.dashboard.year.YearView
 
 class YearSingleFragment(val category: String, val listener: IDashboardListener) :
-    BaseFragment<ActivityYearGuesserBinding>(), YearView {
+    BaseFragment<FragmentYearSingleBinding>(), YearView {
 
     //    private val helper by lazy { YearGuesserHelper(this) }
     private val presenter by lazy { YearPresenter(this) }
@@ -33,14 +33,14 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = ActivityYearGuesserBinding.inflate(inflater, container, false)
+    ) = FragmentYearSingleBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
-        almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
-        badPhrases = resources.getStringArray(R.array.badPhrases).toList()
+        goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
+        almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
+        badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
 
         /** START */
 //        presenter.getMusicVideoList(category)
@@ -50,7 +50,6 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
         binding.apply {
             listener.changeToolbar(category)
             pinView.addTextChangedListener(textWatcher)
-//            binding.toolbar.arrowBack.setOnClickListener { onBackPressed() }
         }
     }
 

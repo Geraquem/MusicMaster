@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
-        android:text="@string/songIsFrom"
+        android:text="@string/song_year"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
@@ -43,7 +43,7 @@
         tools:text="GRUPO 1 = 2 puntos" />
 
     <TextView
-        android:id="@+id/pointsgTwo"
+        android:id="@+id/pointsg_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

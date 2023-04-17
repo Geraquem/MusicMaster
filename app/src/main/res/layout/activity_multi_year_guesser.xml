@@ -26,8 +26,7 @@
         android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toTopOf="@id/cl_next"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right"
-        app:layout_constraintTop_toBottomOf="@id/appBar">
+        app:layout_constraintRight_toRightOf="@id/gl_right">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +67,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center"
-                android:text="@string/whatYearIsThisSong"
+                android:text="@string/song_year"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -85,7 +84,7 @@
                     android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/groupOne"
+                    android:text="@string/group_one"
                     android:textColor="@color/grey"
                     android:textSize="18sp" />
 
@@ -127,7 +126,7 @@
                     android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/groupTwo"
+                    android:text="@string/group_two"
                     android:textColor="@color/grey"
                     android:textSize="18sp" />
 
@@ -212,7 +211,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
