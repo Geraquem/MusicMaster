@@ -18,6 +18,7 @@ import com.mmfsin.musicmaster.domain.types.GameMode
 import com.mmfsin.musicmaster.domain.types.GameMode.*
 import com.mmfsin.musicmaster.domain.utils.CATEGORY
 import com.mmfsin.musicmaster.domain.utils.GAME_MODE
+import com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer.YearMultiplayerFragment
 import com.mmfsin.musicmaster.presentation.dashboard.year.single.YearSingleFragment
 import com.mmfsin.musicmaster.presentation.utils.sww
 
@@ -44,7 +45,7 @@ class DashboardActivity : AppCompatActivity(), IDashboardListener {
     private fun selectGameMode(mode: GameMode, category: String) {
         when (mode) {
             GUESS_YEAR_SINGLE -> open(YearSingleFragment(category, this))
-            GUESS_YEAR_MULTIPLAYER -> {}
+            GUESS_YEAR_MULTIPLAYER -> open(YearMultiplayerFragment(category, this))
             GUESS_TITLE -> {}
         }
     }
