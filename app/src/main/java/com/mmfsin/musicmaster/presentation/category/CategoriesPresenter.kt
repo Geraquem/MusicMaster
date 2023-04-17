@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class CategoryPresenter(private var view: CategoriesView) : ICategoryRepository, CoroutineScope {
+class CategoriesPresenter(private var view: CategoriesView) : ICategoryRepository, CoroutineScope {
 
     override val coroutineContext: CoroutineContext = Dispatchers.Main
 

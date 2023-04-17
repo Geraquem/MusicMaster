@@ -12,14 +12,14 @@ import com.mmfsin.musicmaster.domain.models.CategoryDTO
 import com.mmfsin.musicmaster.domain.types.Languages
 import com.mmfsin.musicmaster.domain.types.Languages.ENGLISH
 import com.mmfsin.musicmaster.domain.types.Languages.SPANISH
-import com.mmfsin.musicmaster.presentation.category.adapter.RViewAdapter
+import com.mmfsin.musicmaster.presentation.category.adapter.CategoriesAdapter
 import com.mmfsin.musicmaster.presentation.category.interfaces.ICategoryListener
 import com.mmfsin.musicmaster.presentation.selector.IFragmentSelector
 
-class CategoryFragment(private val listener: IFragmentSelector, private val language: Languages) :
+class CategoriesFragment(private val listener: IFragmentSelector, private val language: Languages) :
     BaseFragment<FragmentCategoriesBinding>(), CategoriesView, ICategoryListener {
 
-    private val presenter by lazy { CategoryPresenter(this) }
+    private val presenter by lazy { CategoriesPresenter(this) }
 
     private lateinit var mContext: Context
 
@@ -49,7 +49,7 @@ class CategoryFragment(private val listener: IFragmentSelector, private val lang
         binding.apply {
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(mContext)
-                adapter = RViewAdapter(info, this@CategoryFragment)
+                adapter = CategoriesAdapter(info, this@CategoriesFragment)
                 binding.recyclerView.adapter = adapter
             }
             loading.root.visibility = View.GONE

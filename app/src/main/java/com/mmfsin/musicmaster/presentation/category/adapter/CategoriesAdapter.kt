@@ -3,15 +3,17 @@ package com.mmfsin.musicmaster.presentation.category.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ItemCategoryBinding
+import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.CategoryDTO
 import com.mmfsin.musicmaster.presentation.category.interfaces.ICategoryListener
 
-class RViewAdapter(private val data: List<CategoryDTO>, val listener: ICategoryListener) :
-    RecyclerView.Adapter<RViewAdapter.ViewHolder>() {
+class CategoriesAdapter(private val data: List<CategoryDTO>, private val listener: ICategoryListener) :
+    RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCategoryBinding.bind(view)
@@ -20,7 +22,7 @@ class RViewAdapter(private val data: List<CategoryDTO>, val listener: ICategoryL
             binding.apply {
                 Glide.with(context).load(category.icon).into(image);
                 tvTitle.text = category.title
-//                binding.name.typeface = ResourcesCompat.getFont(context, category.fontFamily)
+                tvTitle.typeface = ResourcesCompat.getFont(context, category.id.getFontFamily())
                 tvDescription.text = category.description
             }
         }

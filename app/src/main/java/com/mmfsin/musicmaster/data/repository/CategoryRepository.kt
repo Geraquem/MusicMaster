@@ -44,12 +44,12 @@ class CategoryRepository(private val listener: ICategoryRepository) {
     fun getEnglishCategories(): List<CategoryDTO> {
         return realm.getObjectsFromRealm {
             where<CategoryDTO>().equalTo("language", "english").findAll()
-        }
+        }.sortedBy { it.order }
     }
 
     fun getSpanishCategories(): List<CategoryDTO> {
         return realm.getObjectsFromRealm {
             where<CategoryDTO>().equalTo("language", "spanish").findAll()
-        }
+        }.sortedBy { it.order }
     }
 }
