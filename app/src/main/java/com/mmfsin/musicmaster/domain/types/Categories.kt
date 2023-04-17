@@ -7,5 +7,6 @@ enum class Categories {
     HIPHOP,
     INDIE,
     POPULARES,
-    RAP
+    RAP,
+    REGGAETON
 }

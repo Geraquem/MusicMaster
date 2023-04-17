@@ -2,38 +2,27 @@ package com.mmfsin.musicmaster.data.repository
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.mmfsin.musicmaster.presentation.guesser.model.MusicVideoDTO
+import com.mmfsin.musicmaster.data.database.RealmDatabase
+import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
+import com.mmfsin.musicmaster.domain.models.MusicDTO
+import com.mmfsin.musicmaster.domain.utils.MUSIC
 
-class MusicRepository(private val listener: IRepo) {
+class MusicRepository(private val listener: IMusicRepository) {
 
-    fun getMusicVideoList(category: String) {
-        Firebase.database.reference.child(category).get()
-            .addOnSuccessListener {
-                val list = mutableListOf<String>()
-                for (video in it.children) {
-                    video.key?.let { element -> list.add(element) }
-                }
-                list.shuffle()
-                listener.musicVideoList(list)
+    private val rootMusic = Firebase.database.reference.child(MUSIC)
 
-            }.addOnFailureListener {
-                listener.somethingWentWrong()
+    private val realm by lazy { RealmDatabase() }
+
+    fun getMusicData(category: String) {
+        rootMusic.child(category).get().addOnSuccessListener {
+            val data = mutableListOf<MusicDTO>()
+            for (child in it.children) {
+                child.getValue(MusicDTO::class.java)?.let { music -> data.add(music) }
             }
-    }
+            listener.musicData(data)
 
-    fun getMusicVideo(category: String, video: String) {
-        Firebase.database.reference.child(category).child(video).get()
-            .addOnSuccessListener {
-                it.getValue(MusicVideoDTO::class.java)?.let { it1 -> listener.musicVideoData(it1) }
-
-            }.addOnFailureListener {
-                listener.somethingWentWrong()
-            }
-    }
-
-    interface IRepo {
-        fun musicVideoList(list: List<String>)
-        fun musicVideoData(musicVideo: MusicVideoDTO)
-        fun somethingWentWrong()
+        }.addOnFailureListener {
+            listener.somethingWentWrong()
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.presentation
+package com.mmfsin.musicmaster.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -18,6 +18,7 @@ import io.realm.Realm
 class MainActivity : AppCompatActivity(), IFragmentSelector {
 
     private lateinit var binding: ActivityMainBinding
+
 
     private val pagerAdapter by lazy { ViewPagerAdapter(this, this) }
 

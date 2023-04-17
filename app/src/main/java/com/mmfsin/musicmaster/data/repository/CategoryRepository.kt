@@ -12,7 +12,6 @@ import io.realm.kotlin.where
 class CategoryRepository(private val listener: ICategoryRepository) {
 
     private val rootInfo = Firebase.database.reference.child(CATEGORY_INFO)
-    private val rootData = Firebase.database.reference.child(CATEGORY_DATA)
 
     private val realm by lazy { RealmDatabase() }
 

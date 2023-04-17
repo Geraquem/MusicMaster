@@ -7,10 +7,12 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.common.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
+import com.mmfsin.musicmaster.domain.models.MusicDTO
 import com.mmfsin.musicmaster.presentation.dashboard.IDashboardListener
 import com.mmfsin.musicmaster.presentation.dashboard.year.YearPresenter
 import com.mmfsin.musicmaster.presentation.dashboard.year.YearView
@@ -44,8 +46,7 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
         almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
         badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
 
-        /** START */
-//        presenter.getMusicVideoList(category)
+        presenter.getMusicData(category)
     }
 
     override fun setUI() {
@@ -58,9 +59,14 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
 
     override fun setListeners() {
         binding.apply {
-            pinView.setOnClickListener{
+            pinView.setOnClickListener {
             }
         }
+    }
+
+    override fun musicData(list: List<MusicDTO>) {
+        binding.loading.root.visibility = View.GONE
+        Toast.makeText(this@YearSingleFragment.requireContext(), "acabó", Toast.LENGTH_SHORT).show()
     }
 
 //    private fun listeners() {

@@ -1,5 +1,7 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year
 
-interface YearView {
+import com.mmfsin.musicmaster.domain.models.MusicDTO
 
+interface YearView {
+    fun musicData(list: List<MusicDTO>)
 }
