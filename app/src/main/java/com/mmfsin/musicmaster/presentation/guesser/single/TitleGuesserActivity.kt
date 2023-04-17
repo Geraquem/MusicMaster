@@ -14,7 +14,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ActivityTitleGuesserBinding
 import com.mmfsin.musicmaster.presentation.guesser.GuesserView
-import com.mmfsin.musicmaster.presentation.guesser.common.Common
 import com.mmfsin.musicmaster.presentation.guesser.common.CommonPresenter
 import com.mmfsin.musicmaster.presentation.guesser.helper.TitleGuesserHelper
 import com.mmfsin.musicmaster.presentation.guesser.model.MusicVideoDTO
@@ -70,8 +69,8 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
 
         category = intent.getStringExtra("category").toString()
         if (category != "null") {
-            Common().getCategoryTitle(this, binding.toolbar.category, category)
-            isRPBA = Common().isRPBA(this, category)
+//            Common().getCategoryTitle(this, binding.toolbar.category, category)
+//            isRPBA = Common().isRPBA(this, category)
             goodPhrases = resources.getStringArray(R.array.goodPhrases).toList()
             almostPhrases = resources.getStringArray(R.array.almostPhrases).toList()
             badPhrases = resources.getStringArray(R.array.badPhrases).toList()
@@ -191,7 +190,7 @@ class TitleGuesserActivity : AppCompatActivity(), GuesserView {
     }
 
     override fun somethingWentWrong() {
-        Common().showSweetAlertError(this)
+//        Common().showSweetAlertError(this)
     }
 
     override fun onBackPressed() {

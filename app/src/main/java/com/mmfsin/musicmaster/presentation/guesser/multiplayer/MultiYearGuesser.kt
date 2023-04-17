@@ -16,7 +16,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ActivityMultiYearGuesserBinding
 import com.mmfsin.musicmaster.presentation.guesser.GuesserView
-import com.mmfsin.musicmaster.presentation.guesser.common.Common
 import com.mmfsin.musicmaster.presentation.guesser.common.CommonPresenter
 import com.mmfsin.musicmaster.presentation.guesser.helper.YearGuesserHelper
 import com.mmfsin.musicmaster.presentation.guesser.model.MusicVideoDTO
@@ -48,7 +47,7 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
 
     private var mInterstitialAd: InterstitialAd? = null
 
-        private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
+    private val mInterstitalId = "ca-app-pub-3940256099942544/1033173712"
 //    private val mInterstitalId = "ca-app-pub-4515698012373396/4423898926"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,8 +66,8 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
 
         category = intent.getStringExtra("category").toString()
         if (category != "null") {
-            Common().getCategoryTitle(this, binding.toolbar.category, category)
-            isRPBA = Common().isRPBA(this, category)
+//            Common().getCategoryTitle(this, binding.toolbar.category, category)
+//            isRPBA = Common().isRPBA(this, category)
 
             /** START */
             presenter.getMusicVideoList(category)
@@ -212,7 +211,7 @@ class MultiYearGuesser : AppCompatActivity(), GuesserView {
     }
 
     override fun somethingWentWrong() {
-        Common().showSweetAlertError(this)
+//        Common().showSweetAlertError(this)
     }
 
     private fun closeKeyboard() {
