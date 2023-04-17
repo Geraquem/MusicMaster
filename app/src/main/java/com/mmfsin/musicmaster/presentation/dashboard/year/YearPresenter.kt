@@ -4,6 +4,9 @@ import com.mmfsin.musicmaster.data.repository.MusicRepository
 import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
 import com.mmfsin.musicmaster.domain.models.MusicDTO
 import com.mmfsin.musicmaster.domain.types.ResultType.*
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,6 +42,23 @@ class YearPresenter(private val view: YearView) : IMusicRepository, CoroutineSco
         } ?: run {
             view.somethingWentWrong()
         }
+    }
+
+
+    fun playVideo(youtubePlayerView: YouTubePlayerView, url: String) {
+        youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
+            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadVideo(url, 0f)
+            }
+        })
+    }
+
+    fun pauseVideo(youtubePlayerView: YouTubePlayerView) {
+        youtubePlayerView.getYouTubePlayerWhenReady(object : YouTubePlayerCallback {
+            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.pause()
+            }
+        })
     }
 
     override fun somethingWentWrong() {

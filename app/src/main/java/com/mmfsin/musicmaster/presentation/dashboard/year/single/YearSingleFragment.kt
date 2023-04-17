@@ -96,6 +96,7 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
         binding.apply {
             tvTitle.text = data.title
             tvArtist.text = data.artist
+            presenter.playVideo(youtubePlayerView, data.videoUrl)
             correctYear = data.year
 
             loading.root.visibility = View.GONE
