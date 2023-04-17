@@ -1,11 +1,13 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year.single
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.common.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
@@ -50,6 +52,14 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
         binding.apply {
             listener.changeToolbar(category)
             pinView.addTextChangedListener(textWatcher)
+            pinView.isCursorVisible = false
+        }
+    }
+
+    override fun setListeners() {
+        binding.apply {
+            pinView.setOnClickListener{
+            }
         }
     }
 

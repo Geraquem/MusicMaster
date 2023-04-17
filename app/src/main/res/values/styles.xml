@@ -64,8 +64,12 @@
     </style>
 
     <style name="pinview">
-
-
+        <item name="android:cursorVisible">false</item>
+        <item name="android:fontFamily">sans-serif-condensed-medium</item>
+        <item name="android:inputType">number</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

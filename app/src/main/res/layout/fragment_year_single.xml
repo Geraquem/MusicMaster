@@ -74,37 +74,36 @@
 
             <com.chaos.view.PinView
                 android:id="@+id/pinView"
+                style="@style/pinview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:background="@color/white"
+                android:layout_marginBottom="@dimen/margin_padding_small"
                 android:cursorVisible="false"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:inputType="number"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="@dimen/margin_padding_small"
+                android:textCursorDrawable="@null"
+                app:cursorColor="@color/transparent"
                 app:cursorWidth="0dp"
                 app:hideLineWhenFilled="true"
                 app:itemCount="4"
                 app:itemRadius="4dp"
                 app:itemSpacing="0dp"
-                app:itemWidth="48dp"
-                app:lineColor="@color/black"
                 app:lineWidth="2dp"
                 app:viewType="rectangle" />
 
             <Button
                 android:id="@+id/comprobarButton"
+                style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="sans-serif-condensed"
-                android:paddingVertical="12dp"
+                android:layout_marginBottom="@dimen/margin_padding_medium"
+                android:elevation="@dimen/elevation"
+                android:fontFamily="@font/text"
+                android:paddingVertical="@dimen/margin_padding_xmedium"
                 android:text="@string/check"
-                android:textSize="16sp" />
+                android:textColor="@color/white" />
 
             <include
                 android:id="@+id/solution"
