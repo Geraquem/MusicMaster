@@ -6,40 +6,40 @@
     android:orientation="vertical">
 
     <TextView
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/song_year"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textAllCaps="true" />
 
     <TextView
-        android:id="@+id/solutionYear"
+        android:id="@+id/tv_correct_year"
+        style="@style/BigTextView_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed-medium"
-        android:textColor="@color/black"
-        android:textSize="35sp"
+        android:textSize="34sp"
         tools:text="2012" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="4dp"
+        android:layout_marginVertical="@dimen/margin_padding_xxsmall"
         android:background="@color/black" />
 
     <TextView
-        android:id="@+id/messageText"
+        android:id="@+id/tv_message"
+        style="@style/BigTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textSize="28sp"
         tools:text="FATAL FATAL FATAL" />
 
 </LinearLayout>

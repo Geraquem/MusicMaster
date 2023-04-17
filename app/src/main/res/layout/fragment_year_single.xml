@@ -94,7 +94,7 @@
                 app:viewType="rectangle" />
 
             <Button
-                android:id="@+id/comprobarButton"
+                android:id="@+id/btn_check"
                 style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +108,8 @@
             <include
                 android:id="@+id/solution"
                 layout="@layout/include_solution_year"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -124,17 +125,17 @@
         app:layout_constraintRight_toRightOf="@id/gl_right">
 
         <include
-            android:id="@+id/includeScore"
+            android:id="@+id/score"
             layout="@layout/include_single_score_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/btnNext"
+            app:layout_constraintRight_toLeftOf="@id/btn_next"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/btnNext"
+            android:id="@+id/btn_next"
             android:layout_width="@dimen/margin_padding_gigant"
             android:layout_height="@dimen/margin_padding_gigant"
             android:contentDescription="@string/contentDescription"

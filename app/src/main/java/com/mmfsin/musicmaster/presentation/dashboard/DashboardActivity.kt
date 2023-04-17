@@ -29,7 +29,7 @@ class DashboardActivity : AppCompatActivity(), IDashboardListener {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         binding.toolbar.icon.setOnClickListener { exit() }
         getArgs()
     }
@@ -69,6 +69,12 @@ class DashboardActivity : AppCompatActivity(), IDashboardListener {
             tvTitle.typeface =
                 ResourcesCompat.getFont(this@DashboardActivity, category.getFontFamily())
         }
+    }
+
+    override fun noMoreData() {
+        SweetAlertDialog(this, WARNING_TYPE).setTitleText(getString(R.string.no_more_data))
+            .setConfirmText(getString(R.string.ok)).setConfirmClickListener { finish() }
+            .show()
     }
 
     override fun exit() = finish()

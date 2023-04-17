@@ -7,7 +7,9 @@
     <string name="oops">Vaya</string>
     <string name="sww">Parece que algo ha salido mal</string>
 
+    <string name="no_more_data">No hay más canciones</string>
     <string name="exit">¿Seguro que quieres salir?</string>
+    <string name="ok">OK</string>
     <string name="yes">SI</string>
     <string name="no">NO</string>
 

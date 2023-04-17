@@ -7,6 +7,6 @@ open class MusicDTO(
     @PrimaryKey
     var title: String = "",
     var artist: String = "",
-    var year: String = "",
+    var year: Long = 0,
     var videoUrl: String = "",
 ) : RealmObject()
