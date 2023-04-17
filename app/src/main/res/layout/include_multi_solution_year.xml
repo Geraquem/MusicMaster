@@ -6,21 +6,21 @@
     android:orientation="vertical">
 
     <TextView
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/song_year"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textAllCaps="true" />
 
     <TextView
-        android:id="@+id/solutionYear"
+        android:id="@+id/tv_correct_year"
+        style="@style/BigTextView_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed-medium"
-        android:textColor="@color/black"
         android:textSize="28sp"
         tools:text="2012" />
 
@@ -32,25 +32,26 @@
         android:background="@color/black" />
 
     <TextView
-        android:id="@+id/pointsgOne"
+        android:id="@+id/points_group_one"
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_padding_xxsmall"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textSize="22sp"
         tools:text="GRUPO 1 = 2 puntos" />
 
     <TextView
-        android:id="@+id/pointsg_two"
+        android:id="@+id/points_group_two"
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textSize="22sp"
         tools:text="GRUPO 2 = 0 puntos" />
 
 </LinearLayout>

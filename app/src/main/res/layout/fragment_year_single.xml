@@ -127,7 +127,7 @@
 
         <include
             android:id="@+id/score"
-            layout="@layout/include_single_score_board"
+            layout="@layout/include_scoreboard_single"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -3,68 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="15dp"
-    android:elevation="5dp"
+    android:background="@drawable/bg_single_score_board"
+    android:elevation="@dimen/elevation"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingHorizontal="24dp"
-    android:paddingVertical="6dp">
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieGoodOne"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center"
-        android:layout_marginEnd="4dp"
-        app:lottie_autoPlay="true"
-        app:lottie_colorFilter="@color/goodPhrase"
-        app:lottie_fileName="result.json" />
+    android:paddingHorizontal="@dimen/margin_padding_large"
+    android:paddingVertical="@dimen/margin_padding_xsmall">
 
     <TextView
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_padding_xsmall"
         android:fontFamily="@font/text"
         android:text="@string/g_one"
-        android:textColor="@color/grey"
-        android:textSize="18sp" />
+        android:textColor="@color/grey" />
 
     <TextView
-        android:id="@+id/scoreOne"
+        android:id="@+id/score_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_padding_xxsmall"
         android:fontFamily="@font/text"
         android:text="@string/zero"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieGoodTwo"
+        android:id="@+id/lottie_good_one"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="@dimen/margin_padding_medium_medium"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/goodPhrase"
         app:lottie_fileName="result.json" />
 
     <TextView
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_padding_xsmall"
         android:fontFamily="@font/text"
         android:text="@string/g_two"
-        android:textColor="@color/grey"
-        android:textSize="18sp" />
+        android:textColor="@color/grey" />
 
     <TextView
-        android:id="@+id/scoreTwo"
+        android:id="@+id/score_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_padding_xxsmall"
         android:fontFamily="@font/text"
         android:text="@string/zero"
         android:textColor="@color/black"
         android:textSize="25sp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_good_two"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_colorFilter="@color/goodPhrase"
+        app:lottie_fileName="result.json" />
 
 </LinearLayout>
