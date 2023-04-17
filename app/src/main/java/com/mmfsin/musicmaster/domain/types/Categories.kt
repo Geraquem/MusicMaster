@@ -5,6 +5,7 @@ enum class Categories {
     ROCK,
     POP,
     HIPHOP,
+    INDIE,
     POPULARES,
     RAP
 }

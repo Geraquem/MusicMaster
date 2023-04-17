@@ -2,6 +2,8 @@
     <string name="app_name">Music Master</string>
 
     <string name="contentDescription">image</string>
+
+    <!-- Sweet Alerts -->
     <string name="oops">Vaya</string>
     <string name="sww">Parece que algo ha salido mal</string>
 
@@ -9,16 +11,17 @@
     <string name="yes">SI</string>
     <string name="no">NO</string>
 
-    <string name="bbdd_mix">mix</string>
-    <string name="bbdd_rock">rock</string>
-    <string name="bbdd_pop">pop</string>
-    <string name="bbdd_hiphop">hiphop</string>
-    <string name="bbdd_antes2000">antes2000</string>
-    <string name="bbdd_despues2000">despues2000</string>
-    <string name="bbdd_populares">populares</string>
-    <string name="bbdd_rap">rap</string>
-    <string name="bbdd_reggaeton">reggaeton</string>
+    <!-- Categories -->
+    <string name="english_mix">Mix</string>
+    <string name="rock">Rock</string>
+    <string name="pop">Pop</string>
+    <string name="hiphop">Hip Hop</string>
+    <string name="indie">Indie</string>
+    <string name="populares">Clasicazos</string>
+    <string name="rap">Rap</string>
+    <string name="reggaeton">reggaeton</string>
 
+    <!-- Main -->
     <string name="songs_in">CANCIONES EN</string>
     <string name="english">INGLÉS</string>
     <string name="spanish">ESPAÑOL</string>
@@ -29,7 +32,7 @@
     <string name="guess_title">EL <b>TÍTULO</b> DE LA CANCIÓN</string>
     <string name="single_mode">INDIVIDUAL</string>
     <string name="multiplayer_mode">POR EQUIPOS</string>
-    <string name="btn_continue">VAMOS</string>
+
 
     <!-- GUESSER -->
     <string name="whatYearIsThisSong">¿DE QUÉ AÑO ES ESTA CANCIÓN?</string>

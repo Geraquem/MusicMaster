@@ -54,5 +54,6 @@ class MainActivity : AppCompatActivity(), IFragmentSelector {
             putExtra(GAME_MODE, mode.name)
             putExtra(CATEGORY, category)
         })
+        closeFragmentSelector()
     }
 }

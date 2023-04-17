@@ -1,25 +1,17 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year.single
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import cn.pedant.SweetAlert.SweetAlertDialog
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.common.BaseFragment
 import com.mmfsin.musicmaster.databinding.ActivityYearGuesserBinding
 import com.mmfsin.musicmaster.presentation.dashboard.IDashboardListener
 import com.mmfsin.musicmaster.presentation.dashboard.year.YearPresenter
 import com.mmfsin.musicmaster.presentation.dashboard.year.YearView
-import com.mmfsin.musicmaster.presentation.guesser.model.MusicVideoDTO
 
 class YearSingleFragment(val category: String, val listener: IDashboardListener) :
     BaseFragment<ActivityYearGuesserBinding>(), YearView {
@@ -56,6 +48,7 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
 
     override fun setUI() {
         binding.apply {
+            listener.changeToolbar(category)
             pinView.addTextChangedListener(textWatcher)
 //            binding.toolbar.arrowBack.setOnClickListener { onBackPressed() }
         }
