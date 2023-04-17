@@ -6,7 +6,7 @@
     android:background="@drawable/bg_single_score_board"
     android:elevation="@dimen/elevation"
     android:orientation="horizontal"
-    android:paddingHorizontal="@dimen/margin_padding_xlarge"
+    android:paddingHorizontal="@dimen/margin_padding_large"
     android:paddingVertical="@dimen/margin_padding_xsmall">
 
     <TextView
@@ -20,11 +20,11 @@
         android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieGood"
+        android:id="@+id/lottie_good"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
+        android:layout_marginEnd="@dimen/margin_padding_small"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/goodPhrase"
         app:lottie_fileName="result.json" />
@@ -40,11 +40,11 @@
         android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAlmost"
+        android:id="@+id/lottie_almost"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
+        android:layout_marginEnd="@dimen/margin_padding_small"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/almostPhrase"
         app:lottie_fileName="result.json" />
@@ -60,7 +60,7 @@
         android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieBad"
+        android:id="@+id/lottie_bad"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:lottie_autoPlay="true"

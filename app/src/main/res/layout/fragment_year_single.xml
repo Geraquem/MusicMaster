@@ -118,7 +118,7 @@
         android:id="@+id/cl_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="@dimen/margin_padding_xmedium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right">
@@ -135,8 +135,8 @@
 
         <ImageView
             android:id="@+id/btnNext"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/margin_padding_gigant"
+            android:layout_height="@dimen/margin_padding_gigant"
             android:contentDescription="@string/contentDescription"
             android:src="@drawable/ic_next"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -150,7 +150,8 @@
         layout="@layout/include_loading"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
