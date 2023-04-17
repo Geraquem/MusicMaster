@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.common.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
@@ -105,19 +106,19 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
         binding.apply {
             when (type) {
                 GOOD -> {
-                    solutionUI(randomPhrase(goodPhrases), R.color.goodPhrase)
+                    solutionUI(randomPhrase(goodPhrases), getColor(R.color.goodPhrase))
                     scoreGood++
                     score.goodScore.text = scoreGood.toString()
                     score.lottieGood.playAnimation()
                 }
                 ALMOST_GOOD -> {
-                    solutionUI(randomPhrase(almostPhrases), R.color.almostPhrase)
+                    solutionUI(randomPhrase(almostPhrases), getColor(R.color.almostPhrase))
                     scoreAlmost++
                     score.almostScore.text = scoreAlmost.toString()
                     score.lottieAlmost.playAnimation()
                 }
                 BAD -> {
-                    solutionUI(randomPhrase(badPhrases), R.color.badPhrase)
+                    solutionUI(randomPhrase(badPhrases), getColor(R.color.badPhrase))
                     scoreBad++
                     score.badScore.text = scoreBad.toString()
                     score.lottieBad.playAnimation()
@@ -129,6 +130,9 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
     private fun randomPhrase(phrases: List<String>): String {
         return phrases[(phrases.indices).random()]
     }
+
+    private fun getColor(color: Int) =
+        ContextCompat.getColor(this@YearSingleFragment.requireContext(), color)
 
     private fun solutionUI(message: String, color: Int) {
         binding.solution.apply {
