@@ -23,7 +23,7 @@
             android:layout_height="@dimen/margin_padding_gigant"
             android:layout_gravity="start"
             android:layout_marginEnd="@dimen/margin_padding_small"
-            android:contentDescription="@string/contentDescription"
+            android:contentDescription="@string/content_description"
             tools:src="@drawable/ic_next" />
 
         <TextView

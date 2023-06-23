@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Music Master</string>
+    <string name="content_description">image</string>
 
-    <string name="contentDescription">image</string>
+    <!-- ERROR -->
+    <string name="error_title">Ha ocurrido un problema</string>
+    <string name="error_description">Inténtalo de nuevo más tarde</string>
+    <string name="error_btn">Aceptar</string>
 
     <!-- Sweet Alerts -->
     <string name="oops">Vaya</string>

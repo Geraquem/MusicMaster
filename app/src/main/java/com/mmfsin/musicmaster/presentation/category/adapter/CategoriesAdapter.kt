@@ -23,28 +23,29 @@ class CategoriesAdapter(
         fun bind(category: CategoryDTO) {
             val context = binding.root.context
             binding.apply {
-                val icon = getRandomIcon(category)
-                val randIcon = getRandomIcon(category)
-                icon?.let { Glide.with(context).load(randIcon).into(image) }
+//                val icon = getRandomIcon(category)
+//                val randIcon = getRandomIcon(category)
+                Glide.with(context).load(category.icon1).into(image)
                 tvTitle.text = category.title
                 tvTitle.typeface = ResourcesCompat.getFont(context, category.id.getFontFamily())
                 tvDescription.text = category.description
             }
         }
-
-        private fun getRandomIcon(data: CategoryDTO): String? {
-            var count = 1
-            if (data.icon2 != null) count++
-            if (data.icon3 != null) count++
-
-            val rand = (1..count).random()
-            return when (rand) {
-                2 -> data.icon2
-                3 -> data.icon3
-                else -> data.icon1
-            }
-        }
     }
+
+//        private fun getRandomIcon(data: CategoryDTO): String? {
+//            var count = 1
+//            if (data.icon2 != null) count++
+//            if (data.icon3 != null) count++
+//
+//            val rand = (1..count).random()
+//            return when (rand) {
+//                2 -> data.icon2
+//                3 -> data.icon3
+//                else -> data.icon1
+//            }
+//        }
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

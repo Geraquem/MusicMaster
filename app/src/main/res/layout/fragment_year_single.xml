@@ -139,7 +139,7 @@
             android:id="@+id/btn_next"
             android:layout_width="@dimen/margin_padding_gigant"
             android:layout_height="@dimen/margin_padding_gigant"
-            android:contentDescription="@string/contentDescription"
+            android:contentDescription="@string/content_description"
             android:src="@drawable/ic_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
