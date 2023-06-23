@@ -12,7 +12,10 @@ import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.CategoryDTO
 import com.mmfsin.musicmaster.presentation.category.interfaces.ICategoryListener
 
-class CategoriesAdapter(private val data: List<CategoryDTO>, private val listener: ICategoryListener) :
+class CategoriesAdapter(
+    private val data: List<CategoryDTO>,
+    private val listener: ICategoryListener
+) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -20,10 +23,25 @@ class CategoriesAdapter(private val data: List<CategoryDTO>, private val listene
         fun bind(category: CategoryDTO) {
             val context = binding.root.context
             binding.apply {
-                Glide.with(context).load(category.icon).into(image);
+                val icon = getRandomIcon(category)
+                val randIcon = getRandomIcon(category)
+                icon?.let { Glide.with(context).load(randIcon).into(image) }
                 tvTitle.text = category.title
                 tvTitle.typeface = ResourcesCompat.getFont(context, category.id.getFontFamily())
                 tvDescription.text = category.description
+            }
+        }
+
+        private fun getRandomIcon(data: CategoryDTO): String? {
+            var count = 1
+            if (data.icon2 != null) count++
+            if (data.icon3 != null) count++
+
+            val rand = (1..count).random()
+            return when (rand) {
+                2 -> data.icon2
+                3 -> data.icon3
+                else -> data.icon1
             }
         }
     }

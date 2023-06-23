@@ -40,18 +40,16 @@ class YearPresenter(private val view: YearView) : IMusicRepository, CoroutineSco
     }
 
     fun multiSolution(answers: Pair<String, String>, correctYear: Long) {
-        val group1Answer = answers.first.toIntOrNull()
-        val group2Answer = answers.second.toIntOrNull()
+        try {
+            val group1Answer = answers.first.toInt()
+            val group2Answer = answers.second.toInt()
 
-        var type1: ResultType? = null
-        var type2: ResultType? = null
-        group1Answer?.let { yearG1 ->
-            type1 = getTypeFromSolution(yearG1 - correctYear.toInt())
-            group2Answer?.let { yearG2 ->
-                type2 = getTypeFromSolution(yearG2 - correctYear.toInt())
-            }
+            val type1 = getTypeFromSolution(group1Answer - correctYear.toInt())
+            val type2 = getTypeFromSolution(group2Answer - correctYear.toInt())
+
             view.multiSolution(Pair(type1, type2))
-        } ?: run {
+
+        } catch (e: java.lang.Exception) {
             view.somethingWentWrong()
         }
     }

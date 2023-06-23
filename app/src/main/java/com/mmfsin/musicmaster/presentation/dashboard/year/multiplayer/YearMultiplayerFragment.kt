@@ -67,7 +67,7 @@ class YearMultiplayerFragment(val category: String, val listener: IDashboardList
                     pinviewOne.isEnabled = false
                     pinviewTwo.isEnabled = false
                     btnCheck.isEnabled = false
-                    presenter.multiSolution(Pair(text2, text2), correctYear)
+                    presenter.multiSolution(Pair(text1, text2), correctYear)
                 }
             }
 
@@ -111,40 +111,50 @@ class YearMultiplayerFragment(val category: String, val listener: IDashboardList
 
     override fun solution(type: ResultType) {}
 
-    override fun multiSolution(solutions: Pair<ResultType?, ResultType?>) {
+    override fun multiSolution(solutions: Pair<ResultType, ResultType>) {
         binding.apply {
             when (solutions.first) {
                 GOOD -> {
                     scoreGroup1 += 2
+                    solution.pointsGroupOne.text = getString(R.string.g_one_solution, "2")
                     solution.pointsGroupOne.setTextColor(getColor(R.color.goodPhrase))
                     score.lottieGoodOne.playAnimation()
                 }
                 ALMOST_GOOD -> {
                     scoreGroup1 += 1
+                    solution.pointsGroupOne.text = getString(R.string.g_one_solution, "1")
                     solution.pointsGroupOne.setTextColor(getColor(R.color.almostPhrase))
                     score.lottieGoodOne.playAnimation()
                 }
-                else -> solution.pointsGroupOne.setTextColor(getColor(R.color.badPhrase))
+                else -> {
+                    solution.pointsGroupOne.text = getString(R.string.g_one_solution, "0")
+                    solution.pointsGroupOne.setTextColor(getColor(R.color.badPhrase))
+                }
             }
 
             when (solutions.second) {
                 GOOD -> {
-                    scoreGroup1 += 2
+                    scoreGroup2 += 2
+                    solution.pointsGroupTwo.text = getString(R.string.g_one_solution, "2")
                     solution.pointsGroupTwo.setTextColor(getColor(R.color.goodPhrase))
                     score.lottieGoodTwo.playAnimation()
                 }
                 ALMOST_GOOD -> {
-                    scoreGroup1 += 1
+                    scoreGroup2 += 1
+                    solution.pointsGroupTwo.text = getString(R.string.g_one_solution, "1")
                     solution.pointsGroupTwo.setTextColor(getColor(R.color.almostPhrase))
                     score.lottieGoodTwo.playAnimation()
                 }
-                else -> solution.pointsGroupTwo.setTextColor(getColor(R.color.badPhrase))
+                else -> {
+                    solution.pointsGroupTwo.text = getString(R.string.g_one_solution, "0")
+                    solution.pointsGroupTwo.setTextColor(getColor(R.color.badPhrase))
+                }
             }
 
-            solution.pointsGroupOne.text =
-                getString(R.string.g_one_solution, scoreGroup1.toString())
-            solution.pointsGroupTwo.text =
-                getString(R.string.g_two_solution, scoreGroup2.toString())
+            score.scoreOne.text = scoreGroup1.toString()
+            score.scoreTwo.text = scoreGroup2.toString()
+
+            solution.tvCorrectYear.text = correctYear.toString()
 
             solution.root.visibility = View.VISIBLE
         }

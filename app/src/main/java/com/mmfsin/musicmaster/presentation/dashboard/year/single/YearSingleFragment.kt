@@ -128,7 +128,7 @@ class YearSingleFragment(val category: String, val listener: IDashboardListener)
         }
     }
 
-    override fun multiSolution(solutions: Pair<ResultType?, ResultType?>) { }
+    override fun multiSolution(solutions: Pair<ResultType, ResultType>) {}
 
     private fun randomPhrase(phrases: List<String>): String {
         return phrases[(phrases.indices).random()]
