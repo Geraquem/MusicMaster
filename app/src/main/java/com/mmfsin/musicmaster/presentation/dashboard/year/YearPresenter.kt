@@ -22,8 +22,8 @@ class YearPresenter(private val view: YearView) : IMusicRepository, CoroutineSco
 
     fun year4digits(year: String): Boolean = (year.length == 4)
 
-    fun getMusicData(category: String) =
-        launch(Dispatchers.IO) { repository.getMusicData(category) }
+    fun getMusicData(category: String) {}
+//        launch(Dispatchers.IO) { repository.getMusicData(category) }
 
     override fun musicData(list: List<MusicDTO>) {
         launch { view.musicData(list) }

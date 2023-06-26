@@ -2,53 +2,58 @@ package com.mmfsin.musicmaster.data.repository
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.mmfsin.musicmaster.data.database.RealmDatabase
 import com.mmfsin.musicmaster.domain.interfaces.ICategoryRepository
-import com.mmfsin.musicmaster.domain.models.CategoryDTO
-import com.mmfsin.musicmaster.domain.utils.CATEGORY_DATA
-import com.mmfsin.musicmaster.domain.utils.CATEGORY_INFO
+import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
+import com.mmfsin.musicmaster.domain.models.Category
+import com.mmfsin.musicmaster.domain.models.Language
+import com.mmfsin.musicmaster.domain.utils.CATEGORIES
+import com.mmfsin.musicmaster.domain.utils.LANGUAGE
 import io.realm.kotlin.where
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.concurrent.CountDownLatch
+import javax.inject.Inject
 
-class CategoryRepository(private val listener: ICategoryRepository) {
+class CategoryRepository @Inject constructor(
+    private val realmDatabase: IRealmDatabase
+) : ICategoryRepository {
 
-    private val rootInfo = Firebase.database.reference.child(CATEGORY_INFO)
+    private val reference = Firebase.database.reference.child(CATEGORIES)
 
-    private val realm by lazy { RealmDatabase() }
-
-    fun getCategoriesInfo() {
-//        realm.deleteCategoryData()
-//        realm.deleteMusic()
-        val categories = realm.getObjectsFromRealm { where<CategoryDTO>().findAll() }
-
-        if (categories.isEmpty()) getCategoriesFromFirebase()
-        else listener.categoriesReady()
+    override fun getCategoriesFromRealm(): List<Category> {
+        return realmDatabase.getObjectsFromRealm { where<Category>().findAll() }
     }
 
-    private fun getCategoriesFromFirebase() {
-        rootInfo.get().addOnSuccessListener {
+    override fun getCategoryFromRealm(id: String): Category? {
+        val categories =
+            realmDatabase.getObjectsFromRealm { where<Category>().equalTo("id", id).findAll() }
+        return if (categories.isEmpty()) null else categories.first()
+    }
+
+    fun getCategoryByLanguage(language: Language): List<Category> {
+        return realmDatabase.getObjectsFromRealm {
+            where<Category>().equalTo(LANGUAGE, language.name.lowercase()).findAll()
+        }.sortedBy { it.order }
+    }
+
+    override suspend fun getCategoriesFromFirebase(): List<Category> {
+        val latch = CountDownLatch(1)
+        val categories = mutableListOf<Category>()
+        reference.get().addOnSuccessListener {
             for (child in it.children) {
-                child.getValue(CategoryDTO::class.java)?.let { category ->
-                    saveCategories(category)
+                child.getValue(Category::class.java)?.let { category ->
+                    categories.add(category)
+                    saveCategory(category)
                 }
             }
-            getCategoriesInfo()
+            latch.countDown()
+        }.addOnFailureListener { latch.countDown() }
 
-        }.addOnFailureListener {
-            listener.somethingWentWrong()
+        withContext(Dispatchers.IO) {
+            latch.await()
         }
+        return categories
     }
 
-    private fun saveCategories(category: CategoryDTO) = realm.addObject { category }
-
-    fun getEnglishCategories(): List<CategoryDTO> {
-        return realm.getObjectsFromRealm {
-            where<CategoryDTO>().equalTo("language", "english").findAll()
-        }.sortedBy { it.order }
-    }
-
-    fun getSpanishCategories(): List<CategoryDTO> {
-        return realm.getObjectsFromRealm {
-            where<CategoryDTO>().equalTo("language", "spanish").findAll()
-        }.sortedBy { it.order }
-    }
+    private fun saveCategory(category: Category) = realmDatabase.addObject { category }
 }
