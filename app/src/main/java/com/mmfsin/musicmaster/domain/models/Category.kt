@@ -7,6 +7,7 @@ open class Category(
     @PrimaryKey
     var id: String = "",
     var order: Int = 0,
+    var language: String = "",
     var title: String = "",
     var description: String = "",
     var icon: String = ""

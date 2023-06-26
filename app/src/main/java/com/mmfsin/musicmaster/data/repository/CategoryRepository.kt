@@ -5,7 +5,6 @@ import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.domain.interfaces.ICategoryRepository
 import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
 import com.mmfsin.musicmaster.domain.models.Category
-import com.mmfsin.musicmaster.domain.models.Language
 import com.mmfsin.musicmaster.domain.utils.CATEGORIES
 import com.mmfsin.musicmaster.domain.utils.LANGUAGE
 import io.realm.kotlin.where
@@ -30,9 +29,9 @@ class CategoryRepository @Inject constructor(
         return if (categories.isEmpty()) null else categories.first()
     }
 
-    fun getCategoryByLanguage(language: Language): List<Category> {
+    override fun getCategoriesByLanguage(language: String): List<Category> {
         return realmDatabase.getObjectsFromRealm {
-            where<Category>().equalTo(LANGUAGE, language.name.lowercase()).findAll()
+            where<Category>().equalTo(LANGUAGE, language).findAll()
         }.sortedBy { it.order }
     }
 

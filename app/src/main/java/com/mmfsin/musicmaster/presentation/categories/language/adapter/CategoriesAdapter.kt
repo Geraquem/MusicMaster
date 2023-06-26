@@ -39,9 +39,7 @@ class CategoriesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
-        holder.binding.row.setOnClickListener {
-            listener.onCategoryClick(data[position].id)
-        }
+        holder.binding.row.setOnClickListener { listener.onCategoryClick(data[position].id) }
     }
 
     override fun getItemCount(): Int {
