@@ -40,7 +40,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     private fun setToolbar() {
         (activity as MainActivity).apply {
             showBanner(visible = false)
-            setMainToolbar(showLogo = true, getString(R.string.app_name))
+            setMainToolbar(showLogo = true, getString(R.string.app_name), R.font.text)
         }
     }
 

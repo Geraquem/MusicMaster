@@ -3,6 +3,7 @@ package com.mmfsin.musicmaster.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat.getFont
 import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdRequest
 import com.mmfsin.musicmaster.R
@@ -35,11 +36,12 @@ class MainActivity : AppCompatActivity() {
         binding.adView.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    fun setMainToolbar(showLogo: Boolean, title: String) {
+    fun setMainToolbar(showLogo: Boolean, title: String, fontFamily: Int) {
         binding.toolbar.apply {
             ivLogo.isVisible = showLogo
             ivBack.isVisible = !showLogo
             tvTitle.text = title
+            tvTitle.typeface = getFont(this@MainActivity, fontFamily)
 
             ivBack.setOnClickListener { onBackPressed() }
         }

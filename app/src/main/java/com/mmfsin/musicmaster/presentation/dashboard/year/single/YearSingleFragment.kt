@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
+import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.dashboard.has4digits
@@ -100,7 +101,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
         viewModel.event.observe(this) { event ->
             when (event) {
                 is YearSingleEvent.CategoryData -> {
-                    setToolbar(event.category.title)
+                    setToolbar(event.category.title, event.category.id.getFontFamily())
                     viewModel.getMusicData(event.category.id)
                 }
                 is YearSingleEvent.MusicData -> {
@@ -114,10 +115,10 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
         }
     }
 
-    private fun setToolbar(title: String) {
+    private fun setToolbar(title: String, fontFamily: Int) {
         (activity as MainActivity).apply {
             showBanner(visible = true)
-            setMainToolbar(showLogo = false, title)
+            setMainToolbar(showLogo = false, title, fontFamily)
         }
     }
 
