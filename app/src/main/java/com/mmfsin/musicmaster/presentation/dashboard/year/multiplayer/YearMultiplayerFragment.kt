@@ -1,189 +1,206 @@
-//package com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer
-//
-//import android.os.Bundle
-//import android.text.Editable
-//import android.text.TextWatcher
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import androidx.core.content.ContextCompat
-//import com.mmfsin.musicmaster.R
-//import com.mmfsin.musicmaster.common.BaseFragment
-//import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
-//import com.mmfsin.musicmaster.domain.models.Music
-//import com.mmfsin.musicmaster.presentation.models.ResultType
-//import com.mmfsin.musicmaster.presentation.models.ResultType.*
-//import com.mmfsin.musicmaster.presentation.dashboard.IDashboardListener
-//import com.mmfsin.musicmaster.presentation.dashboard.year.YearPresenter
-//import com.mmfsin.musicmaster.presentation.dashboard.year.YearView
-//
-//class YearMultiplayerFragment(val category: String, val listener: IDashboardListener) :
-//    BaseFragment<FragmentYearMultiplayerBinding>(), YearView {
-//
-////    private val presenter by lazy { YearPresenter(this) }
-//
-//    private lateinit var goodPhrases: List<String>
-//    private lateinit var almostPhrases: List<String>
-//    private lateinit var badPhrases: List<String>
-//
-//    private lateinit var data: List<Music>
-//    private var correctYear: Long = 0
-//    private var position = 0
-//
-//    private var scoreGroup1 = 0
-//    private var scoreGroup2 = 0
-//
-//    override fun inflateView(
-//        inflater: LayoutInflater, container: ViewGroup?
-//    ) = FragmentYearMultiplayerBinding.inflate(inflater, container, false)
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
-//        almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
-//        badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
-//
-//        presenter.getMusicData(category)
-//    }
-//
-//    override fun setUI() {
-//        binding.apply {
-//            listener.changeToolbar(category)
-//            solution.root.visibility = View.GONE
-//            pinviewOne.addTextChangedListener(textWatcher1)
-//            pinviewTwo.addTextChangedListener(textWatcher2)
-//            pinviewOne.isCursorVisible = false
-//            pinviewTwo.isCursorVisible = false
-//        }
-//    }
-//
-//    override fun setListeners() {
-//        binding.apply {
-//            btnCheck.setOnClickListener {
-//                val text1 = pinviewOne.text.toString()
-//                val text2 = pinviewTwo.text.toString()
-//                if (presenter.year4digits(text1) && presenter.year4digits(text2)) {
-//                    pinviewOne.isEnabled = false
-//                    pinviewTwo.isEnabled = false
-//                    btnCheck.isEnabled = false
-//                    presenter.multiSolution(Pair(text1, text2), correctYear)
-//                }
-//            }
-//
-//            btnNext.setOnClickListener {
-//                position += 1
-//                if (position < data.size) {
-//                    initialAttributes()
-//                    setMusicData(data[position])
-//                } else listener.noMoreData()
-//            }
-//        }
-//    }
-//
-//    private fun initialAttributes() {
-//        binding.apply {
-//            listener.closeKeyboard()
-//            pinviewOne.isEnabled = true
-//            pinviewTwo.isEnabled = true
-//            pinviewOne.text = null
-//            pinviewTwo.text = null
-//            btnCheck.isEnabled = true
-//            solution.root.visibility = View.GONE
-//        }
-//    }
-//
-//    override fun musicData(list: List<Music>) {
-//        data = list
-//        setMusicData(data[position])
-//    }
-//
-//    private fun setMusicData(data: Music) {
-//        binding.apply {
-//            tvTitle.text = data.title
-//            tvArtist.text = data.artist
-//            presenter.playVideo(youtubePlayerView, data.videoUrl)
-//            correctYear = data.year
-//
-//            loading.root.visibility = View.GONE
-//        }
-//    }
-//
-//    override fun solution(type: ResultType) {}
-//
-//    override fun multiSolution(solutions: Pair<ResultType, ResultType>) {
-//        binding.apply {
-//            when (solutions.first) {
+package com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer
+
+import android.content.Context
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.mmfsin.musicmaster.base.BaseFragment
+import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
+import com.mmfsin.musicmaster.domain.mappers.getFontFamily
+import com.mmfsin.musicmaster.domain.models.Music
+import com.mmfsin.musicmaster.presentation.MainActivity
+import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
+import com.mmfsin.musicmaster.presentation.dashboard.has4digits
+import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
+import com.mmfsin.musicmaster.presentation.dashboard.playVideo
+import com.mmfsin.musicmaster.presentation.models.SolutionType
+import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.closeKeyboard
+import com.mmfsin.musicmaster.utils.showErrorDialog
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class YearMultiplayerFragment :
+    BaseFragment<FragmentYearMultiplayerBinding, YearMultiplayerViewModel>() {
+
+    override val viewModel: YearMultiplayerViewModel by viewModels()
+    private lateinit var mContext: Context
+
+    private var categoryId: String? = null
+
+    private lateinit var music: List<Music>
+    private var position = 0
+    private var solutionYear: Long = 0
+
+    private var scoreTeamOne = 0
+    private var scoreTeamTwo = 0
+
+    override fun inflateView(
+        inflater: LayoutInflater, container: ViewGroup?
+    ) = FragmentYearMultiplayerBinding.inflate(inflater, container, false)
+
+    override fun getBundleArgs() {
+        arguments?.let {
+            categoryId = it.getString(CATEGORY_ID)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).inDashboard = true
+        categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
+    }
+
+    override fun setUI() {
+        binding.apply {
+            loading.root.visibility = View.VISIBLE
+            pinviewOne.addTextChangedListener(textWatcherOne)
+            pinviewTwo.addTextChangedListener(textWatcherTwo)
+            pinviewOne.isCursorVisible = false
+            pinviewTwo.isCursorVisible = false
+            solution.root.visibility = View.GONE
+        }
+    }
+
+    private val textWatcherOne = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun afterTextChanged(p0: Editable?) {
+            if (binding.pinviewOne.text.toString().has4digits()) activity?.closeKeyboard()
+        }
+    }
+
+    private val textWatcherTwo = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun afterTextChanged(p0: Editable?) {
+            if (binding.pinviewTwo.text.toString().has4digits()) activity?.closeKeyboard()
+        }
+    }
+
+    override fun setListeners() {
+        binding.apply {
+            btnCheck.setOnClickListener {
+                if (pinviewOne.text.toString().has4digits() &&
+                    pinviewTwo.text.toString().has4digits()
+                ) {
+                    pinviewOne.isEnabled = false
+                    pinviewTwo.isEnabled = false
+                    btnCheck.isEnabled = false
+//                    viewModel.checkSolution(solutionYear, pinView.text.toString())
+                }
+            }
+
+            btnNext.setOnClickListener {
+                position++
+                if (position < music.size) setData()
+                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+            }
+        }
+    }
+
+    override fun observe() {
+        viewModel.event.observe(this) { event ->
+            when (event) {
+                is YearMultiplayerEvent.CategoryData -> {
+                    setToolbar(event.category.title, event.category.id.getFontFamily())
+                    viewModel.getMusicData(event.category.id)
+                }
+                is YearMultiplayerEvent.MusicData -> {
+                    music = event.data.take(3)
+                    setData()
+                    binding.loading.root.visibility = View.GONE
+                }
+                is YearMultiplayerEvent.Solution -> solutionResult(event.result)
+                is YearMultiplayerEvent.SomethingWentWrong -> error()
+            }
+        }
+    }
+
+    private fun setToolbar(title: String, fontFamily: Int) {
+        (activity as MainActivity).apply {
+            showBanner(visible = true)
+            setMainToolbar(showLogo = false, title, fontFamily)
+        }
+    }
+
+    private fun setData() {
+        binding.apply {
+            try {
+                pinviewOne.isEnabled = true
+                pinviewTwo.isEnabled = true
+                pinviewOne.text = null
+                pinviewTwo.text = null
+                btnCheck.isEnabled = true
+                solution.root.visibility = View.GONE
+                val data = music[position]
+                tvTitle.text = data.title
+                tvArtist.text = data.artist
+                youtubePlayerView.playVideo(data.videoUrl)
+                solutionYear = data.year
+                solution.tvCorrectYear.text = data.year.toString()
+            } catch (e: Exception) {
+                error()
+            }
+        }
+    }
+
+    private fun solutionResult(type: SolutionType) {
+        binding.apply {
+//            when (type) {
 //                GOOD -> {
-//                    scoreGroup1 += 2
-//                    solution.pointsGroupOne.text = getString(R.string.g_one_solution, "2")
-//                    solution.pointsGroupOne.setTextColor(getColor(R.color.goodPhrase))
-//                    score.lottieGoodOne.playAnimation()
+//                    scoreGood++
+//                    score.goodScore.text = scoreGood.toString()
+//                    score.lottieGood.playAnimation()
+//                    solutionUI(goodPhrases, R.color.good_result)
 //                }
 //                ALMOST_GOOD -> {
-//                    scoreGroup1 += 1
-//                    solution.pointsGroupOne.text = getString(R.string.g_one_solution, "1")
-//                    solution.pointsGroupOne.setTextColor(getColor(R.color.almostPhrase))
-//                    score.lottieGoodOne.playAnimation()
+//                    scoreAlmost++
+//                    score.almostScore.text = scoreAlmost.toString()
+//                    score.lottieAlmost.playAnimation()
+//                    solutionUI(almostPhrases, R.color.almost_good_result)
 //                }
-//                else -> {
-//                    solution.pointsGroupOne.text = getString(R.string.g_one_solution, "0")
-//                    solution.pointsGroupOne.setTextColor(getColor(R.color.badPhrase))
-//                }
-//            }
-//
-//            when (solutions.second) {
-//                GOOD -> {
-//                    scoreGroup2 += 2
-//                    solution.pointsGroupTwo.text = getString(R.string.g_one_solution, "2")
-//                    solution.pointsGroupTwo.setTextColor(getColor(R.color.goodPhrase))
-//                    score.lottieGoodTwo.playAnimation()
-//                }
-//                ALMOST_GOOD -> {
-//                    scoreGroup2 += 1
-//                    solution.pointsGroupTwo.text = getString(R.string.g_one_solution, "1")
-//                    solution.pointsGroupTwo.setTextColor(getColor(R.color.almostPhrase))
-//                    score.lottieGoodTwo.playAnimation()
-//                }
-//                else -> {
-//                    solution.pointsGroupTwo.text = getString(R.string.g_one_solution, "0")
-//                    solution.pointsGroupTwo.setTextColor(getColor(R.color.badPhrase))
+//                BAD -> {
+//                    scoreBad++
+//                    score.badScore.text = scoreBad.toString()
+//                    score.lottieBad.playAnimation()
+//                    solutionUI(badPhrases, R.color.bad_result)
 //                }
 //            }
-//
-//            score.scoreOne.text = scoreGroup1.toString()
-//            score.scoreTwo.text = scoreGroup2.toString()
-//
-//            solution.tvCorrectYear.text = correctYear.toString()
-//
-//            solution.root.visibility = View.VISIBLE
+            solution.root.visibility = View.VISIBLE
+        }
+    }
+
+    private fun solutionUI(phrases: List<String>, color: Int) {
+        val message = phrases[(phrases.indices).random()]
+//        binding.solution.apply {
+//            tvMessage.text = message
+//            tvMessage.setTextColor(getColor(mContext, color))
+//            root.visibility = View.VISIBLE
 //        }
-//    }
-//
-//    private fun getColor(color: Int) =
-//        ContextCompat.getColor(this@YearMultiplayerFragment.requireContext(), color)
-//
-//    private val textWatcher1 = object : TextWatcher {
-//        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//        override fun afterTextChanged(p0: Editable?) {
-//            if (presenter.year4digits(binding.pinviewOne.text.toString())) {
-//                listener.closeKeyboard()
-//            }
-//        }
-//    }
-//
-//    private val textWatcher2 = object : TextWatcher {
-//        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//        override fun afterTextChanged(p0: Editable?) {
-//            if (presenter.year4digits(binding.pinviewTwo.text.toString())) {
-//                listener.closeKeyboard()
-//            }
-//        }
-//    }
-//
-//    override fun somethingWentWrong() {
-//
-//    }
-//}
+    }
+
+    private fun error() {
+        (activity as MainActivity).inDashboard = false
+        activity?.showErrorDialog()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
+
+    override fun onStop() {
+        binding.youtubePlayerView.pauseVideo()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        binding.youtubePlayerView.pauseVideo()
+        super.onDestroy()
+    }
+}

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_categories_to_year_single"
             app:destination="@id/yearSingleFragment" />
+        <action
+            android:id="@+id/action_categories_to_year_multiplayer"
+            app:destination="@id/yearMultiplayerFragment" />
     </fragment>
 
     <fragment
@@ -20,5 +23,11 @@
         android:name="com.mmfsin.musicmaster.presentation.dashboard.year.single.YearSingleFragment"
         android:label="yearSingleFragment"
         tools:layout="@layout/fragment_year_single" />
+
+    <fragment
+        android:id="@+id/yearMultiplayerFragment"
+        android:name="com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer.YearMultiplayerFragment"
+        android:label="yearMultiplayerFragment"
+        tools:layout="@layout/fragment_year_multiplayer" />
 
 </navigation>
