@@ -5,17 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentCategoriesByLanguageBinding
 import com.mmfsin.musicmaster.domain.models.Category
+import com.mmfsin.musicmaster.presentation.categories.language.adapter.CategoriesAdapter
+import com.mmfsin.musicmaster.presentation.categories.language.dialog.SelectorDialog
+import com.mmfsin.musicmaster.presentation.categories.language.interfaces.ICategoryListener
+import com.mmfsin.musicmaster.presentation.models.GameInfo
+import com.mmfsin.musicmaster.utils.GAME_INFO
 import com.mmfsin.musicmaster.utils.LANGUAGE
 import com.mmfsin.musicmaster.utils.showErrorDialog
-import com.mmfsin.musicmaster.presentation.categories.language.adapter.CategoriesAdapter
-import com.mmfsin.musicmaster.presentation.categories.language.interfaces.ICategoryListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +30,7 @@ class CategoriesByLanguageFragment :
     private lateinit var mContext: Context
 
     private var language: String? = null
+    private var dialog: SelectorDialog? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -45,10 +49,6 @@ class CategoriesByLanguageFragment :
         binding.apply {
             loading.root.visibility = View.VISIBLE
         }
-    }
-
-    override fun setListeners() {
-        binding.apply { }
     }
 
     override fun observe() {
@@ -73,7 +73,15 @@ class CategoriesByLanguageFragment :
     }
 
     override fun onCategoryClick(id: String) {
-//        findNavController().navigate(CategoriesFragmentDirections.navi)
+        dialog = SelectorDialog() { mode -> navigateToDashboard(GameInfo(id, mode)) }
+        activity?.let { dialog?.show(it.supportFragmentManager, "") }
+    }
+
+    private fun navigateToDashboard(gameInfo: GameInfo) {
+        val bundle = Bundle()
+        bundle.putParcelable(GAME_INFO, gameInfo)
+        findNavController().navigate(R.id.action_categories_to_dashboard, bundle)
+        dialog?.dismiss()
     }
 
     private fun error() = activity?.showErrorDialog()

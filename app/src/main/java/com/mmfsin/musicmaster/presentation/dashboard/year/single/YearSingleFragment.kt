@@ -1,13 +1,17 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year.single
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
 import com.mmfsin.musicmaster.domain.models.MusicDTO
 import com.mmfsin.musicmaster.presentation.categories.viewpager.CategoriesViewModel
+import com.mmfsin.musicmaster.presentation.models.GameInfo
+import com.mmfsin.musicmaster.utils.GAME_INFO
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,10 +34,23 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, CategoriesVie
     private var scoreAlmost = 0
     private var scoreBad = 0
 
+    private var gameInfo: GameInfo? = null
+
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentYearSingleBinding.inflate(inflater, container, false)
 
+    override fun getBundleArgs() {
+        arguments?.let {
+            gameInfo = it.getParcelable(GAME_INFO)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        gameInfo?.let {
+        }
+    }
 }
 
 

@@ -5,17 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentCategoriesBinding
 import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.categories.viewpager.adapter.ViewPagerAdapter
-import com.mmfsin.musicmaster.presentation.models.GameInfo
-import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,11 +40,6 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     private fun setToolbar() {
         (activity as MainActivity).apply {
             showBanner(visible = false)
-        }
-    }
-
-    override fun setListeners() {
-        binding.apply {
         }
     }
 
