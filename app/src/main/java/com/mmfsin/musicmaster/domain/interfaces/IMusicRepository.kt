@@ -1,8 +1,7 @@
 package com.mmfsin.musicmaster.domain.interfaces
 
-import com.mmfsin.musicmaster.domain.models.MusicDTO
+import com.mmfsin.musicmaster.domain.models.Music
 
 interface IMusicRepository {
-    fun musicData(list: List<MusicDTO>)
-    fun somethingWentWrong()
+    suspend fun getMusicDataFromFirebase(categoryId: String): List<Music>
 }

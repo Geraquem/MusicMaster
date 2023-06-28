@@ -3,25 +3,30 @@ package com.mmfsin.musicmaster.data.repository
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
-import com.mmfsin.musicmaster.domain.models.MusicDTO
+import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.utils.MUSIC
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.concurrent.CountDownLatch
+import javax.inject.Inject
 
-class MusicRepository(private val listener: IMusicRepository) {
+class MusicRepository @Inject constructor() : IMusicRepository {
 
-    private val rootMusic = Firebase.database.reference.child(MUSIC)
+    private val reference = Firebase.database.reference.child(MUSIC)
 
-//    private val realm by lazy { RealmDatabasea() }
-//
-//    fun getMusicData(category: String) {
-//        rootMusic.child(category).get().addOnSuccessListener {
-//            val data = mutableListOf<MusicDTO>()
-//            for (child in it.children) {
-//                child.getValue(MusicDTO::class.java)?.let { music -> data.add(music) }
-//            }
-//            listener.musicData(data)
-//
-//        }.addOnFailureListener {
-//            listener.somethingWentWrong()
-//        }
-//    }
+    override suspend fun getMusicDataFromFirebase(categoryId: String): List<Music> {
+        val latch = CountDownLatch(1)
+        val data = mutableListOf<Music>()
+        reference.child(categoryId).get().addOnSuccessListener {
+            for (child in it.children) {
+                child.getValue(Music::class.java)?.let { category -> data.add(category) }
+            }
+            latch.countDown()
+        }.addOnFailureListener { latch.countDown() }
+
+        withContext(Dispatchers.IO) {
+            latch.await()
+        }
+        return data
+    }
 }

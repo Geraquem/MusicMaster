@@ -8,25 +8,24 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
-import com.mmfsin.musicmaster.domain.models.MusicDTO
-import com.mmfsin.musicmaster.presentation.categories.viewpager.CategoriesViewModel
-import com.mmfsin.musicmaster.presentation.models.GameInfo
-import com.mmfsin.musicmaster.utils.GAME_INFO
+import com.mmfsin.musicmaster.domain.models.Music
+import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, CategoriesViewModel>() {
+class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleViewModel>() {
 
-    override val viewModel: CategoriesViewModel by viewModels()
+    override val viewModel: YearSingleViewModel by viewModels()
     private lateinit var mContext: Context
 
-//    private val presenter by lazy { YearPresenter(this) }
+    private var categoryId: String? = null
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
     private lateinit var badPhrases: List<String>
 
-    private lateinit var data: List<MusicDTO>
+    private lateinit var data: List<Music>
     private var correctYear: Long = 0
     private var position = 0
 
@@ -34,22 +33,38 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, CategoriesVie
     private var scoreAlmost = 0
     private var scoreBad = 0
 
-    private var gameInfo: GameInfo? = null
-
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentYearSingleBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
         arguments?.let {
-            gameInfo = it.getParcelable(GAME_INFO)
+            categoryId = it.getString(CATEGORY_ID)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        gameInfo?.let {
+        categoryId?.let {
+//            getCategory from realm ???
+            viewModel.getMusicData(it)
         }
+    }
+
+    override fun observe() {
+        viewModel.event.observe(this) { event ->
+            when (event) {
+                is YearSingleEvent.MusicData -> {}
+                is YearSingleEvent.SomethingWentWrong -> error()
+            }
+        }
+    }
+
+    private fun error() = activity?.showErrorDialog()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
     }
 }
 

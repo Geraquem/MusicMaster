@@ -15,8 +15,9 @@ import com.mmfsin.musicmaster.domain.models.Category
 import com.mmfsin.musicmaster.presentation.categories.language.adapter.CategoriesAdapter
 import com.mmfsin.musicmaster.presentation.categories.language.dialog.SelectorDialog
 import com.mmfsin.musicmaster.presentation.categories.language.interfaces.ICategoryListener
-import com.mmfsin.musicmaster.presentation.models.GameInfo
-import com.mmfsin.musicmaster.utils.GAME_INFO
+import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.*
+import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.LANGUAGE
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,14 +74,19 @@ class CategoriesByLanguageFragment :
     }
 
     override fun onCategoryClick(id: String) {
-        dialog = SelectorDialog() { mode -> navigateToDashboard(GameInfo(id, mode)) }
+        dialog = SelectorDialog() { mode -> navigateToDashboard(id, mode) }
         activity?.let { dialog?.show(it.supportFragmentManager, "") }
     }
 
-    private fun navigateToDashboard(gameInfo: GameInfo) {
+    private fun navigateToDashboard(categoryId: String, mode: GameMode) {
         val bundle = Bundle()
-        bundle.putParcelable(GAME_INFO, gameInfo)
-        findNavController().navigate(R.id.action_categories_to_dashboard, bundle)
+        bundle.putString(CATEGORY_ID, categoryId)
+        val navigationId = when (mode) {
+            GUESS_YEAR_SINGLE -> R.id.action_categories_to_year_single
+            GUESS_YEAR_MULTIPLAYER -> 0
+            GUESS_TITLE -> 0
+        }
+        findNavController().navigate(navigationId, bundle)
         dialog?.dismiss()
     }
 

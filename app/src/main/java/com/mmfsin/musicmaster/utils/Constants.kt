@@ -12,4 +12,4 @@ const val MUSIC = "music"
 const val LANGUAGE = "language"
 
 //Navigation
-const val GAME_INFO = "game_info"
+const val CATEGORY_ID = "category_id"
