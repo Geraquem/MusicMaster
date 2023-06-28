@@ -3,6 +3,7 @@ package com.mmfsin.musicmaster.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdRequest
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.databinding.ActivityMainBinding
@@ -32,5 +33,15 @@ class MainActivity : AppCompatActivity() {
 
     fun showBanner(visible: Boolean) {
         binding.adView.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    fun setMainToolbar(showLogo: Boolean, title: String) {
+        binding.toolbar.apply {
+            ivLogo.isVisible = showLogo
+            ivBack.isVisible = !showLogo
+            tvTitle.text = title
+
+            ivBack.setOnClickListener { onBackPressed() }
+        }
     }
 }

@@ -38,20 +38,19 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                style="@style/BigTextView"
+                style="@style/BigTextView_Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_xxxsmall"
-                android:fontFamily="sans-serif-condensed"
                 android:textAllCaps="true"
                 tools:text="HIJO DE LA LUNA" />
 
             <TextView
                 android:id="@+id/tv_artist"
                 style="@style/MediumTextView"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_medium"
+                android:layout_marginBottom="@dimen/margin_padding_xmedium"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/grey"
                 tools:text="Mecano" />
@@ -102,7 +101,7 @@
                 android:layout_marginBottom="@dimen/margin_padding_medium"
                 android:elevation="@dimen/elevation"
                 android:fontFamily="@font/text"
-                android:paddingVertical="@dimen/margin_padding_xmedium"
+                android:paddingVertical="@dimen/margin_padding_medium"
                 android:text="@string/check"
                 android:textColor="@color/white" />
 

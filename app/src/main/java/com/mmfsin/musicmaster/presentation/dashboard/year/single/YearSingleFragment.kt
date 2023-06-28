@@ -100,7 +100,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
         viewModel.event.observe(this) { event ->
             when (event) {
                 is YearSingleEvent.CategoryData -> {
-                    setToolbar()
+                    setToolbar(event.category.title)
                     viewModel.getMusicData(event.category.id)
                 }
                 is YearSingleEvent.MusicData -> {
@@ -114,8 +114,11 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
         }
     }
 
-    private fun setToolbar() {
-        (activity as MainActivity).showBanner(visible = true)
+    private fun setToolbar(title: String) {
+        (activity as MainActivity).apply {
+            showBanner(visible = true)
+            setMainToolbar(showLogo = false, title)
+        }
     }
 
     private fun setData() {
