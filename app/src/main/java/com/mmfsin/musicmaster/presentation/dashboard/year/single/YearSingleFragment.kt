@@ -15,7 +15,9 @@ import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.presentation.MainActivity
+import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.has4digits
+import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
@@ -56,6 +58,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).inDashboard = true
         categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
     }
 
@@ -92,7 +95,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
             btnNext.setOnClickListener {
                 position++
                 if (position < music.size) setData()
-                else error() // dead end
+                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
             }
         }
     }
@@ -105,7 +108,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                     viewModel.getMusicData(event.category.id)
                 }
                 is YearSingleEvent.MusicData -> {
-                    music = event.data
+                    music = event.data.take(3)
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }
@@ -176,10 +179,23 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
         }
     }
 
-    private fun error() = activity?.showErrorDialog()
+    private fun error() {
+        (activity as MainActivity).inDashboard = false
+        activity?.showErrorDialog()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
+    }
+
+    override fun onStop() {
+        binding.youtubePlayerView.pauseVideo()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        binding.youtubePlayerView.pauseVideo()
+        super.onDestroy()
     }
 }

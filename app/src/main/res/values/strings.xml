@@ -18,6 +18,16 @@
     <string name="category_vp_spanish">Español</string>
     <string name="category_vp_english">Inglés</string>
 
+    <!-- NO MORE QUESTIONS -->
+    <string name="no_more_title">Has acabado con todo</string>
+    <string name="no_more_description">De momento no hay más canciones</string>
+    <string name="no_more_btn">Salir</string>
+
+    <!-- EXIT -->
+    <string name="exit_title">¿Seguro que quieres salir?</string>
+    <string name="exit_yes">SALIR</string>
+    <string name="exit_no">QUEDARME</string>
+
     <!--    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
