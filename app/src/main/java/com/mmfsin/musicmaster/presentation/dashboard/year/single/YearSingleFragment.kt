@@ -13,6 +13,7 @@ import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
 import com.mmfsin.musicmaster.domain.models.Music
+import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.dashboard.has4digits
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
@@ -54,14 +55,12 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        categoryId?.let {
-//            getCategory from realm ???
-            viewModel.getMusicData(it)
-        }
+        categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
     }
 
     override fun setUI() {
         binding.apply {
+            loading.root.visibility = View.VISIBLE
             goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
             almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
             badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
@@ -100,14 +99,23 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
+                is YearSingleEvent.CategoryData -> {
+                    setToolbar()
+                    viewModel.getMusicData(event.category.id)
+                }
                 is YearSingleEvent.MusicData -> {
                     music = event.data
                     setData()
+                    binding.loading.root.visibility = View.GONE
                 }
                 is YearSingleEvent.Solution -> solutionResult(event.result)
                 is YearSingleEvent.SomethingWentWrong -> error()
             }
         }
+    }
+
+    private fun setToolbar() {
+        (activity as MainActivity).showBanner(visible = true)
     }
 
     private fun setData() {
