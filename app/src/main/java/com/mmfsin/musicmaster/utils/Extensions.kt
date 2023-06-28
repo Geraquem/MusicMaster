@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.domain.utils
+package com.mmfsin.musicmaster.utils
 
 import androidx.fragment.app.FragmentActivity
 import com.mmfsin.musicmaster.base.dialog.ErrorDialog

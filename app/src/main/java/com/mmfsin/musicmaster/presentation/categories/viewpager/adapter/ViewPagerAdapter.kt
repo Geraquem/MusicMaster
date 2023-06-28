@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mmfsin.musicmaster.domain.models.Language
 import com.mmfsin.musicmaster.domain.models.Language.ENGLISH
 import com.mmfsin.musicmaster.domain.models.Language.SPANISH
-import com.mmfsin.musicmaster.domain.utils.LANGUAGE
+import com.mmfsin.musicmaster.utils.LANGUAGE
 import com.mmfsin.musicmaster.presentation.categories.language.CategoriesByLanguageFragment
 
 class ViewPagerAdapter(private val fragmentActivity: FragmentActivity) :

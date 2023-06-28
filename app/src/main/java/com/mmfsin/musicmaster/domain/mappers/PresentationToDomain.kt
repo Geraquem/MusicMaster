@@ -2,8 +2,8 @@ package com.mmfsin.musicmaster.domain.mappers
 
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.domain.types.Categories.*
-import com.mmfsin.musicmaster.domain.types.GameMode
-import com.mmfsin.musicmaster.domain.types.GameMode.*
+import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.*
 
 fun String.toGameMode(): GameMode = when (this) {
     "GUESS_YEAR_SINGLE" -> GUESS_YEAR_SINGLE

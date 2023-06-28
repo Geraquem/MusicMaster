@@ -5,8 +5,8 @@ import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.domain.interfaces.ICategoryRepository
 import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
 import com.mmfsin.musicmaster.domain.models.Category
-import com.mmfsin.musicmaster.domain.utils.CATEGORIES
-import com.mmfsin.musicmaster.domain.utils.LANGUAGE
+import com.mmfsin.musicmaster.utils.CATEGORIES
+import com.mmfsin.musicmaster.utils.LANGUAGE
 import io.realm.kotlin.where
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

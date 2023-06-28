@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mmfsin.musicmaster.databinding.FragmentSelectorBinding
-import com.mmfsin.musicmaster.domain.types.GameMode
-import com.mmfsin.musicmaster.domain.types.GameMode.*
+import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.*
 
 class FragmentSelector(private val listener: IFragmentSelector, val category: String) : Fragment() {
 

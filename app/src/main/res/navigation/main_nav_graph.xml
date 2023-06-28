@@ -8,7 +8,21 @@
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.mmfsin.musicmaster.presentation.categories.viewpager.CategoriesFragment"
-        tools:layout="@layout/fragment_categories"
-        android:label="CategoriesFragment" />
+        android:label="categoriesFragment"
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_categories_to_dashboard"
+            app:destination="@id/dashboardFragment">
+<!--            <argument-->
+<!--                android:name="game_info"-->
+<!--                app:argType="com.mmfsin.musicmaster.presentation.models.GameInfo" />-->
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.mmfsin.musicmaster.presentation.dashboard.year.single.YearSingleFragment"
+        android:label="dashboardFragment"
+        tools:layout="@layout/fragment_year_single" />
 
 </navigation>

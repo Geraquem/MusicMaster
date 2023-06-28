@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentCategoriesByLanguageBinding
 import com.mmfsin.musicmaster.domain.models.Category
-import com.mmfsin.musicmaster.domain.utils.LANGUAGE
-import com.mmfsin.musicmaster.domain.utils.showErrorDialog
+import com.mmfsin.musicmaster.utils.LANGUAGE
+import com.mmfsin.musicmaster.utils.showErrorDialog
 import com.mmfsin.musicmaster.presentation.categories.language.adapter.CategoriesAdapter
 import com.mmfsin.musicmaster.presentation.categories.language.interfaces.ICategoryListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,9 +55,7 @@ class CategoriesByLanguageFragment :
         viewModel.event.observe(this) { event ->
             when (event) {
                 is CategoriesByLanguageEvent.Categories -> setUpRecyclerView(event.result)
-                is CategoriesByLanguageEvent.SomethingWentWrong -> {
-                    error()
-                }
+                is CategoriesByLanguageEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -74,7 +73,7 @@ class CategoriesByLanguageFragment :
     }
 
     override fun onCategoryClick(id: String) {
-        Toast.makeText(mContext, id, Toast.LENGTH_SHORT).show()
+//        findNavController().navigate(CategoriesFragmentDirections.navi)
     }
 
     private fun error() = activity?.showErrorDialog()

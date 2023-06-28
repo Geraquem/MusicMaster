@@ -4,7 +4,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
 import com.mmfsin.musicmaster.domain.models.MusicDTO
-import com.mmfsin.musicmaster.domain.utils.MUSIC
+import com.mmfsin.musicmaster.utils.MUSIC
 
 class MusicRepository(private val listener: IMusicRepository) {
 

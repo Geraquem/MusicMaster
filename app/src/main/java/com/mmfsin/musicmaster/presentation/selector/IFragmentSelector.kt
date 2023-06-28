@@ -1,6 +1,6 @@
 package com.mmfsin.musicmaster.presentation.selector
 
-import com.mmfsin.musicmaster.domain.types.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode
 
 interface IFragmentSelector {
 

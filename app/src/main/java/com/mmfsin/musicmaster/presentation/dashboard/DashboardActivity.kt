@@ -14,13 +14,13 @@ import com.mmfsin.musicmaster.databinding.ActivityDashboardBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.mappers.getToolbarTitle
 import com.mmfsin.musicmaster.domain.mappers.toGameMode
-import com.mmfsin.musicmaster.domain.types.GameMode
-import com.mmfsin.musicmaster.domain.types.GameMode.*
-import com.mmfsin.musicmaster.domain.utils.CATEGORY
-import com.mmfsin.musicmaster.domain.utils.GAME_MODE
 import com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer.YearMultiplayerFragment
 import com.mmfsin.musicmaster.presentation.dashboard.year.single.YearSingleFragment
+import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.*
 import com.mmfsin.musicmaster.presentation.utils.sww
+import com.mmfsin.musicmaster.utils.CATEGORY
+import com.mmfsin.musicmaster.utils.GAME_MODE
 
 class DashboardActivity : AppCompatActivity(), IDashboardListener {
 
@@ -44,7 +44,7 @@ class DashboardActivity : AppCompatActivity(), IDashboardListener {
 
     private fun selectGameMode(mode: GameMode, category: String) {
         when (mode) {
-            GUESS_YEAR_SINGLE -> open(YearSingleFragment(category, this))
+            GUESS_YEAR_SINGLE -> open(YearSingleFragment())
             GUESS_YEAR_MULTIPLAYER -> open(YearMultiplayerFragment(category, this))
             GUESS_TITLE -> {}
         }
