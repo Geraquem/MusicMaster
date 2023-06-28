@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
 import com.mmfsin.musicmaster.domain.models.Music
+import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,9 +26,9 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     private lateinit var almostPhrases: List<String>
     private lateinit var badPhrases: List<String>
 
-    private lateinit var data: List<Music>
-    private var correctYear: Long = 0
+    private lateinit var music: List<Music>
     private var position = 0
+    private var solutionYear: Long = 0
 
     private var scoreGood = 0
     private var scoreAlmost = 0
@@ -51,11 +52,50 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
         }
     }
 
+    override fun setUI() {
+        binding.apply {
+            solution.root.visibility = View.GONE
+        }
+    }
+
+    override fun setListeners() {
+        binding.apply {
+            btnCheck.setOnClickListener {
+                solution.root.visibility = View.VISIBLE
+            }
+
+            btnNext.setOnClickListener {
+                position++
+                if (position < music.size) setData()
+                else error() // dead end
+            }
+        }
+    }
+
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is YearSingleEvent.MusicData -> {}
+                is YearSingleEvent.MusicData -> {
+                    music = event.data
+                    setData()
+                }
                 is YearSingleEvent.SomethingWentWrong -> error()
+            }
+        }
+    }
+
+    private fun setData() {
+        binding.apply {
+            try {
+                solution.root.visibility = View.GONE
+                val data = music[position]
+                tvTitle.text = data.title
+                tvArtist.text = data.artist
+                youtubePlayerView.playVideo(data.videoUrl)
+                solutionYear = data.year
+                solution.tvCorrectYear.text = data.year.toString()
+            } catch (e: Exception) {
+                error()
             }
         }
     }
