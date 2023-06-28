@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xsmall"
         android:fontFamily="@font/text"
-        android:text="@string/g_one"
+        android:text="@string/multi_g_one"
         android:textColor="@color/grey" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xxsmall"
         android:fontFamily="@font/text"
-        android:text="@string/zero"
+        android:text="@string/dashboard_zero"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -48,7 +48,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xsmall"
         android:fontFamily="@font/text"
-        android:text="@string/g_two"
+        android:text="@string/multi_g_two"
         android:textColor="@color/grey" />
 
     <TextView
@@ -58,7 +58,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xxsmall"
         android:fontFamily="@font/text"
-        android:text="@string/zero"
+        android:text="@string/dashboard_zero"
         android:textColor="@color/black"
         android:textSize="25sp" />
 

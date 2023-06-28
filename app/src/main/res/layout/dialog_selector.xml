@@ -19,8 +19,8 @@
         android:layout_marginBottom="@dimen/margin_padding_xlarge"
         android:fontFamily="@font/text"
         android:gravity="center"
-        android:text="@string/wanna_guess"
-        android:textAllCaps="true"/>
+        android:text="@string/selector_wanna_guess"
+        android:textAllCaps="true" />
 
     <LinearLayout
         android:id="@+id/btn_year_single"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/guess_year"
+            android:text="@string/selector_guess_year"
             android:textAllCaps="true"
             tools:ignore="AllCaps" />
 
@@ -58,7 +58,7 @@
             android:layout_gravity="center"
             android:drawablePadding="@dimen/margin_padding_xxxsmall"
             android:gravity="center"
-            android:text="@string/single_mode"
+            android:text="@string/selector_single_mode"
             android:textAllCaps="true"
             app:drawableStartCompat="@drawable/ic_single_player" />
 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/guess_year"
+            android:text="@string/selector_guess_year"
             android:textAllCaps="true"
             tools:ignore="AllCaps" />
 
@@ -98,7 +98,7 @@
             android:layout_gravity="center"
             android:drawablePadding="@dimen/margin_padding_xsmall"
             android:gravity="center"
-            android:text="@string/multiplayer_mode"
+            android:text="@string/selector_multiplayer_mode"
             android:textAllCaps="true"
             app:drawableStartCompat="@drawable/ic_multiplayer" />
 
@@ -118,7 +118,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:paddingVertical="@dimen/margin_padding_medium"
-        android:text="@string/guess_title"
+        android:text="@string/selector_guess_title"
         android:textAllCaps="true"
         tools:ignore="AllCaps" />
 

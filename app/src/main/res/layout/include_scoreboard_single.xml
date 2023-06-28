@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
-        android:text="@string/zero"
+        android:text="@string/dashboard_zero"
         android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -38,7 +38,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
-        android:text="@string/zero"
+        android:text="@string/dashboard_zero"
         android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -59,7 +59,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
-        android:text="@string/zero"
+        android:text="@string/dashboard_zero"
         android:textColor="@color/black" />
 
     <com.airbnb.lottie.LottieAnimationView

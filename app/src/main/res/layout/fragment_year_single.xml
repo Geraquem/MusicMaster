@@ -47,12 +47,12 @@
             <TextView
                 android:id="@+id/tv_artist"
                 style="@style/MediumTextView"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_padding_xmedium"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/grey"
+                android:textSize="20sp"
                 tools:text="Mecano" />
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -69,7 +69,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center"
-                android:text="@string/what_year"
+                android:text="@string/dashboard_what_year"
                 android:textAllCaps="true" />
 
             <com.chaos.view.PinView
@@ -102,7 +102,7 @@
                 android:elevation="@dimen/elevation"
                 android:fontFamily="@font/text"
                 android:paddingVertical="@dimen/margin_padding_medium"
-                android:text="@string/check"
+                android:text="@string/dashboard_check"
                 android:textColor="@color/white" />
 
             <include

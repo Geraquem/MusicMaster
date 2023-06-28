@@ -18,6 +18,29 @@
     <string name="category_vp_spanish">Español</string>
     <string name="category_vp_english">Inglés</string>
 
+    <!-- SELECTOR -->
+    <string name="selector_wanna_guess">Quiero adivinar</string>
+    <string name="selector_guess_year">En qué <b>año</b> salió la canción</string>
+    <string name="selector_guess_title">El <b>título</b> de la canción</string>
+    <string name="selector_single_mode">Individual</string>
+    <string name="selector_multiplayer_mode">Por equipos</string>
+
+    <!-- DASHBOARD -->
+    <string name="dashboard_what_year">¿De qué año es esta canción?</string>
+    <string name="dashboard_what_title">¿Cómo se llama esta canción?</string>
+    <string name="dashboard_check">Comprobar</string>
+    <string name="dashboard_year_result">La canción es del</string>
+    <string name="dashboard_title_result">El título es</string>
+    <string name="dashboard_zero">0</string>
+
+    <string name="multi_group_one">Equipo 1</string>
+    <string name="multi_group_two">Equipo 2</string>
+    <string name="multi_g_one">E1</string>
+    <string name="multi_g_two">E2</string>
+    <string name="multi_group_one_solution">Equipo 1:</string>
+    <string name="multi_group_two_solution">Equipo 2:</string>
+    <string name="multi_group_points">Puntos</string>
+
     <!-- NO MORE QUESTIONS -->
     <string name="no_more_title">Has acabado con todo</string>
     <string name="no_more_description">De momento no hay más canciones</string>
@@ -27,56 +50,5 @@
     <string name="exit_title">¿Seguro que quieres salir?</string>
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
-
-    <!--    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <!-- Sweet Alerts -->
-    <string name="oops">Vaya</string>
-    <string name="sww">Parece que algo ha salido mal</string>
-
-    <string name="no_more_data">No hay más canciones</string>
-    <string name="exit">¿Seguro que quieres salir?</string>
-    <string name="ok">OK</string>
-    <string name="yes">SI</string>
-    <string name="no">NO</string>
-
-    <!-- Categories -->
-    <string name="english_mix">Mix</string>
-    <string name="rock">Rock</string>
-    <string name="pop">Pop</string>
-    <string name="hiphop">Hip Hop</string>
-    <string name="indie">Indie</string>
-    <string name="populares">Clasicazos</string>
-    <string name="rap">Rap</string>
-    <string name="reggaeton">reggaeton</string>
-
-    <!-- Main -->
-    <string name="songs_in">Canciones en</string>
-    <string name="english">INGLÉS</string>
-    <string name="spanish">ESPAÑOL</string>
-
-    <!-- SELECTOR -->
-    <string name="wanna_guess">Quiero adivinar</string>
-    <string name="guess_year">En qué <b>año</b> salió la canción</string>
-    <string name="guess_title">El <b>título</b> de la canción</string>
-    <string name="single_mode">Individual</string>
-    <string name="multiplayer_mode">Por equipos</string>
-
-
-    <!-- GUESSER -->
-    <string name="what_year">¿De qué año es esta canción?</string>
-    <string name="what_title">¿Cómo se llama esta canción?</string>
-    <string name="check">Comprobar</string>
-    <string name="song_year">La canción es del</string>
-    <string name="song_title">El título es</string>
-    <string name="zero">0</string>
-
-    <string name="group_one">Equipo 1</string>
-    <string name="group_two">Equipo 2</string>
-    <string name="g_one">E1</string>
-    <string name="g_two">E2</string>
-    <string name="g_one_solution">Equipo 1 \t %1$s Puntos</string>
-    <string name="g_two_solution">Equipo 2 \t %1$s Puntos</string>
 
 </resources>
