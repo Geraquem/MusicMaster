@@ -38,7 +38,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_medium_medium"
         app:lottie_autoPlay="true"
-        app:lottie_colorFilter="@color/goodPhrase"
+        app:lottie_colorFilter="@color/good_result"
         app:lottie_fileName="result.json" />
 
     <TextView
@@ -68,7 +68,7 @@
         android:layout_height="35dp"
         android:layout_gravity="center"
         app:lottie_autoPlay="true"
-        app:lottie_colorFilter="@color/goodPhrase"
+        app:lottie_colorFilter="@color/good_result"
         app:lottie_fileName="result.json" />
 
 </LinearLayout>

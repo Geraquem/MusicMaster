@@ -3,8 +3,8 @@
 //import com.mmfsin.musicmaster.data.repository.MusicRepository
 //import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
 //import com.mmfsin.musicmaster.domain.models.Music
-//import com.mmfsin.musicmaster.domain.types.ResultType
-//import com.mmfsin.musicmaster.domain.types.ResultType.*
+//import com.mmfsin.musicmaster.presentation.models.ResultType
+//import com.mmfsin.musicmaster.presentation.models.ResultType.*
 //import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 //import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 //import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView

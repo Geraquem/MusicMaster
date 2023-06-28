@@ -1,13 +1,15 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year.single
 
 import com.mmfsin.musicmaster.base.BaseViewModel
+import com.mmfsin.musicmaster.domain.usecases.CheckSingleYearSolutionUseCase
 import com.mmfsin.musicmaster.domain.usecases.GetMusicDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class YearSingleViewModel @Inject constructor(
-    private val getMusicDataUseCase: GetMusicDataUseCase
+    private val getMusicDataUseCase: GetMusicDataUseCase,
+    private val checkSingleYearSolutionUseCase: CheckSingleYearSolutionUseCase
 ) : BaseViewModel<YearSingleEvent>() {
 
     fun getMusicData(categoryId: String) {
@@ -16,6 +18,21 @@ class YearSingleViewModel @Inject constructor(
             { result ->
                 _event.value = if (result.isEmpty()) YearSingleEvent.SomethingWentWrong
                 else YearSingleEvent.MusicData(result)
+            },
+            { _event.value = YearSingleEvent.SomethingWentWrong }
+        )
+    }
+
+    fun checkSolution(solution: Long, answer: String) {
+        executeUseCase(
+            {
+                checkSingleYearSolutionUseCase.execute(
+                    CheckSingleYearSolutionUseCase.Params(solution, answer)
+                )
+            },
+            { result ->
+                _event.value = result?.let { YearSingleEvent.Solution(it) }
+                    ?: run { YearSingleEvent.SomethingWentWrong }
             },
             { _event.value = YearSingleEvent.SomethingWentWrong }
         )

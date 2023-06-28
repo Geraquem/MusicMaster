@@ -12,13 +12,13 @@
     <color name="grey">#7E7E7E</color>
     <color name="soft_grey">#AAAAAA</color>
 
-    <color name="splashBackground">#F2ECFA</color>
+    <color name="splash_background">#F2ECFA</color>
     <color name="background">#EEEEEE</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="almost_transparent">#8D000000</color>
 
-    <color name="goodPhrase">#6BAF63</color>
-    <color name="almostPhrase">#DCAA13</color>
-    <color name="badPhrase">#B80707</color>
+    <color name="good_result">#6BAF63</color>
+    <color name="almost_good_result">#DCAA13</color>
+    <color name="bad_result">#B80707</color>
 
 </resources>

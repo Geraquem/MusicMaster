@@ -11,8 +11,8 @@
 //import com.mmfsin.musicmaster.common.BaseFragment
 //import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
 //import com.mmfsin.musicmaster.domain.models.Music
-//import com.mmfsin.musicmaster.domain.types.ResultType
-//import com.mmfsin.musicmaster.domain.types.ResultType.*
+//import com.mmfsin.musicmaster.presentation.models.ResultType
+//import com.mmfsin.musicmaster.presentation.models.ResultType.*
 //import com.mmfsin.musicmaster.presentation.dashboard.IDashboardListener
 //import com.mmfsin.musicmaster.presentation.dashboard.year.YearPresenter
 //import com.mmfsin.musicmaster.presentation.dashboard.year.YearView

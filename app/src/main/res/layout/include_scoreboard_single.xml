@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_small"
         app:lottie_autoPlay="true"
-        app:lottie_colorFilter="@color/goodPhrase"
+        app:lottie_colorFilter="@color/good_result"
         app:lottie_fileName="result.json" />
 
     <TextView
@@ -48,7 +48,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_small"
         app:lottie_autoPlay="true"
-        app:lottie_colorFilter="@color/almostPhrase"
+        app:lottie_colorFilter="@color/almost_good_result"
         app:lottie_fileName="result.json" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:lottie_autoPlay="true"
-        app:lottie_colorFilter="@color/badPhrase"
+        app:lottie_colorFilter="@color/bad_result"
         app:lottie_fileName="result.json" />
 
 </LinearLayout>
