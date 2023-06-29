@@ -1,7 +1,7 @@
 package com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer
 
 import com.mmfsin.musicmaster.base.BaseViewModel
-import com.mmfsin.musicmaster.domain.usecases.CheckSingleYearSolutionUseCase
+import com.mmfsin.musicmaster.domain.usecases.CheckMultipleYearSolutionUseCase
 import com.mmfsin.musicmaster.domain.usecases.GetCategoryByIdUseCase
 import com.mmfsin.musicmaster.domain.usecases.GetMusicDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,10 +11,10 @@ import javax.inject.Inject
 class YearMultiplayerViewModel @Inject constructor(
     private val getCategoryByIdUseCase: GetCategoryByIdUseCase,
     private val getMusicDataUseCase: GetMusicDataUseCase,
-    private val checkSingleYearSolutionUseCase: CheckSingleYearSolutionUseCase
+    private val checkMultipleYearSolutionUseCase: CheckMultipleYearSolutionUseCase
 ) : BaseViewModel<YearMultiplayerEvent>() {
 
-    fun getCategory(categoryId: String){
+    fun getCategory(categoryId: String) {
         executeUseCase(
             { getCategoryByIdUseCase.execute(GetCategoryByIdUseCase.Params(categoryId)) },
             { result ->
@@ -36,11 +36,11 @@ class YearMultiplayerViewModel @Inject constructor(
         )
     }
 
-    fun checkSolution(solution: Long, answer: String) {
+    fun checkSolution(solution: Long, answerTeamOne: String, answerTeamTwo: String) {
         executeUseCase(
             {
-                checkSingleYearSolutionUseCase.execute(
-                    CheckSingleYearSolutionUseCase.Params(solution, answer)
+                checkMultipleYearSolutionUseCase.execute(
+                    CheckMultipleYearSolutionUseCase.Params(solution, answerTeamOne, answerTeamTwo)
                 )
             },
             { result ->

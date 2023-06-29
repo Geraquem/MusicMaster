@@ -7,17 +7,22 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
+import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.presentation.MainActivity
+import com.mmfsin.musicmaster.presentation.dashboard.changeLayersColor
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.has4digits
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
+import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.showErrorDialog
@@ -91,14 +96,19 @@ class YearMultiplayerFragment :
                     pinviewOne.isEnabled = false
                     pinviewTwo.isEnabled = false
                     btnCheck.isEnabled = false
-//                    viewModel.checkSolution(solutionYear, pinView.text.toString())
+                    viewModel.checkSolution(
+                        solutionYear, pinviewOne.text.toString(), pinviewTwo.text.toString()
+                    )
                 }
             }
 
             btnNext.setOnClickListener {
                 position++
                 if (position < music.size) setData()
-                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+                else {
+                    (activity as MainActivity).inDashboard = false
+                    activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+                }
             }
         }
     }
@@ -149,30 +159,55 @@ class YearMultiplayerFragment :
         }
     }
 
-    private fun solutionResult(type: SolutionType) {
+    private fun solutionResult(types: Pair<SolutionType, SolutionType>) {
         binding.apply {
-//            when (type) {
-//                GOOD -> {
-//                    scoreGood++
-//                    score.goodScore.text = scoreGood.toString()
-//                    score.lottieGood.playAnimation()
-//                    solutionUI(goodPhrases, R.color.good_result)
-//                }
-//                ALMOST_GOOD -> {
-//                    scoreAlmost++
-//                    score.almostScore.text = scoreAlmost.toString()
-//                    score.lottieAlmost.playAnimation()
-//                    solutionUI(almostPhrases, R.color.almost_good_result)
-//                }
-//                BAD -> {
-//                    scoreBad++
-//                    score.badScore.text = scoreBad.toString()
-//                    score.lottieBad.playAnimation()
-//                    solutionUI(badPhrases, R.color.bad_result)
-//                }
-//            }
+            when (types.first) {
+                GOOD -> {
+                    scoreTeamOne += 2
+                    solution.tvPointsTeamOne.text = getString(R.string.dashboard_two)
+                    solution.tvPointsTeamOne.setTintColor(R.color.good_result)
+                    solution.tvPointsOne.setTintColor(R.color.good_result)
+                    score.lottieTeamOne.setColorFilter(getColor(mContext, R.color.good_result))
+                    score.lottieTeamOne.playAnimation()
+                }
+                ALMOST_GOOD -> {
+                    scoreTeamOne += 1
+                    solution.tvPointsTeamOne.text = getString(R.string.dashboard_one)
+                    solution.tvPointsTeamOne.setTintColor(R.color.almost_good_result)
+                    solution.tvPointsOne.setTintColor(R.color.almost_good_result)
+                    score.lottieTeamOne.setColorFilter(
+                        getColor(
+                            mContext,
+                            R.color.almost_good_result
+                        )
+                    )
+                    score.lottieTeamOne.playAnimation()
+                }
+                BAD -> {
+                    solution.tvPointsTeamOne.text = getString(R.string.dashboard_zero)
+                    solution.tvPointsTeamOne.setTintColor(R.color.bad_result)
+                    solution.tvPointsOne.setTintColor(R.color.bad_result)
+
+                    val yourColor = getColor(mContext, R.color.bad_result)
+
+                    score.lottieTeamOne.changeLayersColor(R.color.bad_result)
+
+                    score.lottieTeamOne.playAnimation()
+                }
+            }
+            when (types.second) {
+                GOOD -> {}
+                ALMOST_GOOD -> {}
+                BAD -> {}
+            }
+            score.tvScoreOne.text = scoreTeamOne.toString()
+            score.tvScoreTwo.text = scoreTeamTwo.toString()
             solution.root.visibility = View.VISIBLE
         }
+    }
+
+    private fun TextView.setTintColor(color: Int) {
+        this.setTextColor(getColor(mContext, color))
     }
 
     private fun solutionUI(phrases: List<String>, color: Int) {

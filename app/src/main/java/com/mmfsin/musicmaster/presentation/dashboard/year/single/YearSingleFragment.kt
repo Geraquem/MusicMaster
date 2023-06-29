@@ -95,7 +95,10 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
             btnNext.setOnClickListener {
                 position++
                 if (position < music.size) setData()
-                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+                else {
+                    (activity as MainActivity).inDashboard = false
+                    activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+                }
             }
         }
     }

@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/margin_padding_large">
 
     <TextView
         style="@style/MediumTextView"
@@ -31,27 +32,89 @@
         android:layout_marginVertical="4dp"
         android:background="@color/black" />
 
-    <TextView
-        android:id="@+id/points_group_one"
-        style="@style/MediumTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/margin_padding_xxsmall"
-        android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:textAllCaps="true"
-        tools:text="GRUPO 1 = 2 puntos" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/points_group_two"
-        style="@style/MediumTextView"
-        android:layout_width="wrap_content"
+        <TextView
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/multi_team_one_solution"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_points_team_one"
+            style="@style/MediumTextView_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_padding_small"
+            android:layout_marginEnd="@dimen/margin_padding_xxsmall"
+            android:gravity="center"
+            android:textAllCaps="true"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/tv_points_one"
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/multi_team_points"
+            android:textAllCaps="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:textAllCaps="true"
-        tools:text="GRUPO 2 = 0 puntos" />
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/multi_team_two_solution"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_points_team_two"
+            style="@style/MediumTextView_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_padding_small"
+            android:layout_marginEnd="@dimen/margin_padding_xxsmall"
+            android:gravity="center"
+            android:textAllCaps="true"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_points_two"
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/multi_team_points"
+            android:textAllCaps="true" />
+
+    </LinearLayout>
 
 </LinearLayout>

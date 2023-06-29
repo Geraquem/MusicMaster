@@ -32,14 +32,16 @@
     <string name="dashboard_year_result">La canción es del</string>
     <string name="dashboard_title_result">El título es</string>
     <string name="dashboard_zero">0</string>
+    <string name="dashboard_one">1</string>
+    <string name="dashboard_two">2</string>
 
-    <string name="multi_group_one">Equipo 1</string>
-    <string name="multi_group_two">Equipo 2</string>
-    <string name="multi_g_one">E1</string>
-    <string name="multi_g_two">E2</string>
-    <string name="multi_group_one_solution">Equipo 1:</string>
-    <string name="multi_group_two_solution">Equipo 2:</string>
-    <string name="multi_group_points">Puntos</string>
+    <string name="multi_team_one">Equipo 1</string>
+    <string name="multi_team_two">Equipo 2</string>
+    <string name="multi_t_one">E1</string>
+    <string name="multi_t_two">E2</string>
+    <string name="multi_team_one_solution">Equipo 1:</string>
+    <string name="multi_team_two_solution">Equipo 2:</string>
+    <string name="multi_team_points">Puntos</string>
 
     <!-- NO MORE QUESTIONS -->
     <string name="no_more_title">Has acabado con todo</string>
