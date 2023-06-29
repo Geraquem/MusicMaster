@@ -41,6 +41,7 @@
     <string name="multi_t_two">E2</string>
     <string name="multi_team_one_solution">Equipo 1:</string>
     <string name="multi_team_two_solution">Equipo 2:</string>
+    <string name="multi_team_point">Punto</string>
     <string name="multi_team_points">Puntos</string>
 
     <!-- NO MORE QUESTIONS -->

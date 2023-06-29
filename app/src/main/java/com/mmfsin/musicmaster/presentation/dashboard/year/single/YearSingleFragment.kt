@@ -111,7 +111,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                     viewModel.getMusicData(event.category.id)
                 }
                 is YearSingleEvent.MusicData -> {
-                    music = event.data.take(3)
+                    music = event.data
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }

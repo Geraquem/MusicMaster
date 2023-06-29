@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
+import com.airbnb.lottie.LottieAnimationView
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
@@ -90,8 +91,8 @@ class YearMultiplayerFragment :
     override fun setListeners() {
         binding.apply {
             btnCheck.setOnClickListener {
-                if (pinviewOne.text.toString().has4digits() &&
-                    pinviewTwo.text.toString().has4digits()
+                if (pinviewOne.text.toString().has4digits() && pinviewTwo.text.toString()
+                        .has4digits()
                 ) {
                     pinviewOne.isEnabled = false
                     pinviewTwo.isEnabled = false
@@ -121,7 +122,7 @@ class YearMultiplayerFragment :
                     viewModel.getMusicData(event.category.id)
                 }
                 is YearMultiplayerEvent.MusicData -> {
-                    music = event.data.take(3)
+                    music = event.data
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }
@@ -164,41 +165,66 @@ class YearMultiplayerFragment :
             when (types.first) {
                 GOOD -> {
                     scoreTeamOne += 2
-                    solution.tvPointsTeamOne.text = getString(R.string.dashboard_two)
-                    solution.tvPointsTeamOne.setTintColor(R.color.good_result)
-                    solution.tvPointsOne.setTintColor(R.color.good_result)
-                    score.lottieTeamOne.setColorFilter(getColor(mContext, R.color.good_result))
-                    score.lottieTeamOne.playAnimation()
+                    setResultUI(
+                        tvTeamPoints = solution.tvPointsTeamOne,
+                        tvPoints = solution.tvPointsOne,
+                        nPoints = R.string.dashboard_two,
+                        lottie = score.lottieTeamOne,
+                        color = R.color.good_result
+                    )
                 }
                 ALMOST_GOOD -> {
                     scoreTeamOne += 1
-                    solution.tvPointsTeamOne.text = getString(R.string.dashboard_one)
-                    solution.tvPointsTeamOne.setTintColor(R.color.almost_good_result)
-                    solution.tvPointsOne.setTintColor(R.color.almost_good_result)
-                    score.lottieTeamOne.setColorFilter(
-                        getColor(
-                            mContext,
-                            R.color.almost_good_result
-                        )
+                    setResultUI(
+                        tvTeamPoints = solution.tvPointsTeamOne,
+                        tvPoints = solution.tvPointsOne,
+                        nPoints = R.string.dashboard_one,
+                        lottie = score.lottieTeamOne,
+                        color = R.color.almost_good_result,
+                        onePoint = true
                     )
-                    score.lottieTeamOne.playAnimation()
                 }
                 BAD -> {
-                    solution.tvPointsTeamOne.text = getString(R.string.dashboard_zero)
-                    solution.tvPointsTeamOne.setTintColor(R.color.bad_result)
-                    solution.tvPointsOne.setTintColor(R.color.bad_result)
-
-                    val yourColor = getColor(mContext, R.color.bad_result)
-
-                    score.lottieTeamOne.changeLayersColor(R.color.bad_result)
-
-                    score.lottieTeamOne.playAnimation()
+                    setResultUI(
+                        tvTeamPoints = solution.tvPointsTeamOne,
+                        tvPoints = solution.tvPointsOne,
+                        nPoints = R.string.dashboard_zero,
+                        lottie = score.lottieTeamOne,
+                        color = R.color.bad_result
+                    )
                 }
             }
             when (types.second) {
-                GOOD -> {}
-                ALMOST_GOOD -> {}
-                BAD -> {}
+                GOOD -> {
+                    scoreTeamTwo += 2
+                    setResultUI(
+                        tvTeamPoints = solution.tvPointsTeamTwo,
+                        tvPoints = solution.tvPointsTwo,
+                        nPoints = R.string.dashboard_two,
+                        lottie = score.lottieTeamTwo,
+                        color = R.color.good_result
+                    )
+                }
+                ALMOST_GOOD -> {
+                    scoreTeamTwo += 1
+                    setResultUI(
+                        tvTeamPoints = solution.tvPointsTeamTwo,
+                        tvPoints = solution.tvPointsTwo,
+                        nPoints = R.string.dashboard_one,
+                        lottie = score.lottieTeamOne,
+                        color = R.color.almost_good_result,
+                        onePoint = true
+                    )
+                }
+                BAD -> {
+                    setResultUI(
+                        tvTeamPoints = solution.tvPointsTeamTwo,
+                        tvPoints = solution.tvPointsTwo,
+                        nPoints = R.string.dashboard_zero,
+                        lottie = score.lottieTeamOne,
+                        color = R.color.bad_result
+                    )
+                }
             }
             score.tvScoreOne.text = scoreTeamOne.toString()
             score.tvScoreTwo.text = scoreTeamTwo.toString()
@@ -206,17 +232,25 @@ class YearMultiplayerFragment :
         }
     }
 
-    private fun TextView.setTintColor(color: Int) {
-        this.setTextColor(getColor(mContext, color))
+    private fun setResultUI(
+        tvTeamPoints: TextView,
+        tvPoints: TextView,
+        nPoints: Int,
+        lottie: LottieAnimationView,
+        color: Int,
+        onePoint: Boolean = false
+    ) {
+        tvTeamPoints.text = getString(nPoints)
+        tvTeamPoints.setTintColor(color)
+        tvPoints.text = if (onePoint) getString(R.string.multi_team_point)
+        else getString(R.string.multi_team_points)
+        tvPoints.setTintColor(color)
+        lottie.changeLayersColor(color)
+        lottie.playAnimation()
     }
 
-    private fun solutionUI(phrases: List<String>, color: Int) {
-        val message = phrases[(phrases.indices).random()]
-//        binding.solution.apply {
-//            tvMessage.text = message
-//            tvMessage.setTextColor(getColor(mContext, color))
-//            root.visibility = View.VISIBLE
-//        }
+    private fun TextView.setTintColor(color: Int) {
+        this.setTextColor(getColor(mContext, color))
     }
 
     private fun error() {
