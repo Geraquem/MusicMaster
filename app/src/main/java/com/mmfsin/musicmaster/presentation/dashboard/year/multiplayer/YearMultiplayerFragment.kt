@@ -211,7 +211,7 @@ class YearMultiplayerFragment :
                         tvTeamPoints = solution.tvPointsTeamTwo,
                         tvPoints = solution.tvPointsTwo,
                         nPoints = R.string.dashboard_one,
-                        lottie = score.lottieTeamOne,
+                        lottie = score.lottieTeamTwo,
                         color = R.color.almost_good_result,
                         onePoint = true
                     )
@@ -221,7 +221,7 @@ class YearMultiplayerFragment :
                         tvTeamPoints = solution.tvPointsTeamTwo,
                         tvPoints = solution.tvPointsTwo,
                         nPoints = R.string.dashboard_zero,
-                        lottie = score.lottieTeamOne,
+                        lottie = score.lottieTeamTwo,
                         color = R.color.bad_result
                     )
                 }
