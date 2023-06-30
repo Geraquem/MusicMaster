@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_categories_to_year_multiplayer"
             app:destination="@id/yearMultiplayerFragment" />
+        <action
+            android:id="@+id/action_categories_to_title"
+            app:destination="@id/titleFragment" />
     </fragment>
 
     <fragment
@@ -29,5 +32,11 @@
         android:name="com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer.YearMultiplayerFragment"
         android:label="yearMultiplayerFragment"
         tools:layout="@layout/fragment_year_multiplayer" />
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.mmfsin.musicmaster.presentation.dashboard.title.TitleFragment"
+        android:label="titleFragment"
+        tools:layout="@layout/fragment_title" />
 
 </navigation>

@@ -84,7 +84,7 @@ class CategoriesByLanguageFragment :
         val navigationId = when (mode) {
             GUESS_YEAR_SINGLE -> R.id.action_categories_to_year_single
             GUESS_YEAR_MULTIPLAYER -> R.id.action_categories_to_year_multiplayer
-            GUESS_TITLE -> 0
+            GUESS_TITLE -> R.id.action_categories_to_title
         }
         findNavController().navigate(navigationId, bundle)
         dialog?.dismiss()

@@ -17,7 +17,6 @@ import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.presentation.MainActivity
-import com.mmfsin.musicmaster.presentation.dashboard.changeLayersColor
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.has4digits
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
@@ -25,6 +24,7 @@ import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.changeLayersColor
 import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,9 +50,7 @@ class YearMultiplayerFragment :
     ) = FragmentYearMultiplayerBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
-        arguments?.let {
-            categoryId = it.getString(CATEGORY_ID)
-        }
+        arguments?.let { categoryId = it.getString(CATEGORY_ID) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -167,7 +167,7 @@
 
             <include
                 android:id="@+id/solution"
-                layout="@layout/include_multi_solution_year"
+                layout="@layout/include_solution_year_multiple"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -210,8 +210,7 @@
         android:id="@+id/loading"
         layout="@layout/include_loading"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="match_parent"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

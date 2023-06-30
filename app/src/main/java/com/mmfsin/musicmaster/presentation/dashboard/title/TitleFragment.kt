@@ -1,9 +1,7 @@
-package com.mmfsin.musicmaster.presentation.dashboard.year.single
+package com.mmfsin.musicmaster.presentation.dashboard.title
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,28 +9,31 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
-import com.mmfsin.musicmaster.databinding.FragmentYearSingleBinding
+import com.mmfsin.musicmaster.databinding.FragmentTitleBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
-import com.mmfsin.musicmaster.presentation.dashboard.has4digits
-import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
-import com.mmfsin.musicmaster.presentation.dashboard.playVideo
+import com.mmfsin.musicmaster.presentation.dashboard.pauseSeekbar
+import com.mmfsin.musicmaster.presentation.dashboard.playSeekbar
+import com.mmfsin.musicmaster.presentation.dashboard.playYoutubeSeekBar
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
-import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.showErrorDialog
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleViewModel>() {
+class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
-    override val viewModel: YearSingleViewModel by viewModels()
+    override val viewModel: TitleViewModel by viewModels()
     private lateinit var mContext: Context
 
     private var categoryId: String? = null
+
+    private var youtubePlayerView: YouTubePlayerView? = null
+    private var isPlaying = true
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
@@ -40,7 +41,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
     private lateinit var music: List<Music>
     private var position = 0
-    private var solutionYear: Long = 0
+    private var solutionTitle: String = ""
 
     private var scoreGood = 0
     private var scoreAlmost = 0
@@ -48,7 +49,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentYearSingleBinding.inflate(inflater, container, false)
+    ) = FragmentTitleBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
         arguments?.let { categoryId = it.getString(CATEGORY_ID) }
@@ -56,6 +57,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let { youtubePlayerView = YouTubePlayerView(it) }
         (activity as MainActivity).inDashboard = true
         categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
     }
@@ -63,30 +65,37 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
+            btnPlay.setImageResource(R.drawable.ic_pause)
             goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
             almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
             badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
-            pinView.addTextChangedListener(textWatcher)
-            pinView.isCursorVisible = false
+            /** clear and enable edittext */
             solution.root.visibility = View.GONE
-        }
-    }
-
-    private val textWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-        override fun afterTextChanged(p0: Editable?) {
-            if (binding.pinView.text.toString().has4digits()) activity?.closeKeyboard()
         }
     }
 
     override fun setListeners() {
         binding.apply {
+
+            btnPlay.setOnClickListener {
+                if (isPlaying) {
+                    youtubePlayerView?.pauseSeekbar()
+                    btnPlay.setImageResource(R.drawable.ic_play)
+                } else {
+                    youtubePlayerView?.playSeekbar()
+                    btnPlay.setImageResource(R.drawable.ic_pause)
+                }
+                isPlaying = !isPlaying
+            }
+
             btnCheck.setOnClickListener {
-                if (pinView.text.toString().has4digits()) {
-                    pinView.isEnabled = false
-                    btnCheck.isEnabled = false
-                    viewModel.checkSolution(solutionYear, pinView.text.toString())
+
+                /**  edittext not empty */
+
+                if (true) {
+//                    pinView.isEnabled = false
+//                    btnCheck.isEnabled = false
+//                    viewModel.checkSolution(solutionTitle, pinView.text.toString())
                 }
             }
 
@@ -104,17 +113,17 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is YearSingleEvent.CategoryData -> {
+                is TitleEvent.CategoryData -> {
                     setToolbar(event.category.title, event.category.id.getFontFamily())
                     viewModel.getMusicData(event.category.id)
                 }
-                is YearSingleEvent.MusicData -> {
+                is TitleEvent.MusicData -> {
                     music = event.data
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }
-                is YearSingleEvent.Solution -> solutionResult(event.result)
-                is YearSingleEvent.SomethingWentWrong -> error()
+                is TitleEvent.Solution -> solutionResult(event.result)
+                is TitleEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -129,16 +138,15 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     private fun setData() {
         binding.apply {
             try {
-                pinView.isEnabled = true
-                pinView.text = null
+                /** clear and enable edittext */
                 btnCheck.isEnabled = true
                 solution.root.visibility = View.GONE
                 val data = music[position]
-                tvTitle.text = data.title
-                tvArtist.text = data.artist
-                youtubePlayerView.playVideo(data.videoUrl)
-                solutionYear = data.year
-                solution.tvCorrectYear.text = data.year.toString()
+                youtubePlayerView?.playYoutubeSeekBar(data.videoUrl, binding.youtubePlayerSeekbar)
+                solutionTitle = data.title
+
+
+                /** solutionnnnn */
             } catch (e: Exception) {
                 error()
             }
@@ -191,12 +199,16 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     }
 
     override fun onStop() {
-        binding.youtubePlayerView.pauseVideo()
+        isPlaying = false
+        binding.btnPlay.setImageResource(R.drawable.ic_play)
+        youtubePlayerView?.pauseSeekbar()
         super.onStop()
     }
 
     override fun onDestroy() {
-        binding.youtubePlayerView.pauseVideo()
+        isPlaying = false
+        binding.btnPlay.setImageResource(R.drawable.ic_play)
+        youtubePlayerView?.pauseSeekbar()
         super.onDestroy()
     }
 }
