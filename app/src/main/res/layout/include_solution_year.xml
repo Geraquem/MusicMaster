@@ -5,14 +5,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+
     <TextView
-        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/dashboard_year_result"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_correct_year"
@@ -21,25 +23,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed-medium"
-        android:textSize="34sp"
+        android:textSize="28sp"
         tools:text="2012" />
+
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="@dimen/margin_padding_xxsmall"
+        android:layout_marginHorizontal="46dp"
+        android:layout_marginVertical="@dimen/margin_padding_small"
         android:background="@color/black" />
 
     <TextView
         android:id="@+id/tv_message"
-        style="@style/BigTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/margin_padding_large"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
+        android:textSize="24sp"
         tools:text="FATAL FATAL FATAL" />
 
 </LinearLayout>

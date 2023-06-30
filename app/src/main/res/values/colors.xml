@@ -17,8 +17,8 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="almost_transparent">#8D000000</color>
 
-    <color name="good_result">#6BAF63</color>
-    <color name="almost_good_result">#DCAA13</color>
-    <color name="bad_result">#B80707</color>
+    <color name="good_result">#579550</color>
+    <color name="almost_good_result">#CA9C10</color>
+    <color name="bad_result">#A30505</color>
 
 </resources>

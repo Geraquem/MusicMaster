@@ -20,6 +20,7 @@ import com.mmfsin.musicmaster.presentation.dashboard.playYoutubeSeekBar
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,14 +70,14 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
             almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
             badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
-            /** clear and enable edittext */
+            etTitle.text = null
+            etTitle.isEnabled = true
             solution.root.visibility = View.GONE
         }
     }
 
     override fun setListeners() {
         binding.apply {
-
             btnPlay.setOnClickListener {
                 if (isPlaying) {
                     youtubePlayerView?.pauseSeekbar()
@@ -89,13 +90,12 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             }
 
             btnCheck.setOnClickListener {
-
-                /**  edittext not empty */
-
-                if (true) {
-//                    pinView.isEnabled = false
-//                    btnCheck.isEnabled = false
-//                    viewModel.checkSolution(solutionTitle, pinView.text.toString())
+                val answer = etTitle.text.toString()
+                if (answer.isNotEmpty()) {
+                    activity?.closeKeyboard()
+                    etTitle.isEnabled = false
+                    btnCheck.isEnabled = false
+                    viewModel.checkSolution(solutionTitle, answer)
                 }
             }
 
@@ -138,15 +138,14 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     private fun setData() {
         binding.apply {
             try {
-                /** clear and enable edittext */
+                etTitle.text = null
+                etTitle.isEnabled = true
                 btnCheck.isEnabled = true
                 solution.root.visibility = View.GONE
                 val data = music[position]
                 youtubePlayerView?.playYoutubeSeekBar(data.videoUrl, binding.youtubePlayerSeekbar)
                 solutionTitle = data.title
-
-
-                /** solutionnnnn */
+                solution.tvTitle.text = data.title
             } catch (e: Exception) {
                 error()
             }

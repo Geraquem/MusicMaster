@@ -28,6 +28,7 @@
     <!-- DASHBOARD -->
     <string name="dashboard_what_year">¿De qué año es esta canción?</string>
     <string name="dashboard_what_title">¿Cómo se llama esta canción?</string>
+    <string name="dashboard_what_title_hint">Escribe aquí…</string>
     <string name="dashboard_check">Comprobar</string>
     <string name="dashboard_year_result">La canción es del</string>
     <string name="dashboard_title_result">El título es</string>

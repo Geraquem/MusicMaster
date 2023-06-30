@@ -5,9 +5,10 @@
     <string-array name="good_phrases">
         <item>MUY BIEN</item>
         <item>PERFECTÍSIMO</item>
+        <item>PERFECTO</item>
+        <item>GENIAL</item>
         <item>MARAVILLOSO</item>
         <item>FANTABULOSO</item>
-        <item>OLÉ</item>
         <item>PERFECTÍSIMO</item>
         <item>GENIAL GENIAL</item>
         <item>ESTUPENDITO</item>
@@ -34,16 +35,16 @@
     <string-array name="bad_phrases">
         <item>QUE DESASTRE…</item>
         <item>FATAL FATAL FATAL</item>
-        <item>TODOS SABEMOS QUE HAS HECHO LO QUE HAS PODIDO</item>
+        <item>HAS HECHO LO QUE HAS PODIDO</item>
         <item>FRACASO ABSOLUTO</item>
-        <item>HORRIBLE</item>
+        <item>HORRRRRRIBLE</item>
         <item>NI IDEA TIENES</item>
         <item>MADRE MÍA…</item>
         <item>AL MENOS LO HAS INTENTADO</item>
         <item>PPFFFFF…</item>
         <item>SI ESTO FUESE UN EXAMEN ESTARÍA SUSPENSO</item>
         <item>FRACASO ABSOLUTO</item>
-        <item>ESTO NO ES LO TUYO EH</item>
+        <item>ESTO NO ES LO TUYO</item>
         <item>POR FAVOR, CONCÉNTRESE</item>
     </string-array>
 

@@ -1,13 +1,12 @@
 package com.mmfsin.musicmaster.domain.usecases
 
 import com.mmfsin.musicmaster.base.BaseUseCase
-import com.mmfsin.musicmaster.domain.interfaces.IMusicRepository
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
-class CheckMultipleYearSolutionUseCase @Inject constructor(private val repository: IMusicRepository) :
+class CheckMultipleYearSolutionUseCase @Inject constructor() :
     BaseUseCase<CheckMultipleYearSolutionUseCase.Params, Pair<SolutionType, SolutionType>?>() {
 
     override suspend fun execute(params: Params): Pair<SolutionType, SolutionType>? {
