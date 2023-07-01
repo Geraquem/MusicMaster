@@ -5,4 +5,5 @@ data class Music(
     var artist: String = "",
     var year: Long = 0,
     var videoUrl: String = "",
+    var image: String? = null
 )

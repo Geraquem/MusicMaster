@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
 import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
@@ -150,6 +151,10 @@ class YearMultiplayerFragment :
                 tvTitle.text = data.title
                 tvArtist.text = data.artist
                 youtubePlayerView.playVideo(data.videoUrl)
+                data.image?.let {
+                    Glide.with(mContext).load(it).into(ivMusicImage)
+                    ivMusicImage.visibility = View.VISIBLE
+                } ?: run { ivMusicImage.visibility = View.GONE }
                 solutionYear = data.year
                 solution.tvCorrectYear.text = data.year.toString()
             } catch (e: Exception) {

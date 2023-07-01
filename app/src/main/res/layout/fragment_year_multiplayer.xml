@@ -36,25 +36,52 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/tv_title"
-                style="@style/BigTextView_Bold"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAllCaps="true"
-                tools:text="HIJO DE LA LUNA" />
+                android:layout_marginBottom="@dimen/margin_padding_xmedium">
 
-            <TextView
-                android:id="@+id/tv_artist"
-                style="@style/MediumTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_xmedium"
-                android:fontFamily="sans-serif-condensed"
-                android:textColor="@color/grey"
-                android:textSize="20sp"
-                tools:text="Mecano" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_padding_xsmall"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/iv_music_image"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/BigTextView_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="true"
+                        tools:text="HIJO DE LA LUNA" />
+
+                    <TextView
+                        android:id="@+id/tv_artist"
+                        style="@style/MediumTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="@color/grey"
+                        android:textSize="20sp"
+                        tools:text="Mecano" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_music_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/content_description"
+                    android:src="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/youtubePlayerView"
