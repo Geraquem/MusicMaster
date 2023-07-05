@@ -24,10 +24,7 @@ import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
-import com.mmfsin.musicmaster.utils.CATEGORY_ID
-import com.mmfsin.musicmaster.utils.changeLayersColor
-import com.mmfsin.musicmaster.utils.closeKeyboard
-import com.mmfsin.musicmaster.utils.showErrorDialog
+import com.mmfsin.musicmaster.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -104,7 +101,10 @@ class YearMultiplayerFragment :
 
             btnNext.setOnClickListener {
                 position++
-                if (position < music.size) setData()
+                if (position < music.size) {
+                    activity?.shouldShowInterstitial(position)
+                    setData()
+                }
                 else {
                     (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }

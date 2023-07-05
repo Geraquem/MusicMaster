@@ -13,6 +13,7 @@ import com.airbnb.lottie.SimpleColorFilter
 import com.airbnb.lottie.model.KeyPath
 import com.airbnb.lottie.value.LottieValueCallback
 import com.mmfsin.musicmaster.base.dialog.ErrorDialog
+import com.mmfsin.musicmaster.presentation.MainActivity
 
 fun FragmentActivity.showErrorDialog() {
     val dialog = ErrorDialog()
@@ -33,3 +34,6 @@ fun LottieAnimationView.changeLayersColor(@ColorRes colorRes: Int) {
     val callback: LottieValueCallback<ColorFilter> = LottieValueCallback(filter)
     addValueCallback(keyPath, LottieProperty.COLOR_FILTER, callback)
 }
+
+fun FragmentActivity.shouldShowInterstitial(position: Int) =
+    (this as MainActivity).showInterstitial(position)

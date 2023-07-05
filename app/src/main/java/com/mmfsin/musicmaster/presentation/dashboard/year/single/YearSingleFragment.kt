@@ -24,6 +24,7 @@ import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
+import com.mmfsin.musicmaster.utils.shouldShowInterstitial
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -93,7 +94,10 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
             btnNext.setOnClickListener {
                 position++
-                if (position < music.size) setData()
+                if (position < music.size) {
+                    activity?.shouldShowInterstitial(position)
+                    setData()
+                }
                 else {
                     (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }

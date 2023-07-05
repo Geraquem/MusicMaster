@@ -21,6 +21,7 @@ import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
+import com.mmfsin.musicmaster.utils.shouldShowInterstitial
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,8 +102,10 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
             btnNext.setOnClickListener {
                 position++
-                if (position < music.size) setData()
-                else {
+                if (position < music.size) {
+                    activity?.shouldShowInterstitial(position)
+                    setData()
+                } else {
                     (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
                 }
