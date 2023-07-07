@@ -2,6 +2,7 @@ package com.mmfsin.musicmaster.presentation.categories.language.dialog
 
 import android.app.Dialog
 import android.view.LayoutInflater
+import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseDialog
 import com.mmfsin.musicmaster.databinding.DialogSelectorBinding
 import com.mmfsin.musicmaster.presentation.models.GameMode
@@ -16,6 +17,11 @@ class SelectorDialog(private val action: (gameMode: GameMode) -> Unit) :
 
     override fun setUI() {
         isCancelable = true
+        binding.apply {
+            singleIcon.ivImage.setImageResource(R.drawable.ic_crown)
+            multiIcon.ivImage.setImageResource(R.drawable.ic_multiplayer)
+            titleIcon.ivImage.setImageResource(R.drawable.ic_write)
+        }
     }
 
     override fun setListeners() {
