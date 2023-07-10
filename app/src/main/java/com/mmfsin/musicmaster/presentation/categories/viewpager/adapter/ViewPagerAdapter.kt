@@ -10,7 +10,7 @@ import com.mmfsin.musicmaster.domain.models.Language.SPANISH
 import com.mmfsin.musicmaster.utils.LANGUAGE
 import com.mmfsin.musicmaster.presentation.categories.language.CategoriesByLanguageFragment
 
-class ViewPagerAdapter(private val fragmentActivity: FragmentActivity) :
+class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = 2
