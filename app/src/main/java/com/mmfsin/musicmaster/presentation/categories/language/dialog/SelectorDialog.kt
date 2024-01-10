@@ -21,8 +21,8 @@ class SelectorDialog(private val action: (gameMode: GameMode) -> Unit) :
         isCancelable = true
         binding.apply {
             activity?.let {
-                modeTabs.viewPager.adapter = ViewPagerAdapter(it)
-                TabLayoutMediator(modeTabs.tabLayout, modeTabs.viewPager) { tab, position ->
+                viewPager.adapter = ViewPagerAdapter(it)
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     when (position) {
                         0 -> tab.setText(R.string.selector_guess_year_mode_single)
                         1 -> tab.setText(R.string.selector_guess_year_mode_multiplayer)
@@ -35,7 +35,7 @@ class SelectorDialog(private val action: (gameMode: GameMode) -> Unit) :
     override fun setListeners() {
         binding.apply {
             btnYearSingle.setOnClickListener {
-                when (modeTabs.tabLayout.selectedTabPosition) {
+                when (tabLayout.selectedTabPosition) {
                     0 -> action(GUESS_YEAR_SINGLE)
                     else -> action(GUESS_YEAR_MULTIPLAYER)
                 }

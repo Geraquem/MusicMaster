@@ -20,13 +20,13 @@
 
     <!-- SELECTOR -->
     <string name="selector_wanna_guess">Quiero adivinar</string>
-    <string name="selector_guess_year">En qué <b>año</b> salió la canción</string>
+    <string name="selector_guess_year">El <b>año</b> de la canción</string>
     <string name="selector_guess_year_mode_single">Individual</string>
     <string name="selector_guess_year_mode_multiplayer">Por equipos</string>
     <string name="selector_guess_title">El <b>título</b> de la canción</string>
-    <string name="selector_guess_year_single_description">Modo de juego <b>recomendado</b>. Adivina el año en que las canciones fueron publicadas</string>
-    <string name="selector_guess_year_multi_description">Igual que el modo de juego anterior pero <b>por equipos</b>. Quien consiga más puntos gana</string>
-    <string name="selector_guess_title_description">A ver cuántos títulos de canciones adivinas correctamente solo escuchando la canción</string>
+    <string name="selector_guess_year_single_description">Modo de juego <b>recomendado</b>. Adivina el año en que las canciones fueron publicadas.</string>
+    <string name="selector_guess_year_multi_description">Igual que el modo de juego anterior pero <b>por equipos</b>. Quien consiga más puntos gana.</string>
+    <string name="selector_guess_title_description">A ver cuántos títulos de canciones adivinas correctamente solo escuchando la canción.</string>
 
     <!-- DASHBOARD -->
     <string name="dashboard_what_year">¿De qué año es esta canción?</string>

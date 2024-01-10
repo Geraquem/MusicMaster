@@ -57,6 +57,7 @@ class CategoriesByLanguageFragment :
             when (event) {
                 is CategoriesByLanguageEvent.Categories -> setUpRecyclerView(event.result)
                 is CategoriesByLanguageEvent.SomethingWentWrong -> error()
+                else -> {}
             }
         }
     }

@@ -40,7 +40,7 @@
             app:tabPaddingEnd="@dimen/margin_padding_small"
             app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/black"
-            app:tabTextAppearance="@style/tab_text"
+            app:tabTextAppearance="@style/category_tab_text"
             app:tabTextColor="@color/white" />
 
     </LinearLayout>
