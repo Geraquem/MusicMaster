@@ -75,7 +75,7 @@ class CategoriesByLanguageFragment :
     }
 
     override fun onCategoryClick(id: String) {
-        dialog = SelectorDialog() { mode -> navigateToDashboard(id, mode) }
+        dialog = SelectorDialog { mode -> navigateToDashboard(id, mode) }
         activity?.let { dialog?.show(it.supportFragmentManager, "") }
     }
 

@@ -1,7 +1,10 @@
 package com.mmfsin.musicmaster.presentation.categories.language.dialog
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.view.GestureDetector
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseDialog
@@ -19,6 +22,7 @@ class SelectorDialog(private val action: (gameMode: GameMode) -> Unit) :
 
     override fun setUI() {
         isCancelable = true
+        setSwipeListener()
         binding.apply {
             activity?.let {
                 viewPager.adapter = ViewPagerAdapter(it)
@@ -41,6 +45,21 @@ class SelectorDialog(private val action: (gameMode: GameMode) -> Unit) :
                 }
             }
             btnTitle.setOnClickListener { action(GUESS_TITLE) }
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setSwipeListener() {
+        binding.apply {
+            val swipeListener = SwipeListener { direction ->
+                when (direction) {
+                    SwipeListener.Direction.BOTTOM -> dismiss()
+                    else -> {}
+                }
+            }
+
+            val gestureDetector = GestureDetector(requireActivity(), swipeListener)
+            llMain.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
         }
     }
 }
