@@ -97,8 +97,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                 if (position < music.size) {
                     activity?.shouldShowInterstitial(position)
                     setData()
-                }
-                else {
+                } else {
                     (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
                 }
@@ -113,11 +112,13 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                     setToolbar(event.category.title, event.category.id.getFontFamily())
                     viewModel.getMusicData(event.category.id)
                 }
+
                 is YearSingleEvent.MusicData -> {
                     music = event.data
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }
+
                 is YearSingleEvent.Solution -> solutionResult(event.result)
                 is YearSingleEvent.SomethingWentWrong -> error()
             }
@@ -142,15 +143,21 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                 tvTitle.text = data.title
                 tvArtist.text = data.artist
                 youtubePlayerView.playVideo(data.videoUrl)
-                data.image?.let {
-                    Glide.with(mContext).load(it).into(ivMusicImage)
-                    ivMusicImage.visibility = View.VISIBLE
-                } ?: run { ivMusicImage.visibility = View.GONE }
+                setGroupImage(data.image)
                 solutionYear = data.year
                 solution.tvCorrectYear.text = data.year.toString()
             } catch (e: Exception) {
                 error()
             }
+        }
+    }
+
+    private fun setGroupImage(image: String?) {
+        binding.apply {
+            image?.let {
+                Glide.with(mContext).load(it).into(ivMusicImage)
+                llImage.visibility = View.VISIBLE
+            } ?: run { llImage.visibility = View.GONE }
         }
     }
 
@@ -163,12 +170,14 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                     score.lottieGood.playAnimation()
                     solutionUI(goodPhrases, R.color.good_result)
                 }
+
                 ALMOST_GOOD -> {
                     scoreAlmost++
                     score.almostScore.text = scoreAlmost.toString()
                     score.lottieAlmost.playAnimation()
                     solutionUI(almostPhrases, R.color.almost_good_result)
                 }
+
                 BAD -> {
                     scoreBad++
                     score.badScore.text = scoreBad.toString()
