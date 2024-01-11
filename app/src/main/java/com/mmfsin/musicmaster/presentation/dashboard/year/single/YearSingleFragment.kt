@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.ViewCompat.animate
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
@@ -21,9 +22,12 @@ import com.mmfsin.musicmaster.presentation.dashboard.has4digits
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
-import com.mmfsin.musicmaster.presentation.models.SolutionType.*
+import com.mmfsin.musicmaster.presentation.models.SolutionType.ALMOST_GOOD
+import com.mmfsin.musicmaster.presentation.models.SolutionType.BAD
+import com.mmfsin.musicmaster.presentation.models.SolutionType.GOOD
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
+import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.shouldShowInterstitial
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,6 +75,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
             pinView.addTextChangedListener(textWatcher)
             pinView.isCursorVisible = false
             solution.root.visibility = View.GONE
+            restartAnimations()
         }
     }
 
@@ -88,7 +93,12 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                 if (pinView.text.toString().has4digits()) {
                     pinView.isEnabled = false
                     btnCheck.isEnabled = false
-                    viewModel.checkSolution(solutionYear, pinView.text.toString())
+
+                    btnCheck.animate().alpha(0.0f).duration = 200
+                    countDown(200) { btnCheck.visibility = View.GONE }
+                    countDown(200) {
+                        viewModel.checkSolution(solutionYear, pinView.text.toString())
+                    }
                 }
             }
 
@@ -135,10 +145,13 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     private fun setData() {
         binding.apply {
             try {
+                restartAnimations()
+                btnCheck.animate().alpha(1.0f).duration = 500
+                btnCheck.visibility = View.VISIBLE
+
                 pinView.isEnabled = true
                 pinView.text = null
                 btnCheck.isEnabled = true
-                solution.root.visibility = View.GONE
                 val data = music[position]
                 tvTitle.text = data.title
                 tvArtist.text = data.artist
@@ -185,7 +198,6 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
                     solutionUI(badPhrases, R.color.bad_result)
                 }
             }
-            solution.root.visibility = View.VISIBLE
         }
     }
 
@@ -195,6 +207,17 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
             tvMessage.text = message
             tvMessage.setTextColor(getColor(mContext, color))
             root.visibility = View.VISIBLE
+            llSolution.animate().alpha(1.0f).duration = 500
+            countDown(750) {
+                tvMessage.animate().alpha(1.0f).duration = 500
+            }
+        }
+    }
+
+    private fun restartAnimations() {
+        binding.solution.apply {
+            llSolution.animate().alpha(0f).duration = 10
+            tvMessage.animate().alpha(0f).duration = 10
         }
     }
 

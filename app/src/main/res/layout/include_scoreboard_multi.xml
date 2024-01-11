@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_xsmall"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/text"
         android:text="@string/multi_t_one"
         android:textColor="@color/grey" />
@@ -31,14 +31,15 @@
         android:textColor="@color/black"
         android:textSize="25sp" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_team_one"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_padding_large"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="result.json" />
+        android:fontFamily="@font/text"
+        android:text="@string/multi_team_points_abbrev"
+        android:textColor="@color/grey" />
 
     <TextView
         style="@style/MediumTextView"
@@ -61,12 +62,13 @@
         android:textColor="@color/black"
         android:textSize="25sp" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_team_two"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="result.json" />
+        android:fontFamily="@font/text"
+        android:text="@string/multi_team_points_abbrev"
+        android:textColor="@color/grey" />
 
 </LinearLayout>

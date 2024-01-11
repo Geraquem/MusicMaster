@@ -21,6 +21,7 @@ import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.*
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
+import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.shouldShowInterstitial
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -74,6 +75,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             etTitle.text = null
             etTitle.isEnabled = true
             solution.root.visibility = View.GONE
+            restartAnimations()
         }
     }
 
@@ -96,7 +98,12 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                     activity?.closeKeyboard()
                     etTitle.isEnabled = false
                     btnCheck.isEnabled = false
-                    viewModel.checkSolution(solutionTitle, answer)
+
+                    btnCheck.animate().alpha(0.0f).duration = 200
+                    countDown(200) { btnCheck.visibility = View.GONE }
+                    countDown(200) {
+                        viewModel.checkSolution(solutionTitle, answer)
+                    }
                 }
             }
 
@@ -120,11 +127,13 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                     setToolbar(event.category.title, event.category.id.getFontFamily())
                     viewModel.getMusicData(event.category.id)
                 }
+
                 is TitleEvent.MusicData -> {
                     music = event.data
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }
+
                 is TitleEvent.Solution -> solutionResult(event.result)
                 is TitleEvent.SomethingWentWrong -> error()
             }
@@ -141,10 +150,14 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     private fun setData() {
         binding.apply {
             try {
+
+                restartAnimations()
+                btnCheck.animate().alpha(1.0f).duration = 500
+                btnCheck.visibility = View.VISIBLE
+
                 etTitle.text = null
                 etTitle.isEnabled = true
                 btnCheck.isEnabled = true
-                solution.root.visibility = View.GONE
                 val data = music[position]
                 youtubePlayerView?.playYoutubeSeekBar(data.videoUrl, binding.youtubePlayerSeekbar)
                 solutionTitle = data.title
@@ -164,12 +177,14 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                     score.lottieGood.playAnimation()
                     solutionUI(goodPhrases, R.color.good_result)
                 }
+
                 ALMOST_GOOD -> {
                     scoreAlmost++
                     score.almostScore.text = scoreAlmost.toString()
                     score.lottieAlmost.playAnimation()
                     solutionUI(almostPhrases, R.color.almost_good_result)
                 }
+
                 BAD -> {
                     scoreBad++
                     score.badScore.text = scoreBad.toString()
@@ -177,7 +192,13 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                     solutionUI(badPhrases, R.color.bad_result)
                 }
             }
-            solution.root.visibility = View.VISIBLE
+            solution.apply {
+                root.visibility = View.VISIBLE
+                llSolution.animate().alpha(1.0f).duration = 500
+                countDown(750) {
+                    tvMessage.animate().alpha(1.0f).duration = 500
+                }
+            }
         }
     }
 
@@ -187,6 +208,13 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             tvMessage.text = message
             tvMessage.setTextColor(getColor(mContext, color))
             root.visibility = View.VISIBLE
+        }
+    }
+
+    private fun restartAnimations() {
+        binding.solution.apply {
+            llSolution.animate().alpha(0f).duration = 10
+            tvMessage.animate().alpha(0f).duration = 10
         }
     }
 

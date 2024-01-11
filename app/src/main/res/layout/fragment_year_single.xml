@@ -25,132 +25,153 @@
         style="@style/scroll_no_effects"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:paddingVertical="@dimen/margin_padding_medium"
         app:layout_constraintBottom_toTopOf="@id/cl_next"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/ll_music"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_xmedium">
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:id="@+id/ll_image"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_padding_xmedium">
+
+                    <LinearLayout
+                        android:id="@+id/ll_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_music_image"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:contentDescription="@string/content_description"
+                            tools:src="@color/black" />
+
+                        <Space
+                            android:layout_width="8dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/ll_image"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            style="@style/BigTextView_Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="true"
+                            tools:text="HIJO DE LA LUNA" />
+
+                        <TextView
+                            android:id="@+id/tv_artist"
+                            style="@style/MediumTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textColor="@color/grey"
+                            android:textSize="20sp"
+                            tools:text="Mecano" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtubePlayerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_padding_medium"
+                    app:showFullScreenButton="false" />
+
+                <TextView
+                    style="@style/SmallTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:text="@string/dashboard_what_year"
+                    android:textAllCaps="true" />
 
-                    <ImageView
-                        android:id="@+id/iv_music_image"
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
-                        android:contentDescription="@string/content_description"
-                        tools:src="@color/black" />
-
-                    <Space
-                        android:layout_width="8dp"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <com.chaos.view.PinView
+                    android:id="@+id/pinView"
+                    style="@style/pinview"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/ll_image"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/margin_padding_small"
+                    android:cursorVisible="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:itemBackground="@color/white"
+                    android:padding="@dimen/margin_padding_small"
+                    android:textCursorDrawable="@null"
+                    app:cursorColor="@color/transparent"
+                    app:cursorWidth="0dp"
+                    app:hideLineWhenFilled="true"
+                    app:itemCount="4"
+                    app:itemRadius="4dp"
+                    app:itemSpacing="0dp"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle" />
 
-                    <TextView
-                        android:id="@+id/tv_title"
-                        style="@style/BigTextView_Bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAllCaps="true"
-                        tools:text="HIJO DE LA LUNA" />
-
-                    <TextView
-                        android:id="@+id/tv_artist"
-                        style="@style/MediumTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="@color/grey"
-                        android:textSize="20sp"
-                        tools:text="Mecano" />
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/youtubePlayerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_medium"
-                app:showFullScreenButton="false" />
-
-            <TextView
-                style="@style/SmallTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:gravity="center"
-                android:text="@string/dashboard_what_year"
-                android:textAllCaps="true" />
-
-            <com.chaos.view.PinView
-                android:id="@+id/pinView"
-                style="@style/pinview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_padding_small"
-                android:cursorVisible="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:padding="@dimen/margin_padding_small"
-                android:textCursorDrawable="@null"
-                app:cursorColor="@color/transparent"
-                app:cursorWidth="0dp"
-                app:hideLineWhenFilled="true"
-                app:itemCount="4"
-                app:itemRadius="4dp"
-                app:itemSpacing="0dp"
-                app:lineWidth="2dp"
-                app:viewType="rectangle" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_check"
                 style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_padding_medium"
                 android:elevation="@dimen/elevation"
                 android:fontFamily="@font/text"
                 android:paddingVertical="@dimen/margin_padding_medium"
                 android:text="@string/dashboard_check"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_music" />
 
             <include
                 android:id="@+id/solution"
                 layout="@layout/include_solution_year"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_music" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 

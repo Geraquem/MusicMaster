@@ -6,36 +6,42 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/margin_padding_large">
 
-    <TextView
-        style="@style/MediumTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/dashboard_year_result"
-        android:textAllCaps="true" />
-
-    <TextView
-        android:id="@+id/tv_correct_year"
-        style="@style/BigTextView_Bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:textSize="28sp"
-        tools:text="2012" />
-
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/ll_solution"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="4dp"
-        android:background="@color/black" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BigTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/dashboard_year_result"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_correct_year"
+            style="@style/BigTextView_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textStyle="bold"
+            tools:text="2012" />
+
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_team_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="@dimen/margin_padding_xxsmall"
         android:gravity="center"
         android:orientation="horizontal">
@@ -76,6 +82,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_team_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

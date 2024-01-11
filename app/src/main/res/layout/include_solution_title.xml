@@ -5,35 +5,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_solution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/dashboard_title_result"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        tools:text="DOS HOMBRES Y UN DESTINO" />
+        android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="46dp"
-        android:layout_marginVertical="@dimen/margin_padding_small"
-        android:background="@color/black" />
+        <TextView
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/dashboard_title_result"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            tools:text="DOS HOMBRES Y UN DESTINO" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_message"
@@ -41,10 +44,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/margin_padding_large"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textSize="20sp"
+        android:textSize="26sp"
+        android:textStyle="bold"
         tools:text="FATAL FATAL FATAL" />
 
 </LinearLayout>

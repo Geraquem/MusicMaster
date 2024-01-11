@@ -23,13 +23,13 @@
         app:layout_constraintGuide_percent="0.05" />
 
     <LinearLayout
+        android:id="@+id/ll_main"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingVertical="@dimen/margin_padding_medium"
-        app:layout_constraintBottom_toTopOf="@id/cl_next"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
         app:layout_constraintTop_toTopOf="parent">
@@ -74,7 +74,7 @@
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_padding_medium"
+            android:layout_marginBottom="12dp"
             android:autofillHints="null"
             android:background="@drawable/bg_et_title"
             android:cursorVisible="true"
@@ -90,25 +90,33 @@
             android:textColorHint="@color/grey"
             android:textCursorDrawable="@color/black" />
 
-        <Button
-            android:id="@+id/btn_check"
-            style="@style/MediumTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_padding_medium"
-            android:elevation="@dimen/elevation"
-            android:fontFamily="@font/text"
-            android:paddingVertical="@dimen/margin_padding_medium"
-            android:text="@string/dashboard_check"
-            android:textColor="@color/white" />
-
-        <include
-            android:id="@+id/solution"
-            layout="@layout/include_solution_title"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_check"
+        style="@style/MediumTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_padding_medium"
+        android:elevation="@dimen/elevation"
+        android:fontFamily="@font/text"
+        android:paddingVertical="@dimen/margin_padding_medium"
+        android:text="@string/dashboard_check"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@id/gl_left"
+        app:layout_constraintRight_toRightOf="@id/gl_right"
+        app:layout_constraintTop_toBottomOf="@id/ll_main" />
+
+    <include
+        android:id="@+id/solution"
+        layout="@layout/include_solution_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="@id/gl_left"
+        app:layout_constraintRight_toRightOf="@id/gl_right"
+        app:layout_constraintTop_toBottomOf="@id/ll_main"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_next"

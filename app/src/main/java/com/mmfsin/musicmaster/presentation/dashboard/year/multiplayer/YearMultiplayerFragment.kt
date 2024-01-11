@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
-import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
@@ -23,8 +22,14 @@ import com.mmfsin.musicmaster.presentation.dashboard.has4digits
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.presentation.models.SolutionType
-import com.mmfsin.musicmaster.presentation.models.SolutionType.*
-import com.mmfsin.musicmaster.utils.*
+import com.mmfsin.musicmaster.presentation.models.SolutionType.ALMOST_GOOD
+import com.mmfsin.musicmaster.presentation.models.SolutionType.BAD
+import com.mmfsin.musicmaster.presentation.models.SolutionType.GOOD
+import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.closeKeyboard
+import com.mmfsin.musicmaster.utils.countDown
+import com.mmfsin.musicmaster.utils.shouldShowInterstitial
+import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,6 +70,7 @@ class YearMultiplayerFragment :
             pinviewOne.isCursorVisible = false
             pinviewTwo.isCursorVisible = false
             solution.root.visibility = View.GONE
+            restartAnimations()
         }
     }
 
@@ -93,9 +99,16 @@ class YearMultiplayerFragment :
                     pinviewOne.isEnabled = false
                     pinviewTwo.isEnabled = false
                     btnCheck.isEnabled = false
-                    viewModel.checkSolution(
-                        solutionYear, pinviewOne.text.toString(), pinviewTwo.text.toString()
-                    )
+
+                    btnCheck.animate().alpha(0.0f).duration = 200
+                    countDown(200) { btnCheck.visibility = View.GONE }
+                    countDown(200) {
+                        viewModel.checkSolution(
+                            solutionYear,
+                            pinviewOne.text.toString(),
+                            pinviewTwo.text.toString()
+                        )
+                    }
                 }
             }
 
@@ -104,8 +117,7 @@ class YearMultiplayerFragment :
                 if (position < music.size) {
                     activity?.shouldShowInterstitial(position)
                     setData()
-                }
-                else {
+                } else {
                     (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
                 }
@@ -120,11 +132,13 @@ class YearMultiplayerFragment :
                     setToolbar(event.category.title, event.category.id.getFontFamily())
                     viewModel.getMusicData(event.category.id)
                 }
+
                 is YearMultiplayerEvent.MusicData -> {
                     music = event.data
                     setData()
                     binding.loading.root.visibility = View.GONE
                 }
+
                 is YearMultiplayerEvent.Solution -> solutionResult(event.result)
                 is YearMultiplayerEvent.SomethingWentWrong -> error()
             }
@@ -141,25 +155,35 @@ class YearMultiplayerFragment :
     private fun setData() {
         binding.apply {
             try {
+                restartAnimations()
+                btnCheck.animate().alpha(1.0f).duration = 500
+                btnCheck.visibility = View.VISIBLE
+
                 pinviewOne.isEnabled = true
                 pinviewTwo.isEnabled = true
                 pinviewOne.text = null
                 pinviewTwo.text = null
                 btnCheck.isEnabled = true
-                solution.root.visibility = View.GONE
+                restartAnimations()
                 val data = music[position]
                 tvTitle.text = data.title
                 tvArtist.text = data.artist
                 youtubePlayerView.playVideo(data.videoUrl)
-                data.image?.let {
-                    Glide.with(mContext).load(it).into(ivMusicImage)
-                    ivMusicImage.visibility = View.VISIBLE
-                } ?: run { ivMusicImage.visibility = View.GONE }
+                setGroupImage(data.image)
                 solutionYear = data.year
                 solution.tvCorrectYear.text = data.year.toString()
             } catch (e: Exception) {
                 error()
             }
+        }
+    }
+
+    private fun setGroupImage(image: String?) {
+        binding.apply {
+            image?.let {
+                Glide.with(mContext).load(it).into(ivMusicImage)
+                llImage.visibility = View.VISIBLE
+            } ?: run { llImage.visibility = View.GONE }
         }
     }
 
@@ -172,27 +196,26 @@ class YearMultiplayerFragment :
                         tvTeamPoints = solution.tvPointsTeamOne,
                         tvPoints = solution.tvPointsOne,
                         nPoints = R.string.dashboard_two,
-                        lottie = score.lottieTeamOne,
                         color = R.color.good_result
                     )
                 }
+
                 ALMOST_GOOD -> {
                     scoreTeamOne += 1
                     setResultUI(
                         tvTeamPoints = solution.tvPointsTeamOne,
                         tvPoints = solution.tvPointsOne,
                         nPoints = R.string.dashboard_one,
-                        lottie = score.lottieTeamOne,
                         color = R.color.almost_good_result,
                         onePoint = true
                     )
                 }
+
                 BAD -> {
                     setResultUI(
                         tvTeamPoints = solution.tvPointsTeamOne,
                         tvPoints = solution.tvPointsOne,
                         nPoints = R.string.dashboard_zero,
-                        lottie = score.lottieTeamOne,
                         color = R.color.bad_result
                     )
                 }
@@ -204,34 +227,41 @@ class YearMultiplayerFragment :
                         tvTeamPoints = solution.tvPointsTeamTwo,
                         tvPoints = solution.tvPointsTwo,
                         nPoints = R.string.dashboard_two,
-                        lottie = score.lottieTeamTwo,
                         color = R.color.good_result
                     )
                 }
+
                 ALMOST_GOOD -> {
                     scoreTeamTwo += 1
                     setResultUI(
                         tvTeamPoints = solution.tvPointsTeamTwo,
                         tvPoints = solution.tvPointsTwo,
                         nPoints = R.string.dashboard_one,
-                        lottie = score.lottieTeamTwo,
                         color = R.color.almost_good_result,
                         onePoint = true
                     )
                 }
+
                 BAD -> {
                     setResultUI(
                         tvTeamPoints = solution.tvPointsTeamTwo,
                         tvPoints = solution.tvPointsTwo,
                         nPoints = R.string.dashboard_zero,
-                        lottie = score.lottieTeamTwo,
                         color = R.color.bad_result
                     )
                 }
             }
             score.tvScoreOne.text = scoreTeamOne.toString()
             score.tvScoreTwo.text = scoreTeamTwo.toString()
-            solution.root.visibility = View.VISIBLE
+
+            solution.apply {
+                root.visibility = View.VISIBLE
+                llSolution.animate().alpha(1.0f).duration = 500
+                countDown(500) {
+                    llTeamOne.animate().alpha(1.0f).duration = 500
+                    llTeamTwo.animate().alpha(1.0f).duration = 500
+                }
+            }
         }
     }
 
@@ -239,7 +269,6 @@ class YearMultiplayerFragment :
         tvTeamPoints: TextView,
         tvPoints: TextView,
         nPoints: Int,
-        lottie: LottieAnimationView,
         color: Int,
         onePoint: Boolean = false
     ) {
@@ -248,12 +277,18 @@ class YearMultiplayerFragment :
         tvPoints.text = if (onePoint) getString(R.string.multi_team_point)
         else getString(R.string.multi_team_points)
         tvPoints.setTintColor(color)
-        lottie.changeLayersColor(color)
-        lottie.playAnimation()
     }
 
     private fun TextView.setTintColor(color: Int) {
         this.setTextColor(getColor(mContext, color))
+    }
+
+    private fun restartAnimations() {
+        binding.solution.apply {
+            llSolution.animate().alpha(0f).duration = 10
+            llTeamOne.animate().alpha(0f).duration = 10
+            llTeamTwo.animate().alpha(0f).duration = 10
+        }
     }
 
     private fun error() {

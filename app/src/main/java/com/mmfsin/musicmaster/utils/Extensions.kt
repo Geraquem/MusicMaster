@@ -3,6 +3,7 @@ package com.mmfsin.musicmaster.utils
 import android.app.Activity
 import android.content.Context
 import android.graphics.ColorFilter
+import android.os.CountDownTimer
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
@@ -37,3 +38,12 @@ fun LottieAnimationView.changeLayersColor(@ColorRes colorRes: Int) {
 
 fun FragmentActivity.shouldShowInterstitial(position: Int) =
     (this as MainActivity).showInterstitial(position)
+
+fun countDown(duration: Long, action: () -> Unit) {
+    object : CountDownTimer(duration, 1000) {
+        override fun onTick(millisUntilFinished: Long) {}
+        override fun onFinish() {
+            action()
+        }
+    }.start()
+}
