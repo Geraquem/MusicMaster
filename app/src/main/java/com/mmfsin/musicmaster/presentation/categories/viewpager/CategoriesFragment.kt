@@ -6,17 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentCategoriesBinding
 import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.categories.viewpager.adapter.ViewPagerAdapter
+import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.BSheetSelector
+import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.interfaces.IBSheetSelectorListener
+import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
+import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesViewModel>() {
+class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesViewModel>(),
+    IBSheetSelectorListener {
 
     override val viewModel: CategoriesViewModel by viewModels()
     private lateinit var mContext: Context
@@ -57,7 +66,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     private fun setUpViewPager() {
         binding.apply {
             activity?.let {
-                viewPager.adapter = ViewPagerAdapter(it)
+                viewPager.adapter = ViewPagerAdapter(it, this@CategoriesFragment)
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     when (position) {
                         0 -> tab.setText(R.string.category_vp_spanish)
@@ -67,6 +76,22 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
                 loading.root.visibility = View.GONE
             }
         }
+    }
+
+    override fun onItemClick(categoryId: String) {
+        val bottomSheet = BSheetSelector { mode -> navigateToDashboard(categoryId, mode) }
+        activity?.let { bottomSheet.show(it.supportFragmentManager, "") }
+    }
+
+    private fun navigateToDashboard(categoryId: String, mode: GameMode) {
+        val bundle = Bundle()
+        bundle.putString(CATEGORY_ID, categoryId)
+        val navigationId = when (mode) {
+            GUESS_YEAR_SINGLE -> R.id.action_categories_to_year_single
+            GUESS_YEAR_MULTIPLAYER -> R.id.action_categories_to_year_multiplayer
+            GUESS_TITLE -> R.id.action_categories_to_title
+        }
+        findNavController().navigate(navigationId, bundle)
     }
 
     private fun error() = activity?.showErrorDialog()

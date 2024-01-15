@@ -13,17 +13,19 @@ import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentCategoriesByLanguageBinding
 import com.mmfsin.musicmaster.domain.models.Category
 import com.mmfsin.musicmaster.presentation.categories.language.adapter.CategoriesAdapter
-import com.mmfsin.musicmaster.presentation.categories.language.dialog.SelectorDialog
 import com.mmfsin.musicmaster.presentation.categories.language.interfaces.ICategoryListener
+import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.interfaces.IBSheetSelectorListener
 import com.mmfsin.musicmaster.presentation.models.GameMode
-import com.mmfsin.musicmaster.presentation.models.GameMode.*
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.LANGUAGE
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CategoriesByLanguageFragment :
+class CategoriesByLanguageFragment(private val bSheetListener: IBSheetSelectorListener?) :
     BaseFragment<FragmentCategoriesByLanguageBinding, CategoriesByLanguageViewModel>(),
     ICategoryListener {
 
@@ -31,7 +33,6 @@ class CategoriesByLanguageFragment :
     private lateinit var mContext: Context
 
     private var language: String? = null
-    private var dialog: SelectorDialog? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -75,20 +76,7 @@ class CategoriesByLanguageFragment :
     }
 
     override fun onCategoryClick(id: String) {
-        dialog = SelectorDialog { mode -> navigateToDashboard(id, mode) }
-        activity?.let { dialog?.show(it.supportFragmentManager, "") }
-    }
-
-    private fun navigateToDashboard(categoryId: String, mode: GameMode) {
-        val bundle = Bundle()
-        bundle.putString(CATEGORY_ID, categoryId)
-        val navigationId = when (mode) {
-            GUESS_YEAR_SINGLE -> R.id.action_categories_to_year_single
-            GUESS_YEAR_MULTIPLAYER -> R.id.action_categories_to_year_multiplayer
-            GUESS_TITLE -> R.id.action_categories_to_title
-        }
-        findNavController().navigate(navigationId, bundle)
-        dialog?.dismiss()
+        bSheetListener?.onItemClick(categoryId = id)
     }
 
     private fun error() = activity?.showErrorDialog()

@@ -7,11 +7,14 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mmfsin.musicmaster.domain.models.Language
 import com.mmfsin.musicmaster.domain.models.Language.ENGLISH
 import com.mmfsin.musicmaster.domain.models.Language.SPANISH
-import com.mmfsin.musicmaster.utils.LANGUAGE
 import com.mmfsin.musicmaster.presentation.categories.language.CategoriesByLanguageFragment
+import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.interfaces.IBSheetSelectorListener
+import com.mmfsin.musicmaster.utils.LANGUAGE
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
-    FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(
+    fragmentActivity: FragmentActivity,
+    private val bIBSheetSelectorListener: IBSheetSelectorListener? = null
+) : FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = 2
 
@@ -23,7 +26,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     }
 
     private fun getFragment(language: Language): Fragment {
-        val fragment = CategoriesByLanguageFragment()
+        val fragment = CategoriesByLanguageFragment(bIBSheetSelectorListener)
         val bundle = Bundle().apply {
             putString(LANGUAGE, language.name.lowercase())
         }
