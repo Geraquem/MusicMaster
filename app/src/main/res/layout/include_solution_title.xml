@@ -48,7 +48,7 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textSize="26sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         tools:text="FATAL FATAL FATAL" />
 
