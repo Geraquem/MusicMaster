@@ -69,9 +69,9 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
             btnPlay.setImageResource(R.drawable.ic_pause)
-            goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
-            almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
-            badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
+            goodPhrases = resources.getStringArray(R.array.good_phrases).toList().shuffled()
+            almostPhrases = resources.getStringArray(R.array.almost_phrases).toList().shuffled()
+            badPhrases = resources.getStringArray(R.array.bad_phrases).toList().shuffled()
             etTitle.text = null
             etTitle.isEnabled = true
             solution.root.visibility = View.GONE

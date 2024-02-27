@@ -78,7 +78,6 @@
             android:autofillHints="null"
             android:background="@drawable/bg_et_title"
             android:cursorVisible="true"
-            android:elevation="@dimen/elevation"
             android:focusable="true"
             android:hint="@string/dashboard_what_title_hint"
             android:inputType="textCapWords"

@@ -3,17 +3,18 @@
 
     <!--  GOOD PHRASES  -->
     <string-array name="good_phrases">
-        <item>MUY BIEN</item>
+        <item>¡MUY BIEN!</item>
         <item>PERFECTÍSIMO</item>
-        <item>PERFECTO</item>
-        <item>GENIAL</item>
-        <item>MARAVILLOSO</item>
+        <item>¡PERFECTO!</item>
+        <item>¡GENIAL!</item>
+        <item>MARAVILLA</item>
         <item>FANTABULOSO</item>
         <item>PERFECTÍSIMO</item>
         <item>GENIAL GENIAL</item>
+        <item>HAS ESTUDIADO</item>
         <item>ESTUPENDITO</item>
         <item>EN EL CLAVO</item>
-        <item>JUSTO</item>
+        <item>¡JUSTO!</item>
         <item>LO TIENES</item>
     </string-array>
 
@@ -37,14 +38,15 @@
         <item>FATAL FATAL FATAL</item>
         <item>HAS HECHO LO QUE HAS PODIDO</item>
         <item>FRACASO ABSOLUTO</item>
-        <item>HORRRRRRIBLE</item>
+        <item>HORRRRRIBLE</item>
         <item>NI IDEA TIENES</item>
         <item>MADRE MÍA…</item>
         <item>AL MENOS LO HAS INTENTADO</item>
-        <item>PPFFFFF…</item>
-        <item>SI ESTO FUESE UN EXAMEN ESTARÍA SUSPENSO</item>
+        <item>PPPPFFFFFFFFF…</item>
+        <item>MERECIDO SUSPENSO</item>
         <item>FRACASO ABSOLUTO</item>
-        <item>ESTO NO ES LO TUYO</item>
+        <item>ESTO NO ES LO TUYO EH</item>
+        <item>VERGüENCITA</item>
         <item>POR FAVOR, CONCÉNTRESE</item>
     </string-array>
 

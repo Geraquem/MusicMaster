@@ -69,9 +69,9 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
-            goodPhrases = resources.getStringArray(R.array.good_phrases).toList()
-            almostPhrases = resources.getStringArray(R.array.almost_phrases).toList()
-            badPhrases = resources.getStringArray(R.array.bad_phrases).toList()
+            goodPhrases = resources.getStringArray(R.array.good_phrases).toList().shuffled()
+            almostPhrases = resources.getStringArray(R.array.almost_phrases).toList().shuffled()
+            badPhrases = resources.getStringArray(R.array.bad_phrases).toList().shuffled()
             pinView.addTextChangedListener(textWatcher)
             pinView.isCursorVisible = false
             solution.root.visibility = View.GONE
