@@ -13,33 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingVertical="@dimen/margin_padding_xmedium">
+        android:paddingVertical="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_padding_xmedium">
+            android:layout_marginStart="16dp">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="40dp"
-                android:layout_height="45dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/content_description"
                 android:src="@drawable/ic_back"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/iv_logo"
-                android:layout_width="40dp"
-                android:layout_height="45dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:contentDescription="@string/content_description"
-                android:src="@drawable/ic_logo_app"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/margin_padding_small"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/cl_icon"
             android:fontFamily="@font/text"
             android:gravity="center"

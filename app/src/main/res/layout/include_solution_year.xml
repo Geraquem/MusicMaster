@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/margin_padding_large"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="8dp"
         android:alpha="0.5"
         android:elevation="6dp"

@@ -29,7 +29,7 @@
         android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingVertical="@dimen/margin_padding_medium"
+        android:paddingVertical="16dp"
         app:layout_constraintBottom_toTopOf="@id/cl_next"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
@@ -53,7 +53,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_padding_xmedium">
+                    android:layout_marginBottom="8dp">
 
                     <LinearLayout
                         android:id="@+id/ll_image"
@@ -89,10 +89,10 @@
                         <TextView
                             android:id="@+id/tv_title"
                             style="@style/BigTextView_Bold"
-                            android:textSize="20sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAllCaps="true"
+                            android:textSize="20sp"
                             tools:text="HIJO DE LA LUNA" />
 
                         <TextView
@@ -113,7 +113,7 @@
                     android:id="@+id/youtubePlayerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_padding_medium"
+                    android:layout_marginBottom="16dp"
                     app:showFullScreenButton="false" />
 
                 <TextView
@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/margin_padding_small"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
                     android:text="@string/dashboard_what_year"
@@ -216,10 +216,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="@dimen/margin_padding_medium"
-                android:elevation="@dimen/elevation"
+                android:layout_marginBottom="16dp"
+                android:elevation="4dp"
                 android:fontFamily="@font/text"
-                android:paddingVertical="@dimen/margin_padding_medium"
+                android:paddingVertical="16dp"
                 android:text="@string/dashboard_check"
                 android:textColor="@color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -263,8 +263,9 @@
 
         <ImageView
             android:id="@+id/btnNext"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/content_description"
             android:src="@drawable/ic_next"
             app:layout_constraintBottom_toBottomOf="parent"

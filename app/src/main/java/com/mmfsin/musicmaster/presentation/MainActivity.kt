@@ -3,7 +3,9 @@ package com.mmfsin.musicmaster.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat.getFont
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -30,7 +32,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        changeStatusBar()
         setAds()
+    }
+
+    private fun changeStatusBar() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.isAppearanceLightStatusBars = true
     }
 
     private fun setAds() {
@@ -72,7 +81,6 @@ class MainActivity : AppCompatActivity() {
 
     fun setMainToolbar(showLogo: Boolean, title: String, fontFamily: Int) {
         binding.toolbar.apply {
-            ivLogo.isVisible = showLogo
             ivBack.isVisible = !showLogo
             tvTitle.text = title
             tvTitle.typeface = getFont(this@MainActivity, fontFamily)

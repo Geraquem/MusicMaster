@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_right"
@@ -27,7 +29,7 @@
         android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingVertical="@dimen/margin_padding_medium"
+        android:paddingVertical="16dp"
         app:layout_constraintBottom_toTopOf="@id/cl_next"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
@@ -51,7 +53,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_padding_xmedium">
+                    android:layout_marginBottom="8dp">
 
                     <LinearLayout
                         android:id="@+id/ll_image"
@@ -110,7 +112,7 @@
                     android:id="@+id/youtubePlayerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_padding_medium"
+                    android:layout_marginBottom="16dp"
                     app:showFullScreenButton="false" />
 
                 <TextView
@@ -129,12 +131,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/margin_padding_small"
+                    android:layout_marginBottom="8dp"
                     android:cursorVisible="false"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:itemBackground="@color/white"
-                    android:padding="@dimen/margin_padding_small"
+                    android:padding="8dp"
                     android:textCursorDrawable="@null"
                     app:cursorColor="@color/transparent"
                     app:cursorWidth="0dp"
@@ -152,9 +154,9 @@
                 style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/elevation"
+                android:elevation="4dp"
                 android:fontFamily="@font/text"
-                android:paddingVertical="@dimen/margin_padding_medium"
+                android:paddingVertical="16dp"
                 android:text="@string/dashboard_check"
                 android:textColor="@color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -179,7 +181,9 @@
         android:id="@+id/cl_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_padding_xmedium"
+        android:layout_marginBottom="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right">
@@ -196,9 +200,11 @@
 
         <ImageView
             android:id="@+id/btn_next"
-            android:layout_width="@dimen/margin_padding_gigant"
-            android:layout_height="@dimen/margin_padding_gigant"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/content_description"
+            android:elevation="4dp"
             android:src="@drawable/ic_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

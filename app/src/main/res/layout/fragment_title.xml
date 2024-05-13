@@ -30,6 +30,7 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingBottom="24dp"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,10 +38,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_padding_large"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/bg_seekbar"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_padding_xxsmall">
+            android:padding="4dp">
 
             <ImageView
                 android:id="@+id/btn_play"
@@ -59,35 +60,28 @@
 
         </LinearLayout>
 
-        <TextView
-            style="@style/SmallTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/margin_padding_small"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:gravity="center"
-            android:text="@string/dashboard_what_title"
-            android:textAllCaps="true" />
-
-        <EditText
-            android:id="@+id/et_title"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_title"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:autofillHints="null"
-            android:background="@drawable/bg_et_title"
-            android:cursorVisible="true"
-            android:focusable="true"
-            android:hint="@string/dashboard_what_title_hint"
-            android:inputType="textCapWords"
-            android:lines="1"
-            android:maxLength="60"
-            android:maxLines="1"
-            android:padding="@dimen/margin_padding_xmedium"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:textCursorDrawable="@color/black" />
+            android:layout_marginBottom="8dp"
+            android:hint="@string/dashboard_what_title"
+            app:boxStrokeColor="@color/grey"
+            app:cursorColor="@color/grey"
+            app:hintTextColor="@color/grey">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_title"
+                style="@style/MediumTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textShortMessage|textCapSentences"
+                android:lines="1"
+                android:maxLength="40"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -96,10 +90,10 @@
         style="@style/MediumTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_padding_medium"
-        android:elevation="@dimen/elevation"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
         android:fontFamily="@font/text"
-        android:paddingVertical="@dimen/margin_padding_medium"
+        android:paddingVertical="16dp"
         android:text="@string/dashboard_check"
         android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
@@ -121,7 +115,7 @@
         android:id="@+id/cl_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_padding_xmedium"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right">
@@ -138,8 +132,9 @@
 
         <ImageView
             android:id="@+id/btn_next"
-            android:layout_width="@dimen/margin_padding_gigant"
-            android:layout_height="@dimen/margin_padding_gigant"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/content_description"
             android:src="@drawable/ic_next"
             app:layout_constraintBottom_toBottomOf="parent"

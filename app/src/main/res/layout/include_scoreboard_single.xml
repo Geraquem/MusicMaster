@@ -4,10 +4,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_single_score_board"
-    android:elevation="@dimen/elevation"
+    android:elevation="4dp"
     android:orientation="horizontal"
-    android:paddingHorizontal="@dimen/margin_padding_large"
-    android:paddingVertical="@dimen/margin_padding_xsmall">
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="4dp">
 
     <TextView
         android:id="@+id/good_score"
@@ -15,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
         android:text="@string/dashboard_zero"
         android:textColor="@color/black" />
@@ -25,7 +24,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_small"
+        android:layout_marginEnd="12dp"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/good_result"
         app:lottie_fileName="result.json" />
@@ -36,7 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
         android:text="@string/dashboard_zero"
         android:textColor="@color/black" />
@@ -46,7 +44,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_small"
+        android:layout_marginEnd="12dp"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/almost_good_result"
         app:lottie_fileName="result.json" />
@@ -57,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_padding_xxxsmall"
         android:fontFamily="@font/text"
         android:text="@string/dashboard_zero"
         android:textColor="@color/black" />
