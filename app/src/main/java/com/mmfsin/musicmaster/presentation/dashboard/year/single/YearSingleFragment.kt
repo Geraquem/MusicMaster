@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.view.ViewCompat.animate
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
@@ -138,7 +137,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
     private fun setToolbar(title: String, fontFamily: Int) {
         (activity as MainActivity).apply {
             showBanner(visible = true)
-            setMainToolbar(showLogo = false, title, fontFamily)
+            setDashboardToolbar(title, fontFamily)
         }
     }
 

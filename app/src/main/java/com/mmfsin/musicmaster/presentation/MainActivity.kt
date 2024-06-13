@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat.getFont
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -79,9 +78,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setMainToolbar(showLogo: Boolean, title: String, fontFamily: Int) {
+    fun hideMainToolbar() {
+        binding.toolbar.root.visibility = View.GONE
+    }
+
+    fun setDashboardToolbar(title: String, fontFamily: Int) {
         binding.toolbar.apply {
-            ivBack.isVisible = !showLogo
             tvTitle.text = title
             tvTitle.typeface = getFont(this@MainActivity, fontFamily)
 
@@ -89,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                 inDashboard = false
                 onBackPressed()
             }
+            root.visibility = View.VISIBLE
         }
     }
 

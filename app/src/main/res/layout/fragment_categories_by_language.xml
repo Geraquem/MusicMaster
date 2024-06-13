@@ -13,14 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.97" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_left"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.03" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_categories"
@@ -29,7 +29,8 @@
         android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"

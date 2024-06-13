@@ -148,7 +148,7 @@ class YearMultiplayerFragment :
     private fun setToolbar(title: String, fontFamily: Int) {
         (activity as MainActivity).apply {
             showBanner(visible = true)
-            setMainToolbar(showLogo = false, title, fontFamily)
+            setDashboardToolbar(title, fontFamily)
         }
     }
 

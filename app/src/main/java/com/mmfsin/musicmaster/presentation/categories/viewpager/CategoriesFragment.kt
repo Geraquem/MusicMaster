@@ -50,7 +50,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     private fun setToolbar() {
         (activity as MainActivity).apply {
             showBanner(visible = false)
-            setMainToolbar(showLogo = true, getString(R.string.app_name), R.font.text)
+            hideMainToolbar()
         }
     }
 
@@ -67,7 +67,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
         binding.apply {
             activity?.let {
                 viewPager.adapter = ViewPagerAdapter(it, this@CategoriesFragment)
-                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                TabLayoutMediator(tabs.tabLayout, viewPager) { tab, position ->
                     when (position) {
                         0 -> tab.setText(R.string.category_vp_spanish)
                         1 -> tab.setText(R.string.category_vp_english)
