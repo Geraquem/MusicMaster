@@ -11,8 +11,8 @@
     android:padding="24dp">
 
     <ImageView
-        android:layout_width="84dp"
-        android:layout_height="84dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/content_description"
         android:src="@drawable/ic_exit" />

@@ -56,7 +56,7 @@
 
     <!-- EXIT -->
     <string name="exit_title">¿Seguro que quieres salir?</string>
-    <string name="exit_yes">SALIR</string>
-    <string name="exit_no">QUEDARME</string>
+    <string name="exit_yes">Salir</string>
+    <string name="exit_no">Quedarme</string>
 
 </resources>

@@ -20,6 +20,8 @@ import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.animateY
+import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,6 +46,10 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
         binding.apply {
             loading.root.visibility = View.VISIBLE
             setToolbar()
+            if ((activity as MainActivity).firstAccessVP) {
+                tabs.root.visibility = View.INVISIBLE
+                tabs.root.animateY(-1000f, 10)
+            }
         }
     }
 
@@ -73,7 +79,20 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
                         1 -> tab.setText(R.string.category_vp_english)
                     }
                 }.attach()
-                loading.root.visibility = View.GONE
+                endFlow()
+            }
+        }
+    }
+
+    private fun endFlow() {
+        binding.apply {
+            loading.root.visibility = View.GONE
+            if ((activity as MainActivity).firstAccessVP) {
+                (activity as MainActivity).firstAccessVP = false
+                countDown(500) {
+                    tabs.root.visibility = View.VISIBLE
+                    tabs.root.animateY(0f, 1000)
+                }
             }
         }
     }

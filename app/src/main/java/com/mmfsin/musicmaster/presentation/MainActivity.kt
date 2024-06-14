@@ -22,10 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     private var mInterstitialAd: InterstitialAd? = null
 
+    var firstAccessVP = true
+    var firstAccessRV = true
     var inDashboard = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Thread.sleep(500)
+        Thread.sleep(200)
         setTheme(R.style.Theme_MusicMaster)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

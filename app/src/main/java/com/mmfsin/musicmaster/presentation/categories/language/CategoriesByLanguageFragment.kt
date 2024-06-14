@@ -6,21 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.databinding.FragmentCategoriesByLanguageBinding
 import com.mmfsin.musicmaster.domain.models.Category
+import com.mmfsin.musicmaster.domain.models.Language.SPANISH
+import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.categories.language.adapter.CategoriesAdapter
 import com.mmfsin.musicmaster.presentation.categories.language.interfaces.ICategoryListener
 import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.interfaces.IBSheetSelectorListener
-import com.mmfsin.musicmaster.presentation.models.GameMode
-import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
-import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
-import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
-import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.LANGUAGE
+import com.mmfsin.musicmaster.utils.animateY
+import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,6 +47,10 @@ class CategoriesByLanguageFragment(private val bSheetListener: IBSheetSelectorLi
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
+            if ((activity as MainActivity).firstAccessRV && language == SPANISH.name.lowercase()) {
+                rvCategories.visibility = View.INVISIBLE
+                rvCategories.animateY(2000f, 10)
+            }
         }
     }
 
@@ -70,6 +71,21 @@ class CategoriesByLanguageFragment(private val bSheetListener: IBSheetSelectorLi
                 adapter = CategoriesAdapter(
                     categories.sortedBy { it.order }, this@CategoriesByLanguageFragment
                 )
+            }
+            endFlow()
+        }
+    }
+
+    private fun endFlow() {
+        binding.apply {
+            if ((activity as MainActivity).firstAccessRV) {
+                (activity as MainActivity).firstAccessRV = false
+                countDown(500) {
+                    if (language == SPANISH.name.lowercase()) {
+                        rvCategories.visibility = View.VISIBLE
+                        rvCategories.animateY(0f, 1000)
+                    }
+                }
             }
             loading.root.visibility = View.GONE
         }
