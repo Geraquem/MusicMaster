@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.ColorFilter
 import android.os.CountDownTimer
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
@@ -20,6 +21,12 @@ fun FragmentActivity.showErrorDialog() {
     val dialog = ErrorDialog()
     this.let { dialog.show(it.supportFragmentManager, "") }
 }
+
+fun View.animateY(pos: Float, duration: Long) =
+    this.animate().translationY(pos).setDuration(duration)
+
+fun View.animateX(pos: Float, duration: Long) =
+    this.animate().translationX(pos).setDuration(duration)
 
 fun Activity.closeKeyboard() {
     this.currentFocus?.let { view ->

@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="64dp"
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/bg_progress" />
 
