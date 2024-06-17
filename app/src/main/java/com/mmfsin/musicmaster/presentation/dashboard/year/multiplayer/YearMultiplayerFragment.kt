@@ -69,7 +69,6 @@ class YearMultiplayerFragment :
             pinviewTwo.addTextChangedListener(textWatcherTwo)
             pinviewOne.isCursorVisible = false
             pinviewTwo.isCursorVisible = false
-            solution.root.visibility = View.GONE
             restartAnimations()
         }
     }
@@ -164,7 +163,7 @@ class YearMultiplayerFragment :
                 pinviewOne.text = null
                 pinviewTwo.text = null
                 btnCheck.isEnabled = true
-                restartAnimations()
+
                 val data = music[position]
                 tvTitle.text = data.title
                 tvArtist.text = data.artist
@@ -285,6 +284,7 @@ class YearMultiplayerFragment :
 
     private fun restartAnimations() {
         binding.solution.apply {
+            root.visibility = View.INVISIBLE
             llSolution.animate().alpha(0f).duration = 10
             llTeamOne.animate().alpha(0f).duration = 10
             llTeamTwo.animate().alpha(0f).duration = 10

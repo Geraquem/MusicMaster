@@ -18,7 +18,9 @@ import com.mmfsin.musicmaster.presentation.dashboard.pauseSeekbar
 import com.mmfsin.musicmaster.presentation.dashboard.playSeekbar
 import com.mmfsin.musicmaster.presentation.dashboard.playYoutubeSeekBar
 import com.mmfsin.musicmaster.presentation.models.SolutionType
-import com.mmfsin.musicmaster.presentation.models.SolutionType.*
+import com.mmfsin.musicmaster.presentation.models.SolutionType.ALMOST_GOOD
+import com.mmfsin.musicmaster.presentation.models.SolutionType.BAD
+import com.mmfsin.musicmaster.presentation.models.SolutionType.GOOD
 import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.countDown
@@ -74,7 +76,6 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             badPhrases = resources.getStringArray(R.array.bad_phrases).toList().shuffled()
             etTitle.text = null
             etTitle.isEnabled = true
-            solution.root.visibility = View.GONE
             restartAnimations()
         }
     }
@@ -150,7 +151,6 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     private fun setData() {
         binding.apply {
             try {
-
                 restartAnimations()
                 btnCheck.animate().alpha(1.0f).duration = 500
                 btnCheck.visibility = View.VISIBLE
@@ -162,6 +162,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                 youtubePlayerView?.playYoutubeSeekBar(data.videoUrl, binding.youtubePlayerSeekbar)
                 solutionTitle = data.title
                 solution.tvTitle.text = data.title
+                solution.tvArtist.text = data.artist
             } catch (e: Exception) {
                 error()
             }
@@ -213,6 +214,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     private fun restartAnimations() {
         binding.solution.apply {
+            root.visibility = View.INVISIBLE
             llSolution.animate().alpha(0f).duration = 10
             tvMessage.animate().alpha(0f).duration = 10
         }

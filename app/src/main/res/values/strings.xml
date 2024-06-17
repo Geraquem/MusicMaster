@@ -35,6 +35,7 @@
     <string name="dashboard_check">Comprobar</string>
     <string name="dashboard_year_result">La canción es del</string>
     <string name="dashboard_title_result">El título es</string>
+    <string name="dashboard_title_artist">Artista</string>
     <string name="dashboard_zero">0</string>
     <string name="dashboard_one">1</string>
     <string name="dashboard_two">2</string>

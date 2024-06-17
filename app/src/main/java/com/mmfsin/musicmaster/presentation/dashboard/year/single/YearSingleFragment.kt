@@ -73,7 +73,6 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
             badPhrases = resources.getStringArray(R.array.bad_phrases).toList().shuffled()
             pinView.addTextChangedListener(textWatcher)
             pinView.isCursorVisible = false
-            solution.root.visibility = View.GONE
             restartAnimations()
         }
     }
@@ -215,6 +214,7 @@ class YearSingleFragment : BaseFragment<FragmentYearSingleBinding, YearSingleVie
 
     private fun restartAnimations() {
         binding.solution.apply {
+            root.visibility = View.INVISIBLE
             llSolution.animate().alpha(0f).duration = 10
             tvMessage.animate().alpha(0f).duration = 10
         }
