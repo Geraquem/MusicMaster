@@ -15,7 +15,7 @@
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.MusicMaster">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowBackground">@color/splash_background</item>
     </style>
 
     <style name="category_tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
