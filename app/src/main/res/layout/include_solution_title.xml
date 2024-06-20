@@ -8,14 +8,14 @@
     <LinearLayout
         android:id="@+id/ll_solution"
         android:layout_width="match_parent"
-        android:background="@drawable/bg_white_box"
-        android:paddingVertical="16dp"
-        android:backgroundTint="#DFDFDF"
-        android:paddingHorizontal="24dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/bg_white_box"
+        android:backgroundTint="#DFDFDF"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp">
 
         <TextView
             style="@style/MediumTextView"
@@ -26,7 +26,8 @@
             android:fontFamily="sans-serif-condensed"
             android:text="@string/dashboard_title_result"
             android:textAllCaps="true"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_title"
