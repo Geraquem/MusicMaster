@@ -2,6 +2,9 @@ package com.mmfsin.musicmaster.data.repository
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.mmfsin.musicmaster.data.mappers.toCategory
+import com.mmfsin.musicmaster.data.mappers.toCategoryList
+import com.mmfsin.musicmaster.data.models.CategoryDTO
 import com.mmfsin.musicmaster.domain.interfaces.ICategoryRepository
 import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
 import com.mmfsin.musicmaster.domain.models.Category
@@ -20,27 +23,27 @@ class CategoryRepository @Inject constructor(
     private val reference = Firebase.database.reference.child(CATEGORIES)
 
     override fun getCategoriesFromRealm(): List<Category> {
-        return realmDatabase.getObjectsFromRealm { where<Category>().findAll() }
+        return realmDatabase.getObjectsFromRealm { where<CategoryDTO>().findAll() }.toCategoryList()
     }
 
     override fun getCategoryById(id: String): Category? {
         val categories =
-            realmDatabase.getObjectsFromRealm { where<Category>().equalTo("id", id).findAll() }
-        return if (categories.isEmpty()) null else categories.first()
+            realmDatabase.getObjectsFromRealm { where<CategoryDTO>().equalTo("id", id).findAll() }
+        return if (categories.isEmpty()) null else categories.first().toCategory()
     }
 
     override fun getCategoriesByLanguage(language: String): List<Category> {
         return realmDatabase.getObjectsFromRealm {
-            where<Category>().equalTo(LANGUAGE, language).findAll()
-        }.sortedBy { it.order }
+            where<CategoryDTO>().equalTo(LANGUAGE, language).findAll()
+        }.sortedBy { it.order }.toCategoryList()
     }
 
     override suspend fun getCategoriesFromFirebase(): List<Category> {
         val latch = CountDownLatch(1)
-        val categories = mutableListOf<Category>()
+        val categories = mutableListOf<CategoryDTO>()
         reference.get().addOnSuccessListener {
             for (child in it.children) {
-                child.getValue(Category::class.java)?.let { category ->
+                child.getValue(CategoryDTO::class.java)?.let { category ->
                     categories.add(category)
                     saveCategory(category)
                 }
@@ -51,8 +54,8 @@ class CategoryRepository @Inject constructor(
         withContext(Dispatchers.IO) {
             latch.await()
         }
-        return categories
+        return categories.toCategoryList()
     }
 
-    private fun saveCategory(category: Category) = realmDatabase.addObject { category }
+    private fun saveCategory(category: CategoryDTO) = realmDatabase.addObject { category }
 }
