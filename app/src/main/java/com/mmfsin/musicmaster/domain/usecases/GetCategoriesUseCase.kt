@@ -9,9 +9,7 @@ class GetCategoriesUseCase @Inject constructor(private val repository: ICategory
     BaseUseCaseNoParams<List<Category>>() {
 
     override suspend fun execute(): List<Category> {
-//        val categories = repository.getCategoriesFromRealm()
-//        return categories.ifEmpty { repository.getCategoriesFromFirebase() }
-
-        return repository.getCategoriesFromFirebase()
+        val categories = repository.getCategoriesFromRealm()
+        return categories.ifEmpty { repository.getCategoriesFromFirebase() }
     }
 }

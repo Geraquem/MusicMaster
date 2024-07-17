@@ -7,7 +7,8 @@ fun CategoryDTO.toCategory() = Category(
     id = id,
     title = title,
     description = description,
-    icon = icon
+    icon = icon,
+    color = color
 )
 
 fun List<CategoryDTO>.toCategoryList() = this.map { it.toCategory() }

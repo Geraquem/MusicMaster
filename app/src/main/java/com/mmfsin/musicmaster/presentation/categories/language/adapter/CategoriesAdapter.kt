@@ -1,9 +1,12 @@
 package com.mmfsin.musicmaster.presentation.categories.language.adapter
 
+import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color.parseColor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.res.ResourcesCompat.getFont
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
@@ -20,13 +23,18 @@ class CategoriesAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCategoryBinding.bind(view)
+        private val c: Context = binding.root.context
         fun bind(category: Category) {
-            val context = binding.root.context
             binding.apply {
-                Glide.with(context).load(category.icon).into(image)
+                Glide.with(c).load(category.icon).into(image)
                 tvTitle.text = category.title
-                tvTitle.typeface = ResourcesCompat.getFont(context, category.id.getFontFamily())
+                tvTitle.typeface = getFont(c, category.id.getFontFamily())
                 tvDescription.text = category.description
+
+//                category.color?.let { c ->
+//                    val color = parseColor(c)
+//                    clMain.backgroundTintList = ColorStateList.valueOf(color)
+//                }
             }
         }
     }
@@ -39,7 +47,7 @@ class CategoriesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
-        holder.binding.row.setOnClickListener { listener.onCategoryClick(data[position].id) }
+        holder.itemView.setOnClickListener { listener.onCategoryClick(data[position].id) }
     }
 
     override fun getItemCount(): Int {

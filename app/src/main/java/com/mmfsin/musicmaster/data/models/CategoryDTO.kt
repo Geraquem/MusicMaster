@@ -10,5 +10,6 @@ open class CategoryDTO(
     var language: String = "",
     var title: String = "",
     var description: String = "",
-    var icon: String = ""
+    var icon: String = "",
+    var color: String? = null
 ) : RealmObject()
