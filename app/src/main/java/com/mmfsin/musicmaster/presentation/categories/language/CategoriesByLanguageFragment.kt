@@ -69,7 +69,8 @@ class CategoriesByLanguageFragment(private val bSheetListener: IBSheetSelectorLi
             rvCategories.apply {
                 layoutManager = LinearLayoutManager(mContext)
                 adapter = CategoriesAdapter(
-                    categories.sortedBy { it.order }, this@CategoriesByLanguageFragment
+                    categories,
+                    this@CategoriesByLanguageFragment
                 )
             }
             endFlow()
