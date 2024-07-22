@@ -154,7 +154,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                 restartAnimations()
                 btnCheck.animate().alpha(1.0f).duration = 500
                 btnCheck.visibility = View.VISIBLE
-
+                btnPlay.setImageResource(R.drawable.ic_pause)
                 etTitle.text = null
                 etTitle.isEnabled = true
                 btnCheck.isEnabled = true
