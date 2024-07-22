@@ -9,9 +9,9 @@
 
     <!-- ADS -->
     <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-<!--        <string name="banner">ca-app-pub-4515698012373396/2351444900</string>-->
+    <!--        <string name="banner">ca-app-pub-4515698012373396/2351444900</string>-->
     <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>
-<!--        <string name="interstitial">ca-app-pub-4515698012373396/9980090620</string>-->
+    <!--        <string name="interstitial">ca-app-pub-4515698012373396/9980090620</string>-->
 
     <!-- CATEGORIES -->
     <string name="category_vp_title">Canciones en</string>
@@ -20,10 +20,10 @@
 
     <!-- SELECTOR -->
     <string name="selector_wanna_guess">Quiero adivinar</string>
-    <string name="selector_guess_year">El <b>año</b> de la canción</string>
+    <string name="selector_guess_year">EL <b>AÑO</b> DE LA CANCIÓN</string>
     <string name="selector_guess_year_mode_single">Individual</string>
     <string name="selector_guess_year_mode_multiplayer">Por equipos</string>
-    <string name="selector_guess_title">El <b>título</b> de la canción</string>
+    <string name="selector_guess_title">EL <b>TÍTULO</b> DE LA CANCIÓN</string>
     <string name="selector_guess_year_single_description">Modo de juego <b>recomendado</b>. Adivina el año en que las canciones fueron publicadas.</string>
     <string name="selector_guess_year_multi_description">Igual que el modo de juego anterior pero <b>por equipos</b>. Quien consiga más puntos gana.</string>
     <string name="selector_guess_title_description">A ver cuántos títulos de canciones adivinas correctamente solo escuchando la canción.</string>

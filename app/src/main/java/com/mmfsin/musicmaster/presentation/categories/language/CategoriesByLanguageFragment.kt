@@ -59,7 +59,6 @@ class CategoriesByLanguageFragment(private val bSheetListener: IBSheetSelectorLi
             when (event) {
                 is CategoriesByLanguageEvent.Categories -> setUpRecyclerView(event.result)
                 is CategoriesByLanguageEvent.SomethingWentWrong -> error()
-                else -> {}
             }
         }
     }
@@ -93,7 +92,7 @@ class CategoriesByLanguageFragment(private val bSheetListener: IBSheetSelectorLi
     }
 
     override fun onCategoryClick(id: String) {
-        bSheetListener?.onItemClick(categoryId = id)
+        bSheetListener?.onCategoryClick(categoryId = id)
     }
 
     private fun error() = activity?.showErrorDialog()

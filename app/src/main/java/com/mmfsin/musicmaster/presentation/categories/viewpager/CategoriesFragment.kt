@@ -86,7 +86,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
         }
     }
 
-    override fun onItemClick(categoryId: String) {
+    override fun onCategoryClick(categoryId: String) {
         val bottomSheet = BSheetSelector { mode -> navigateToDashboard(categoryId, mode) }
         activity?.let { bottomSheet.show(it.supportFragmentManager, "") }
     }
