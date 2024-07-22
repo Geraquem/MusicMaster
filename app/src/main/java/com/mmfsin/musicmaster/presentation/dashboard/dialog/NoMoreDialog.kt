@@ -14,7 +14,7 @@ class NoMoreDialog : BaseDialog<DialogNoMoreBinding>() {
     override fun setListeners() {
         binding.apply {
             btnAccept.setOnClickListener {
-                activity?.onBackPressed()
+                activity?.finish()
                 dismiss()
             }
         }
