@@ -1,8 +1,6 @@
 package com.mmfsin.musicmaster.utils
 
-//Selector
-const val CATEGORY = "category"
-const val GAME_MODE = "game_mode"
+const val ROOT_ACTIVITY_NAV_GRAPH = "root_nav_graph"
 
 //Firebase
 const val CATEGORIES = "categories"

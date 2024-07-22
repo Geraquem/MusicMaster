@@ -13,10 +13,10 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
+import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
 import com.mmfsin.musicmaster.databinding.FragmentYearMultiplayerBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
-import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.has4digits
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
@@ -58,7 +58,6 @@ class YearMultiplayerFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).inDashboard = true
         categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
     }
 
@@ -117,7 +116,6 @@ class YearMultiplayerFragment :
                     activity?.shouldShowInterstitial(position)
                     setData()
                 } else {
-                    (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
                 }
             }
@@ -145,9 +143,8 @@ class YearMultiplayerFragment :
     }
 
     private fun setToolbar(title: String, fontFamily: Int) {
-        (activity as MainActivity).apply {
-            showBanner(visible = true)
-            setDashboardToolbar(title, fontFamily)
+        (activity as BedRockActivity).apply {
+            setUpToolbar(title, fontFamily)
         }
     }
 
@@ -291,10 +288,7 @@ class YearMultiplayerFragment :
         }
     }
 
-    private fun error() {
-        (activity as MainActivity).inDashboard = false
-        activity?.showErrorDialog()
-    }
+    private fun error() = activity?.showErrorDialog()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

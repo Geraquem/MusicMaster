@@ -9,10 +9,10 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
+import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
 import com.mmfsin.musicmaster.databinding.FragmentTitleBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
-import com.mmfsin.musicmaster.presentation.MainActivity
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.pauseSeekbar
 import com.mmfsin.musicmaster.presentation.dashboard.playSeekbar
@@ -63,7 +63,6 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { youtubePlayerView = YouTubePlayerView(it) }
-        (activity as MainActivity).inDashboard = true
         categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
     }
 
@@ -114,7 +113,6 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                     activity?.shouldShowInterstitial(position)
                     setData()
                 } else {
-                    (activity as MainActivity).inDashboard = false
                     activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
                 }
             }
@@ -142,9 +140,8 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     }
 
     private fun setToolbar(title: String, fontFamily: Int) {
-        (activity as MainActivity).apply {
-            showBanner(visible = true)
-            setDashboardToolbar(title, fontFamily)
+        (activity as BedRockActivity).apply {
+            setUpToolbar(title, fontFamily)
         }
     }
 
@@ -220,10 +217,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
         }
     }
 
-    private fun error() {
-        (activity as MainActivity).inDashboard = false
-        activity?.showErrorDialog()
-    }
+    private fun error() = activity?.showErrorDialog()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

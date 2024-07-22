@@ -53,10 +53,11 @@
     <!-- NO MORE QUESTIONS -->
     <string name="no_more_title">Has acabado con todo</string>
     <string name="no_more_description">De momento no hay más canciones</string>
-    <string name="no_more_btn">Salir</string>
+    <string name="no_more_btn">Cerrar</string>
 
     <!-- EXIT -->
     <string name="exit_title">¿Seguro que quieres salir?</string>
+    <string name="exit_description">Perderás todo el progreso de la partida</string>
     <string name="exit_yes">Salir</string>
     <string name="exit_no">Quedarme</string>
 

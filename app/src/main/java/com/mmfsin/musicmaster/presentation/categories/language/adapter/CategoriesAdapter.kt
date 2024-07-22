@@ -33,14 +33,14 @@ class CategoriesAdapter(
                 tvTitle.typeface = getFont(c, category.id.getFontFamily())
                 tvDescription.text = category.description
 
-//                val background = clMain.background
-//                if (background is RippleDrawable) {
-//                    val contentDrawable = background.getDrawable(1)
-//                    if (contentDrawable is GradientDrawable) {
-//                        val strokeColorInt = getColor(c, getColorByCategory(category.title))
-//                        contentDrawable.setStroke(2, strokeColorInt)
-//                    }
-//                }
+                val background = clMain.background
+                if (background is RippleDrawable) {
+                    val contentDrawable = background.getDrawable(1)
+                    if (contentDrawable is GradientDrawable) {
+                        val strokeColorInt = getColor(c, getColorByCategory(category.title))
+                        contentDrawable.setStroke(5, strokeColorInt)
+                    }
+                }
             }
         }
     }

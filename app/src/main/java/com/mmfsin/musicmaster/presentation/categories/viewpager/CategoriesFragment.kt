@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
@@ -38,25 +37,16 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).inDashboard = false
         viewModel.getCategories()
     }
 
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
-            setToolbar()
             if ((activity as MainActivity).firstAccessVP) {
                 tabs.root.visibility = View.INVISIBLE
                 tabs.root.animateY(-1000f, 10)
             }
-        }
-    }
-
-    private fun setToolbar() {
-        (activity as MainActivity).apply {
-            showBanner(visible = false)
-            hideMainToolbar()
         }
     }
 
@@ -105,13 +95,15 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     private fun navigateToDashboard(categoryId: String, mode: GameMode) {
         val bundle = Bundle()
         bundle.putString(CATEGORY_ID, categoryId)
-        val navigationId = when (mode) {
-            GUESS_YEAR_SINGLE -> R.id.action_categories_to_year_single
-            GUESS_YEAR_MULTIPLAYER -> R.id.action_categories_to_year_multiplayer
-            GUESS_TITLE -> R.id.action_categories_to_title
+        val navGraph = when (mode) {
+            GUESS_YEAR_SINGLE -> R.navigation.nav_graph_year_single
+            GUESS_YEAR_MULTIPLAYER -> R.navigation.nav_graph_year_multiple
+            GUESS_TITLE -> R.navigation.nav_graph_title
         }
-        findNavController().navigate(navigationId, bundle)
+        navigateTo(navGraph)
     }
+
+    private fun navigateTo(navGraph: Int) = (activity as MainActivity).openBedRockActivity(navGraph)
 
     private fun error() = activity?.showErrorDialog()
 

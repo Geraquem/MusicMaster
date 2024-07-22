@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_year_multiple"
+    app:startDestination="@id/yearMultipleFragment">
+
+    <fragment
+        android:id="@+id/yearMultipleFragment"
+        android:name="com.mmfsin.musicmaster.presentation.dashboard.year.multiplayer.YearMultiplayerFragment"
+        android:label="yearMultiple"
+        tools:layout="@layout/fragment_year_multiplayer" />
+
+</navigation>

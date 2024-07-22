@@ -12,6 +12,8 @@
     <color name="light_white">#9AECECEC</color>
     <color name="grey">#7E7E7E</color>
     <color name="soft_grey">#AAAAAA</color>
+    <color name="red_error">#FF9F9F</color>
+    <color name="green">#B1FF94</color>
 
     <color name="splash_background">#BDE1FF</color>
     <color name="background">#EEEEEE</color>
