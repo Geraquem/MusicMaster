@@ -79,16 +79,17 @@ class BedRockActivity : AppCompatActivity() {
             })
     }
 
-    fun showInterstitial(position: Int) {
-        if (position == -1) {
-//        if (position % 2 == 0) {
+    fun showInterstitial(position: Int): Boolean {
+        return if (position != 0 && position % 2 == 0) {
             mInterstitialAd?.let { ad ->
                 ad.show(this)
                 loadInterstitial(AdRequest.Builder().build())
             }
-        }
+            true
+        } else false
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val dialog = ExitDialog { super.onBackPressed() }
         dialog.show(supportFragmentManager, "")

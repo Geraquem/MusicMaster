@@ -109,12 +109,8 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
             btnNext.setOnClickListener {
                 position++
-                if (position < music.size) {
-                    activity?.shouldShowInterstitial(position)
-                    setData()
-                } else {
-                    activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
-                }
+                if (position < music.size) setData()
+                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
             }
         }
     }
@@ -160,6 +156,14 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                 solutionTitle = data.title
                 solution.tvTitle.text = data.title
                 solution.tvArtist.text = data.artist
+
+                val showed = activity?.shouldShowInterstitial(position)
+                if (showed != null && showed) {
+                    youtubePlayerView?.pauseSeekbar()
+                    btnPlay.setImageResource(R.drawable.ic_play)
+                    isPlaying = false
+                }
+
             } catch (e: Exception) {
                 error()
             }

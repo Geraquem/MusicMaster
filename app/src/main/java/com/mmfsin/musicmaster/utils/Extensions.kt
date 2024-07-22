@@ -44,7 +44,7 @@ fun LottieAnimationView.changeLayersColor(@ColorRes colorRes: Int) {
     addValueCallback(keyPath, LottieProperty.COLOR_FILTER, callback)
 }
 
-fun FragmentActivity.shouldShowInterstitial(position: Int) =
+fun FragmentActivity.shouldShowInterstitial(position: Int): Boolean =
     (this as BedRockActivity).showInterstitial(position)
 
 fun countDown(duration: Long, action: () -> Unit) {

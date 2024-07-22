@@ -26,7 +26,6 @@ import com.mmfsin.musicmaster.presentation.models.SolutionType.ALMOST_GOOD
 import com.mmfsin.musicmaster.presentation.models.SolutionType.BAD
 import com.mmfsin.musicmaster.presentation.models.SolutionType.GOOD
 import com.mmfsin.musicmaster.utils.BEDROCK_STR_ARGS
-import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.shouldShowInterstitial
@@ -113,12 +112,8 @@ class YearMultiplayerFragment :
 
             btnNext.setOnClickListener {
                 position++
-                if (position < music.size) {
-                    activity?.shouldShowInterstitial(position)
-                    setData()
-                } else {
-                    activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
-                }
+                if (position < music.size) setData()
+                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
             }
         }
     }
@@ -169,6 +164,10 @@ class YearMultiplayerFragment :
                 setGroupImage(data.image)
                 solutionYear = data.year
                 solution.tvCorrectYear.text = data.year.toString()
+
+                val showed = activity?.shouldShowInterstitial(position)
+                if (showed != null && showed) youtubePlayerView.pauseVideo()
+
             } catch (e: Exception) {
                 error()
             }
