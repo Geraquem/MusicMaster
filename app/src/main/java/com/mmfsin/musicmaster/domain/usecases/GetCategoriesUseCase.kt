@@ -10,7 +10,6 @@ class GetCategoriesUseCase @Inject constructor(private val repository: ICategory
 
     override suspend fun execute(): List<Category> {
         val categories = repository.getCategoriesFromRealm()
-//        return categories.ifEmpty { repository.getCategoriesFromFirebase() }
-        return repository.getCategoriesFromFirebase()
+        return categories.ifEmpty { repository.getCategoriesFromFirebase() }
     }
 }
