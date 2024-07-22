@@ -18,7 +18,6 @@ import com.mmfsin.musicmaster.presentation.models.GameMode
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
-import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.animateY
 import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.showErrorDialog
@@ -93,17 +92,16 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     }
 
     private fun navigateToDashboard(categoryId: String, mode: GameMode) {
-        val bundle = Bundle()
-        bundle.putString(CATEGORY_ID, categoryId)
         val navGraph = when (mode) {
             GUESS_YEAR_SINGLE -> R.navigation.nav_graph_year_single
             GUESS_YEAR_MULTIPLAYER -> R.navigation.nav_graph_year_multiple
             GUESS_TITLE -> R.navigation.nav_graph_title
         }
-        navigateTo(navGraph)
+        navigateTo(navGraph, categoryId)
     }
 
-    private fun navigateTo(navGraph: Int) = (activity as MainActivity).openBedRockActivity(navGraph)
+    private fun navigateTo(navGraph: Int, categoryId: String) =
+        (activity as MainActivity).openBedRockActivity(navGraph, categoryId)
 
     private fun error() = activity?.showErrorDialog()
 

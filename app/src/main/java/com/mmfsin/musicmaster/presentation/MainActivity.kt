@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
 import com.mmfsin.musicmaster.databinding.ActivityMainBinding
+import com.mmfsin.musicmaster.utils.BEDROCK_STR_ARGS
 import com.mmfsin.musicmaster.utils.ROOT_ACTIVITY_NAV_GRAPH
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +36,9 @@ class MainActivity : AppCompatActivity() {
         controller.isAppearanceLightStatusBars = true
     }
 
-    fun openBedRockActivity(navGraph: Int) {
+    fun openBedRockActivity(navGraph: Int, strArgs: String) {
         val intent = Intent(this, BedRockActivity::class.java)
+        intent.putExtra(BEDROCK_STR_ARGS, strArgs)
         intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, navGraph)
         startActivity(intent)
     }

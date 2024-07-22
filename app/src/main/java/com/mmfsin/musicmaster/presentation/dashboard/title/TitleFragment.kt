@@ -21,7 +21,7 @@ import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.ALMOST_GOOD
 import com.mmfsin.musicmaster.presentation.models.SolutionType.BAD
 import com.mmfsin.musicmaster.presentation.models.SolutionType.GOOD
-import com.mmfsin.musicmaster.utils.CATEGORY_ID
+import com.mmfsin.musicmaster.utils.BEDROCK_STR_ARGS
 import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.shouldShowInterstitial
@@ -57,7 +57,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     ) = FragmentTitleBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
-        arguments?.let { categoryId = it.getString(CATEGORY_ID) }
+        categoryId = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
