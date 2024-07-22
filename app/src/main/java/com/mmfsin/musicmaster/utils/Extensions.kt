@@ -14,6 +14,7 @@ import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.SimpleColorFilter
 import com.airbnb.lottie.model.KeyPath
 import com.airbnb.lottie.value.LottieValueCallback
+import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
 import com.mmfsin.musicmaster.base.dialog.ErrorDialog
 import com.mmfsin.musicmaster.presentation.MainActivity
 
@@ -44,7 +45,7 @@ fun LottieAnimationView.changeLayersColor(@ColorRes colorRes: Int) {
 }
 
 fun FragmentActivity.shouldShowInterstitial(position: Int) =
-    (this as MainActivity).showInterstitial(position)
+    (this as BedRockActivity).showInterstitial(position)
 
 fun countDown(duration: Long, action: () -> Unit) {
     object : CountDownTimer(duration, 1000) {
