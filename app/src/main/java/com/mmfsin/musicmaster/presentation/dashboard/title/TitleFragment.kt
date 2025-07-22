@@ -31,6 +31,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -44,8 +45,10 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     private var isPlaying = true
 
+    private var youTubePlayerInstance: YouTubePlayer? = null
     private lateinit var youTubePlayerTracker: YouTubePlayerTracker
     private var isUserSeeking = false
+    private var seekBarUpdateJob: Job? = null
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
@@ -181,8 +184,15 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     private fun handleMusic(videoUrl: String) {
         binding.apply {
+            if (youTubePlayerInstance != null) {
+                youTubePlayerInstance?.loadVideo(videoUrl, 0f)
+                return
+            }
+
             youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayerInstance = youTubePlayer
+
                     youTubePlayerTracker = YouTubePlayerTracker()
                     youTubePlayer.addListener(youTubePlayerTracker)
                     youTubePlayer.loadVideo(videoUrl, 0f)
@@ -195,6 +205,9 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     private fun setupSeekBar(youTubePlayer: YouTubePlayer) {
         val seekBar = binding.youtubePlayerSeekbar
+
+        seekBar.setOnSeekBarChangeListener(null)
+
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
@@ -214,8 +227,11 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             }
         })
 
-        // Hilo que actualiza el SeekBar cada 500ms
-        lifecycleScope.launch {
+        //Cancelo anterior
+        seekBarUpdateJob?.cancel()
+
+        // Lanzar nueva corutina
+        seekBarUpdateJob = lifecycleScope.launch {
             while (true) {
                 delay(500)
                 if (!isUserSeeking && this@TitleFragment::youTubePlayerTracker.isInitialized) {
@@ -303,6 +319,9 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
             btnPlay.setImageResource(R.drawable.ic_play)
             youtubePlayerView.pauseSeekbar()
         }
+
+        seekBarUpdateJob?.cancel()
+        seekBarUpdateJob = null
         super.onDestroy()
     }
 }

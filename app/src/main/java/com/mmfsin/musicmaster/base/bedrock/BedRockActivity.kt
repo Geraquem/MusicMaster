@@ -98,7 +98,7 @@ class BedRockActivity : AppCompatActivity() {
     }
 
     fun showInterstitial(position: Int): Boolean {
-        return if (position != 0 && position % 3 == 0) {
+        return if (position != 0 && position % 15 == 0) {
             mInterstitialAd?.let { ad ->
                 ad.show(this)
                 loadInterstitial(AdRequest.Builder().build())
