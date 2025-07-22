@@ -14,10 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="SplashScreenTheme" parent="Theme.MusicMaster">
-        <item name="android:windowBackground">@color/splash_background</item>
-    </style>
-
     <style name="category_tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/text</item>
         <item name="android:textStyle">bold</item>

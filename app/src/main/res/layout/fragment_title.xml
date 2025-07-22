@@ -51,14 +51,22 @@
                 android:contentDescription="@string/content_description"
                 android:src="@drawable/ic_pause" />
 
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar
+            <SeekBar
                 android:id="@+id/youtubePlayerSeekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:showFullScreenButton="false" />
+                android:progressBackgroundTint="@color/white"
+                android:progressTint="@color/red"
+                android:thumbTint="@color/red" />
 
         </LinearLayout>
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtubePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_title"
@@ -105,8 +113,8 @@
         layout="@layout/include_solution_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginTop="12dp"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
         app:layout_constraintTop_toBottomOf="@id/ll_main"

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
@@ -16,7 +18,6 @@ import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.pauseSeekbar
 import com.mmfsin.musicmaster.presentation.dashboard.playSeekbar
-import com.mmfsin.musicmaster.presentation.dashboard.playYoutubeSeekBar
 import com.mmfsin.musicmaster.presentation.models.SolutionType
 import com.mmfsin.musicmaster.presentation.models.SolutionType.ALMOST_GOOD
 import com.mmfsin.musicmaster.presentation.models.SolutionType.BAD
@@ -26,8 +27,12 @@ import com.mmfsin.musicmaster.utils.closeKeyboard
 import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.shouldShowInterstitial
 import com.mmfsin.musicmaster.utils.showErrorDialog
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
@@ -37,8 +42,10 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     private var categoryId: String? = null
 
-    private var youtubePlayerView: YouTubePlayerView? = null
     private var isPlaying = true
+
+    private lateinit var youTubePlayerTracker: YouTubePlayerTracker
+    private var isUserSeeking = false
 
     private lateinit var goodPhrases: List<String>
     private lateinit var almostPhrases: List<String>
@@ -62,7 +69,6 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.let { youtubePlayerView = YouTubePlayerView(it) }
         categoryId?.let { viewModel.getCategory(it) } ?: run { error() }
     }
 
@@ -83,10 +89,10 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
         binding.apply {
             btnPlay.setOnClickListener {
                 if (isPlaying) {
-                    youtubePlayerView?.pauseSeekbar()
+                    youtubePlayerView.pauseSeekbar()
                     btnPlay.setImageResource(R.drawable.ic_play)
                 } else {
-                    youtubePlayerView?.playSeekbar()
+                    youtubePlayerView.playSeekbar()
                     btnPlay.setImageResource(R.drawable.ic_pause)
                 }
                 isPlaying = !isPlaying
@@ -151,21 +157,75 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
                 etTitle.text = null
                 etTitle.isEnabled = true
                 btnCheck.isEnabled = true
+
                 val data = music[position]
-                youtubePlayerView?.playYoutubeSeekBar(data.videoUrl, binding.youtubePlayerSeekbar)
+//                youtubePlayerView?.playYoutubeSeekBar(data.videoUrl, binding.youtubePlayerSeekbar)
+                handleMusic(data.videoUrl)
+
                 solutionTitle = data.title
                 solution.tvTitle.text = data.title
                 solution.tvArtist.text = data.artist
 
                 val showed = activity?.shouldShowInterstitial(position)
                 if (showed != null && showed) {
-                    youtubePlayerView?.pauseSeekbar()
+                    youtubePlayerView.pauseSeekbar()
                     btnPlay.setImageResource(R.drawable.ic_play)
                     isPlaying = false
                 }
 
             } catch (e: Exception) {
                 error()
+            }
+        }
+    }
+
+    private fun handleMusic(videoUrl: String) {
+        binding.apply {
+            youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayerTracker = YouTubePlayerTracker()
+                    youTubePlayer.addListener(youTubePlayerTracker)
+                    youTubePlayer.loadVideo(videoUrl, 0f)
+
+                    setupSeekBar(youTubePlayer)
+                }
+            })
+        }
+    }
+
+    private fun setupSeekBar(youTubePlayer: YouTubePlayer) {
+        val seekBar = binding.youtubePlayerSeekbar
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    isUserSeeking = true
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                isUserSeeking = true
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                isUserSeeking = false
+                val videoDuration = youTubePlayerTracker.videoDuration
+                val seekTo = (seekBar?.progress ?: 0) * videoDuration / 100
+                youTubePlayer.seekTo(seekTo)
+            }
+        })
+
+        // Hilo que actualiza el SeekBar cada 500ms
+        lifecycleScope.launch {
+            while (true) {
+                delay(500)
+                if (!isUserSeeking && this@TitleFragment::youTubePlayerTracker.isInitialized) {
+                    val current = youTubePlayerTracker.currentSecond
+                    val duration = youTubePlayerTracker.videoDuration
+                    if (duration > 0) {
+                        val progress = (current * 100 / duration).toInt()
+                        seekBar.progress = progress
+                    }
+                }
             }
         }
     }
@@ -230,15 +290,19 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     override fun onStop() {
         isPlaying = false
-        binding.btnPlay.setImageResource(R.drawable.ic_play)
-        youtubePlayerView?.pauseSeekbar()
+        binding.apply {
+            btnPlay.setImageResource(R.drawable.ic_play)
+            youtubePlayerView.pauseSeekbar()
+        }
         super.onStop()
     }
 
     override fun onDestroy() {
         isPlaying = false
-        binding.btnPlay.setImageResource(R.drawable.ic_play)
-        youtubePlayerView?.pauseSeekbar()
+        binding.apply {
+            btnPlay.setImageResource(R.drawable.ic_play)
+            youtubePlayerView.pauseSeekbar()
+        }
         super.onDestroy()
     }
 }

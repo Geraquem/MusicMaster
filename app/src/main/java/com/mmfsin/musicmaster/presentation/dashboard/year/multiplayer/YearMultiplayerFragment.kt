@@ -166,7 +166,9 @@ class YearMultiplayerFragment :
                 solution.tvCorrectYear.text = data.year.toString()
 
                 val showed = activity?.shouldShowInterstitial(position)
-                if (showed != null && showed) youtubePlayerView.pauseVideo()
+                if (showed != null && showed) {
+                    countDown(1500) { youtubePlayerView.pauseVideo() }
+                }
 
             } catch (e: Exception) {
                 error()

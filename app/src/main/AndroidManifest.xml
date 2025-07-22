@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/SplashScreenTheme">
+        android:theme="@style/Theme.MusicMaster.Splash">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -20,14 +20,15 @@
             android:name=".base.bedrock.BedRockActivity"
             android:exported="true"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.MusicMaster"
             android:windowSoftInputMode="stateHidden|adjustPan"
             tools:ignore="LockedOrientationActivity" />
-        
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashScreenTheme"
+            android:theme="@style/Theme.MusicMaster"
             android:windowSoftInputMode="stateHidden|adjustPan"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>

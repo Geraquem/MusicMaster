@@ -13,6 +13,7 @@
     <color name="grey">#7E7E7E</color>
     <color name="soft_grey">#AAAAAA</color>
     <color name="red_error">#FFB6B6</color>
+    <color name="red">#FF0000</color>
     <color name="green">#B1FF94</color>
 
     <color name="splash_background">#BDE1FF</color>

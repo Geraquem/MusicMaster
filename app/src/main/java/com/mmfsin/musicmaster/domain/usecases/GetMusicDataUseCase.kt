@@ -22,6 +22,10 @@ class GetMusicDataUseCase @Inject constructor(private val repository: IMusicRepo
                 randomList = musicList.shuffled()
             }
             randomList
+
+            /** delete this */
+//            randomList.filter { it.title.contains("Oops") }
+
         } catch (e: Exception) {
             musicList.shuffled()
         }
