@@ -9,8 +9,9 @@ import com.mmfsin.musicmaster.domain.interfaces.ICategoryRepository
 import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
 import com.mmfsin.musicmaster.domain.models.Category
 import com.mmfsin.musicmaster.utils.CATEGORIES
+import com.mmfsin.musicmaster.utils.CATEGORY_ID
 import com.mmfsin.musicmaster.utils.LANGUAGE
-import io.realm.kotlin.where
+import io.realm.kotlin.ext.query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
@@ -22,21 +23,16 @@ class CategoryRepository @Inject constructor(
 
     private val reference = Firebase.database.reference.child(CATEGORIES)
 
-    override fun getCategoriesFromRealm(): List<Category> {
-        return realmDatabase.getObjectsFromRealm { where<CategoryDTO>().findAll() }.toCategoryList()
-    }
+    override fun getCategoriesFromRealm(): List<Category> =
+        realmDatabase.getObjectsFromRealm { query<CategoryDTO>().find() }.toCategoryList()
 
-    override fun getCategoryById(id: String): Category? {
-        val categories =
-            realmDatabase.getObjectsFromRealm { where<CategoryDTO>().equalTo("id", id).findAll() }
-        return if (categories.isEmpty()) null else categories.first().toCategory()
-    }
+    override fun getCategoryById(id: String): Category? =
+        realmDatabase.getObjectFromRealm(CategoryDTO::class, CATEGORY_ID, id)?.toCategory()
 
-    override fun getCategoriesByLanguage(language: String): List<Category> {
-        return realmDatabase.getObjectsFromRealm {
-            where<CategoryDTO>().equalTo(LANGUAGE, language).findAll()
-        }.sortedBy { it.order }.toCategoryList()
-    }
+    override fun getCategoriesByLanguage(language: String): List<Category> =
+        realmDatabase.getObjectsFromRealm {
+            query<CategoryDTO>("$LANGUAGE == $0", language).find()
+        }.toCategoryList()
 
     override suspend fun getCategoriesFromFirebase(): List<Category> {
         val latch = CountDownLatch(1)
