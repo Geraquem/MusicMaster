@@ -14,6 +14,7 @@ import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
 import com.mmfsin.musicmaster.domain.models.Order.NEWER
 import com.mmfsin.musicmaster.domain.models.Order.OLDER
+import com.mmfsin.musicmaster.domain.models.OrderResponse
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
@@ -55,6 +56,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
+            tvYearToGuess.text = "$yearToGuess"
             tvStreak.text = "$streak"
         }
     }
@@ -120,12 +122,17 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
         }
     }
 
-    private fun checkSolution(solution: Boolean) {
-        if (solution) {
-            streak++
-            binding.tvStreak.text = "$streak"
+    private fun checkSolution(solution: OrderResponse) {
+        if (solution.sameYear == true) {
+
+
         } else {
-            streak = 0
+            if (solution.isCorrect == true) {
+                streak++
+                binding.tvStreak.text = "$streak"
+            } else {
+                streak = 0
+            }
         }
 
         position++

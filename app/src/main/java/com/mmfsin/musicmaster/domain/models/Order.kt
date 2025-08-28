@@ -4,3 +4,8 @@ enum class Order {
     OLDER,
     NEWER
 }
+
+data class OrderResponse(
+    val isCorrect: Boolean? = null,
+    val sameYear: Boolean? = null,
+)
