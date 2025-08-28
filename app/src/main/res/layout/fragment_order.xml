@@ -37,6 +37,7 @@
             android:id="@+id/ll_music"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -111,10 +112,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center"
                 android:text="@string/order_text"
                 android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/tv_year_to_guess"
+                style="@style/BigTextView_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                tools:text="2000" />
 
         </LinearLayout>
 
@@ -133,58 +144,88 @@
                 app:layout_constraintGuide_percent="0.5" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_white_box"
-                android:elevation="4dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/SmallTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/order_year"
-                    android:textAllCaps="true" />
-
-                <TextView
-                    android:id="@+id/tv_year_to_guess"
-                    style="@style/MediumTextView_Bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textAllCaps="true"
-                    tools:text="2000" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/ll_older"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/click_effect"
-                android:backgroundTint="@color/red"
+                android:background="@drawable/click_effect_older"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/gl_medium"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/content_description"
+                    android:scaleX="-1"
+                    android:src="@drawable/ic_simple_arrow" />
+
+                <TextView
+                    style="@style/MediumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/order_older"
+                    android:textAllCaps="true" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_newer"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/click_effect"
-                android:backgroundTint="@color/green"
+                android:background="@drawable/click_effect_newer"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/gl_medium"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/content_description"
+                    android:src="@drawable/ic_simple_arrow" />
+
+                <TextView
+                    style="@style/MediumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/order_newer"
+                    android:textAllCaps="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_same_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_order_same_year"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                    style="@style/MediumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/order_same_year"
+                    android:textAllCaps="true" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

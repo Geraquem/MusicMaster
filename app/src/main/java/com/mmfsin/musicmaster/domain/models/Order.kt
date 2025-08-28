@@ -1,11 +1,13 @@
 package com.mmfsin.musicmaster.domain.models
 
-enum class Order {
+enum class OrderSelected {
     OLDER,
-    NEWER
+    NEWER,
+    SAME_YEAR
 }
 
-data class OrderResponse(
-    val isCorrect: Boolean? = null,
-    val sameYear: Boolean? = null,
-)
+enum class OrderSolution {
+    GOOD,
+    BAD,
+    SAME_YEAR
+}

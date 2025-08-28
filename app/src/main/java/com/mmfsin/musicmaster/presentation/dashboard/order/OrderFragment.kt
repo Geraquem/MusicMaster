@@ -5,23 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColorStateList
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.mmfsin.musicmaster.R
 import com.mmfsin.musicmaster.base.BaseFragment
 import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
 import com.mmfsin.musicmaster.databinding.FragmentOrderBinding
 import com.mmfsin.musicmaster.domain.mappers.getFontFamily
 import com.mmfsin.musicmaster.domain.models.Music
-import com.mmfsin.musicmaster.domain.models.Order.NEWER
-import com.mmfsin.musicmaster.domain.models.Order.OLDER
-import com.mmfsin.musicmaster.domain.models.OrderResponse
+import com.mmfsin.musicmaster.domain.models.OrderSelected
+import com.mmfsin.musicmaster.domain.models.OrderSelected.NEWER
+import com.mmfsin.musicmaster.domain.models.OrderSelected.OLDER
+import com.mmfsin.musicmaster.domain.models.OrderSelected.SAME_YEAR
+import com.mmfsin.musicmaster.domain.models.OrderSolution
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
+import com.mmfsin.musicmaster.presentation.dashboard.order.dialogs.LoserDialog
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
 import com.mmfsin.musicmaster.presentation.dashboard.playVideo
 import com.mmfsin.musicmaster.utils.BEDROCK_STR_ARGS
 import com.mmfsin.musicmaster.utils.countDown
 import com.mmfsin.musicmaster.utils.shouldShowInterstitial
 import com.mmfsin.musicmaster.utils.showErrorDialog
+import com.mmfsin.musicmaster.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,10 +70,14 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
 
     override fun setListeners() {
         binding.apply {
-            llOlder.setOnClickListener { viewModel.response(yearToGuess, actualYear, OLDER) }
-            llNewer.setOnClickListener { viewModel.response(yearToGuess, actualYear, NEWER) }
+            llOlder.setOnClickListener { guess(OLDER) }
+            llNewer.setOnClickListener { guess(NEWER) }
+            llSameYear.setOnClickListener { guess(SAME_YEAR) }
         }
     }
+
+    private fun guess(selected: OrderSelected) =
+        viewModel.response(selected, yearToGuess, actualYear)
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
@@ -122,22 +132,84 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
         }
     }
 
-    private fun checkSolution(solution: OrderResponse) {
-        if (solution.sameYear == true) {
+    private fun checkSolution(solution: Pair<OrderSelected, OrderSolution>) {
+        binding.apply {
+            val goodColor = getColorStateList(mContext, R.color.good_result)
+            val almostColor = getColorStateList(mContext, R.color.almost_good_result)
+            val badColor = getColorStateList(mContext, R.color.bad_result)
 
+            when (solution.second) {
+                OrderSolution.GOOD -> {
+                    when (solution.first) {
+                        OLDER -> llOlder.backgroundTintList = goodColor
+                        NEWER -> llNewer.backgroundTintList = goodColor
+                        SAME_YEAR -> llSameYear.backgroundTintList = goodColor
+                    }
+                    streak++
+                    tvStreak.text = "$streak"
+                    nextSong()
+                }
 
-        } else {
-            if (solution.isCorrect == true) {
-                streak++
-                binding.tvStreak.text = "$streak"
-            } else {
-                streak = 0
+                OrderSolution.BAD -> {
+                    when (solution.first) {
+                        OLDER -> llOlder.backgroundTintList = badColor
+                        NEWER -> llNewer.backgroundTintList = badColor
+                        SAME_YEAR -> llSameYear.backgroundTintList = badColor
+                    }
+                    looseGame()
+                }
+
+                OrderSolution.SAME_YEAR -> {
+                    llSameYear.backgroundTintList = almostColor
+                    nextSong()
+                }
             }
         }
+    }
 
-        position++
-        if (position < music.size) setData()
-        else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+    private fun nextSong() {
+        binding.apply {
+            countDown(1000) {
+                llOlder.backgroundTintList = null
+                llNewer.backgroundTintList = null
+                llSameYear.backgroundTintList = null
+                yearToGuess = actualYear
+                tvYearToGuess.text = "$yearToGuess"
+
+                position++
+                if (position < music.size) setData()
+                else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
+            }
+        }
+    }
+
+    private fun looseGame() {
+        binding.apply {
+            countDown(1000) {
+                activity?.let {
+                    it.showFragmentDialog(
+                        LoserDialog(
+                            restart = {
+                                music = emptyList()
+                                position = 0
+                                yearToGuess = 2000
+                                streak = 0
+
+                                llOlder.backgroundTintList = null
+                                llNewer.backgroundTintList = null
+                                llSameYear.backgroundTintList = null
+
+                                tvYearToGuess.text = "$yearToGuess"
+                                tvStreak.text = "$streak"
+
+                                categoryId?.let { id -> viewModel.getCategory(id) }
+                                    ?: run { error() }
+                            },
+                            exit = { it.finish() })
+                    )
+                }
+            }
+        }
     }
 
     private fun error() = activity?.showErrorDialog()

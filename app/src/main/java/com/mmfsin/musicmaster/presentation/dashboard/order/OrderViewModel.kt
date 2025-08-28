@@ -1,7 +1,7 @@
 package com.mmfsin.musicmaster.presentation.dashboard.order
 
 import com.mmfsin.musicmaster.base.BaseViewModel
-import com.mmfsin.musicmaster.domain.models.Order
+import com.mmfsin.musicmaster.domain.models.OrderSelected
 import com.mmfsin.musicmaster.domain.usecases.CheckOrderSolutionUseCase
 import com.mmfsin.musicmaster.domain.usecases.GetCategoryByIdUseCase
 import com.mmfsin.musicmaster.domain.usecases.GetMusicDataUseCase
@@ -37,11 +37,11 @@ class OrderViewModel @Inject constructor(
         )
     }
 
-    fun response(yearToGuess: Long, actualYear: Long, older: Order) {
+    fun response(selected: OrderSelected, yearToGuess: Long, actualYear: Long) {
         executeUseCase(
             {
                 checkOrderSolutionUseCase.execute(
-                    CheckOrderSolutionUseCase.Params(yearToGuess, actualYear, older)
+                    CheckOrderSolutionUseCase.Params(selected, yearToGuess, actualYear)
                 )
             },
             { result -> _event.value = OrderEvent.Solution(result) },

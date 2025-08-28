@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
@@ -16,12 +17,14 @@ import com.airbnb.lottie.model.KeyPath
 import com.airbnb.lottie.value.LottieValueCallback
 import com.mmfsin.musicmaster.base.bedrock.BedRockActivity
 import com.mmfsin.musicmaster.base.dialog.ErrorDialog
-import com.mmfsin.musicmaster.presentation.MainActivity
 
 fun FragmentActivity.showErrorDialog() {
     val dialog = ErrorDialog()
     this.let { dialog.show(it.supportFragmentManager, "") }
 }
+
+fun FragmentActivity?.showFragmentDialog(dialog: DialogFragment) =
+    this?.let { dialog.show(it.supportFragmentManager, "") }
 
 fun View.animateY(pos: Float, duration: Long) =
     this.animate().translationY(pos).setDuration(duration)

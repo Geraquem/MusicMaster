@@ -53,9 +53,12 @@
     <string name="multi_team_points">Puntos</string>
     <string name="multi_team_points_abbrev">Pts</string>
 
-    <string name="order_text">¿Es más nueva o más reciente?</string>
+    <string name="order_text">Más antigua o más reciente del</string>
     <string name="order_streak">Racha:</string>
     <string name="order_year">Año</string>
+    <string name="order_older">Más antigua</string>
+    <string name="order_newer">Más reciente</string>
+    <string name="order_same_year">Mismo año</string>
 
     <!-- NO MORE QUESTIONS -->
     <string name="no_more_title">Has acabado con todo</string>
