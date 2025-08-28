@@ -8,7 +8,7 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="soft_white">#E4E4E4</color>
+    <color name="soft_white">#F6F6F6</color>
     <color name="light_white">#9AECECEC</color>
     <color name="grey">#7E7E7E</color>
     <color name="soft_grey">#AAAAAA</color>
@@ -24,6 +24,10 @@
     <color name="good_result">#579550</color>
     <color name="almost_good_result">#CA9C10</color>
     <color name="bad_result">#A30505</color>
+
+    <color name="order_good">#8FDB85</color>
+    <color name="order_almost">#F8CF56</color>
+    <color name="order_bad">#DF6E6E</color>
 
     <color name="color_notification">#AD82D8</color>
 

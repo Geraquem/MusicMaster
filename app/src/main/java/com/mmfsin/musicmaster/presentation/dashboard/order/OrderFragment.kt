@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat.getColorStateList
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -19,6 +20,8 @@ import com.mmfsin.musicmaster.domain.models.OrderSelected.NEWER
 import com.mmfsin.musicmaster.domain.models.OrderSelected.OLDER
 import com.mmfsin.musicmaster.domain.models.OrderSelected.SAME_YEAR
 import com.mmfsin.musicmaster.domain.models.OrderSolution
+import com.mmfsin.musicmaster.domain.models.OrderSolution.BAD
+import com.mmfsin.musicmaster.domain.models.OrderSolution.GOOD
 import com.mmfsin.musicmaster.presentation.dashboard.dialog.NoMoreDialog
 import com.mmfsin.musicmaster.presentation.dashboard.order.dialogs.LoserDialog
 import com.mmfsin.musicmaster.presentation.dashboard.pauseVideo
@@ -40,6 +43,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
 
     private lateinit var music: List<Music>
     private var position = 0
+    private var positionAds = 0
 
     private var yearToGuess: Long = 2000
     private var actualYear: Long = 0
@@ -112,7 +116,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
                 setGroupImage(data.image)
                 actualYear = data.year
 
-                val showed = activity?.shouldShowInterstitial(position)
+                val showed = activity?.shouldShowInterstitial(positionAds)
                 if (showed != null && showed) {
                     countDown(1500) { youtubePlayerView.pauseVideo() }
                 }
@@ -134,37 +138,41 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
 
     private fun checkSolution(solution: Pair<OrderSelected, OrderSolution>) {
         binding.apply {
-            val goodColor = getColorStateList(mContext, R.color.good_result)
-            val almostColor = getColorStateList(mContext, R.color.almost_good_result)
-            val badColor = getColorStateList(mContext, R.color.bad_result)
+            val goodColor = R.color.order_good
+            val almostColor = R.color.order_almost
+            val badColor = R.color.order_bad
 
             when (solution.second) {
-                OrderSolution.GOOD -> {
+                GOOD -> {
                     when (solution.first) {
-                        OLDER -> llOlder.backgroundTintList = goodColor
-                        NEWER -> llNewer.backgroundTintList = goodColor
-                        SAME_YEAR -> llSameYear.backgroundTintList = goodColor
+                        OLDER -> setColor(llOlder, goodColor)
+                        NEWER -> setColor(llNewer, goodColor)
+                        SAME_YEAR -> setColor(llSameYear, goodColor)
                     }
                     streak++
                     tvStreak.text = "$streak"
                     nextSong()
                 }
 
-                OrderSolution.BAD -> {
+                BAD -> {
                     when (solution.first) {
-                        OLDER -> llOlder.backgroundTintList = badColor
-                        NEWER -> llNewer.backgroundTintList = badColor
-                        SAME_YEAR -> llSameYear.backgroundTintList = badColor
+                        OLDER -> setColor(llOlder, badColor)
+                        NEWER -> setColor(llNewer, badColor)
+                        SAME_YEAR -> setColor(llSameYear, badColor)
                     }
-                    looseGame()
+                    looseGame(solution.first)
                 }
 
                 OrderSolution.SAME_YEAR -> {
-                    llSameYear.backgroundTintList = almostColor
+                    setColor(llSameYear, almostColor)
                     nextSong()
                 }
             }
         }
+    }
+
+    private fun setColor(linear: LinearLayout, color: Int) {
+        linear.backgroundTintList = getColorStateList(mContext, color)
     }
 
     private fun nextSong() {
@@ -177,18 +185,23 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
                 tvYearToGuess.text = "$yearToGuess"
 
                 position++
+                positionAds++
                 if (position < music.size) setData()
                 else activity?.let { NoMoreDialog().show(it.supportFragmentManager, "") }
             }
         }
     }
 
-    private fun looseGame() {
+    private fun looseGame(selected: OrderSelected) {
         binding.apply {
             countDown(1000) {
+                binding.youtubePlayerView.pauseVideo()
                 activity?.let {
                     it.showFragmentDialog(
                         LoserDialog(
+                            selected = selected,
+                            songTitle = music[position].title,
+                            yearToGuess = yearToGuess,
                             restart = {
                                 music = emptyList()
                                 position = 0
@@ -205,7 +218,8 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
                                 categoryId?.let { id -> viewModel.getCategory(id) }
                                     ?: run { error() }
                             },
-                            exit = { it.finish() })
+                            exit = { it.finish() }
+                        )
                     )
                 }
             }

@@ -105,7 +105,7 @@
                 android:id="@+id/youtubePlayerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="12dp" />
 
             <TextView
                 style="@style/SmallTextView"
@@ -132,8 +132,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/ll_same_year"
             app:layout_constraintTop_toBottomOf="@id/ll_music">
 
             <androidx.constraintlayout.widget.Guideline
@@ -147,7 +148,9 @@
                 android:id="@+id/ll_older"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/click_effect_older"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/click_effect"
+                android:elevation="6dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -178,7 +181,9 @@
                 android:id="@+id/ll_newer"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/click_effect_newer"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/click_effect"
+                android:elevation="6dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -204,31 +209,31 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_same_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_order_same_year"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
-
-                <TextView
-                    style="@style/MediumTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/order_same_year"
-                    android:textAllCaps="true" />
-
-            </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_same_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/click_effect"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                style="@style/MediumTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/order_same_year"
+                android:textAllCaps="true" />
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -236,18 +241,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_white_box"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="4dp"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right">
+        app:layout_constraintLeft_toLeftOf="@id/gl_left">
 
         <TextView
-            style="@style/MediumTextView"
+            style="@style/BigTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/order_streak"
@@ -255,7 +258,7 @@
 
         <TextView
             android:id="@+id/tv_streak"
-            style="@style/MediumTextView_Bold"
+            style="@style/BigTextView_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

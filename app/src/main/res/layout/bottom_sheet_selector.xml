@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_selector"
+    android:background="@color/soft_white"
     android:clipChildren="false"
     android:clipToPadding="false">
 
@@ -50,7 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp"
+            android:layout_marginHorizontal="16dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical">
@@ -58,26 +59,40 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/click_effect"
-                android:backgroundTint="@color/soft_white"
+                android:backgroundTint="@color/white"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                android:elevation="4dp"
+                android:elevation="6dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tv_year_title"
-                    style="@style/MediumTextView"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/selector_guess_year"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/ic_calendar" />
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selector_guess_year"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_year_description"
                     style="@style/SmallTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,10 +107,7 @@
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_year_description">
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/btn_year_multiple"
@@ -105,6 +117,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="0.47"
                         android:background="@drawable/click_effect"
+                        android:backgroundTint="@color/soft_white"
                         android:elevation="4dp"
                         android:fontFamily="@font/text"
                         android:gravity="center"
@@ -127,6 +140,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="0.47"
                         android:background="@drawable/click_effect"
+                        android:backgroundTint="@color/soft_white"
                         android:elevation="4dp"
                         android:fontFamily="@font/text"
                         android:gravity="center"
@@ -144,23 +158,38 @@
                 android:id="@+id/btn_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/click_effect"
-                android:backgroundTint="@color/soft_white"
+                android:backgroundTint="@color/white"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                android:elevation="4dp"
+                android:elevation="6dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tv_title_title"
-                    style="@style/MediumTextView"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/selector_guess_title"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/ic_pencil" />
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selector_guess_title"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
 
                 <TextView
                     style="@style/SmallTextView"
@@ -176,23 +205,45 @@
                 android:id="@+id/btn_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="42dp"
                 android:background="@drawable/click_effect"
-                android:backgroundTint="@color/soft_white"
+                android:backgroundTint="@color/white"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                android:elevation="4dp"
+                android:elevation="6dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    style="@style/MediumTextView"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/selector_guess_order"
-                    android:textAllCaps="true"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="2dp"
+                        android:contentDescription="@string/content_description"
+                        android:scaleX="-1"
+                        android:src="@drawable/ic_simple_arrow" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="6dp"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/ic_simple_arrow" />
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selector_guess_order"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
 
                 <TextView
                     style="@style/SmallTextView"
@@ -203,6 +254,10 @@
                     android:textColor="@color/grey" />
 
             </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
 
         </LinearLayout>
 

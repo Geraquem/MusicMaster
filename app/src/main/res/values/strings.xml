@@ -24,10 +24,10 @@
     <string name="selector_guess_year_mode_single">Individual</string>
     <string name="selector_guess_year_mode_multiplayer">Por equipos</string>
     <string name="selector_guess_title">EL <b>TÍTULO</b> DE LA CANCIÓN</string>
-    <string name="selector_guess_year_single_description">Modo de juego <b>recomendado</b>. Adivina el año en que las canciones fueron publicadas.</string>
+    <string name="selector_guess_year_single_description">Modo de juego <b>recomendado</b>. Adivina con exactitud el año en que las canciones fueron publicadas.</string>
     <string name="selector_guess_year_multi_description">Igual que el modo de juego anterior pero <b>por equipos</b>. Quien consiga más puntos gana.</string>
     <string name="selector_guess_title_description">A ver cuántos títulos de canciones adivinas correctamente solo escuchando la canción.</string>
-    <string name="selector_guess_order">Más <b>nueva</b> o más <b>antigua</b></string>
+    <string name="selector_guess_order">MÁS <b>ANTIGUA</b> O MÁS <b>RECIENTE</b></string>
     <string name="selector_guess_order_description">Adivina si la canción que está sonando es más reciente o más antigua que la anterior canción que escuchaste.</string>
 
     <!-- DASHBOARD -->
@@ -59,6 +59,11 @@
     <string name="order_older">Más antigua</string>
     <string name="order_newer">Más reciente</string>
     <string name="order_same_year">Mismo año</string>
+    <string name="order_restart">Empezar de nuevo</string>
+    <string name="order_loser_title">Vaya, pues parece que no</string>
+    <string name="order_loser_title_said_older">%s no es más antigua del %s</string>
+    <string name="order_loser_title_said_newer">%s no salió después del %s</string>
+    <string name="order_loser_title_said_same_year">%s no es del %s</string>
 
     <!-- NO MORE QUESTIONS -->
     <string name="no_more_title">Has acabado con todo</string>

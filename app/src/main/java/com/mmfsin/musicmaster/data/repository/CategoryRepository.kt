@@ -33,7 +33,7 @@ class CategoryRepository @Inject constructor(
     override fun getCategoriesByLanguage(language: String): List<Category> =
         realmDatabase.getObjectsFromRealm {
             query<CategoryDTO>("$LANGUAGE == $0", language).find()
-        }.toCategoryList()
+        }.sortedBy { it.order }.toCategoryList()
 
     override suspend fun getCategoriesFromFirebase(): List<Category> {
         val latch = CountDownLatch(1)
