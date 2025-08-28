@@ -15,6 +15,7 @@ import com.mmfsin.musicmaster.presentation.categories.viewpager.adapter.ViewPage
 import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.BSheetSelector
 import com.mmfsin.musicmaster.presentation.categories.viewpager.bottomsheet.interfaces.IBSheetSelectorListener
 import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_ORDER
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
@@ -96,6 +97,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
             GUESS_YEAR_SINGLE -> R.navigation.nav_graph_year_single
             GUESS_YEAR_MULTIPLAYER -> R.navigation.nav_graph_year_multiple
             GUESS_TITLE -> R.navigation.nav_graph_title
+            GUESS_ORDER -> R.navigation.nav_graph_order
         }
         navigateTo(navGraph, categoryId)
     }

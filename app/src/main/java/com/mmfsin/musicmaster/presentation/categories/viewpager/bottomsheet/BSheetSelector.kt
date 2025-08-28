@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mmfsin.musicmaster.databinding.BottomSheetSelectorBinding
 import com.mmfsin.musicmaster.presentation.models.GameMode
+import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_ORDER
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_TITLE
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_MULTIPLAYER
 import com.mmfsin.musicmaster.presentation.models.GameMode.GUESS_YEAR_SINGLE
@@ -35,6 +36,7 @@ class BSheetSelector(val action: (mode: GameMode) -> Unit) : BottomSheetDialogFr
             btnYearSingle.setOnClickListener { modeClicked(GUESS_YEAR_SINGLE) }
             btnYearMultiple.setOnClickListener { modeClicked(GUESS_YEAR_MULTIPLAYER) }
             btnTitle.setOnClickListener { modeClicked(GUESS_TITLE) }
+            btnOrder.setOnClickListener { modeClicked(GUESS_ORDER) }
         }
     }
 

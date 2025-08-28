@@ -24,7 +24,8 @@ class CategoryRepository @Inject constructor(
     private val reference = Firebase.database.reference.child(CATEGORIES)
 
     override fun getCategoriesFromRealm(): List<Category> =
-        realmDatabase.getObjectsFromRealm { query<CategoryDTO>().find() }.toCategoryList()
+        realmDatabase.getObjectsFromRealm { query<CategoryDTO>().find() }.sortedBy { it.order }
+            .toCategoryList()
 
     override fun getCategoryById(id: String): Category? =
         realmDatabase.getObjectFromRealm(CategoryDTO::class, CATEGORY_ID, id)?.toCategory()

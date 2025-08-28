@@ -72,7 +72,7 @@
                     style="@style/MediumTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/selector_guess_year"
                     android:textSize="20sp" />
 
@@ -144,6 +144,7 @@
                 android:id="@+id/btn_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/click_effect"
                 android:backgroundTint="@color/soft_white"
                 android:clipChildren="false"
@@ -157,6 +158,7 @@
                     style="@style/MediumTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/selector_guess_title"
                     android:textSize="20sp" />
 
@@ -165,8 +167,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
                     android:text="@string/selector_guess_title_description"
+                    android:textColor="@color/grey" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="42dp"
+                android:background="@drawable/click_effect"
+                android:backgroundTint="@color/soft_white"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/MediumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/selector_guess_order"
+                    android:textAllCaps="true"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/SmallTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/selector_guess_order_description"
                     android:textColor="@color/grey" />
 
             </LinearLayout>

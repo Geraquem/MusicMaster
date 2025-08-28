@@ -8,10 +8,10 @@
     <string name="error_btn">Aceptar</string>
 
     <!-- ADS -->
-<!--        <string name="banner">ca-app-pub-3940256099942544/6300978111</string>-->
-    <string name="banner">ca-app-pub-4515698012373396/2351444900</string>
-<!--        <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>-->
-    <string name="interstitial">ca-app-pub-4515698012373396/9980090620</string>
+            <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
+<!--    <string name="banner">ca-app-pub-4515698012373396/2351444900</string>-->
+            <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>
+<!--    <string name="interstitial">ca-app-pub-4515698012373396/9980090620</string>-->
 
     <!-- CATEGORIES -->
     <string name="category_vp_title">Canciones en</string>
@@ -20,17 +20,20 @@
 
     <!-- SELECTOR -->
     <string name="selector_wanna_guess">Quiero adivinar</string>
-    <string name="selector_guess_year">EL <b>AÑO</b> DE LA CANCIÓN</string>
+    <string name="selector_guess_year">EL <b>AÑO</b> DE PUBLICACIÓN</string>
     <string name="selector_guess_year_mode_single">Individual</string>
     <string name="selector_guess_year_mode_multiplayer">Por equipos</string>
     <string name="selector_guess_title">EL <b>TÍTULO</b> DE LA CANCIÓN</string>
     <string name="selector_guess_year_single_description">Modo de juego <b>recomendado</b>. Adivina el año en que las canciones fueron publicadas.</string>
     <string name="selector_guess_year_multi_description">Igual que el modo de juego anterior pero <b>por equipos</b>. Quien consiga más puntos gana.</string>
     <string name="selector_guess_title_description">A ver cuántos títulos de canciones adivinas correctamente solo escuchando la canción.</string>
+    <string name="selector_guess_order">Más <b>nueva</b> o más <b>antigua</b></string>
+    <string name="selector_guess_order_description">Adivina si la canción que está sonando es más reciente o más antigua que la anterior canción que escuchaste.</string>
 
     <!-- DASHBOARD -->
     <string name="dashboard_what_year">¿De qué año es esta canción?</string>
     <string name="dashboard_what_title">¿Cómo se llama esta canción?</string>
+    <string name="dashboard_what_title_example">We will rock y…</string>
     <string name="dashboard_what_title_hint">Escribe aquí…</string>
     <string name="dashboard_check">Comprobar</string>
     <string name="dashboard_year_result">La canción es del</string>
@@ -49,6 +52,9 @@
     <string name="multi_team_point">Punto</string>
     <string name="multi_team_points">Puntos</string>
     <string name="multi_team_points_abbrev">Pts</string>
+
+    <string name="order_text">¿Es más nueva o más reciente?</string>
+    <string name="order_streak">Racha:</string>
 
     <!-- NO MORE QUESTIONS -->
     <string name="no_more_title">Has acabado con todo</string>
