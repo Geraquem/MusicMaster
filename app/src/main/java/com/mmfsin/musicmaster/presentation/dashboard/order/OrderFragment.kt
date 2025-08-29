@@ -80,8 +80,18 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
         }
     }
 
-    private fun guess(selected: OrderSelected) =
+    private fun guess(selected: OrderSelected) {
+        switchEnableButtons(enable = false)
         viewModel.response(selected, yearToGuess, actualYear)
+    }
+
+    private fun switchEnableButtons(enable: Boolean) {
+        binding.apply {
+            llOlder.isEnabled = enable
+            llNewer.isEnabled = enable
+            llSameYear.isEnabled = enable
+        }
+    }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
@@ -115,6 +125,8 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>() {
                 youtubePlayerView.playVideo(data.videoUrl)
                 setGroupImage(data.image)
                 actualYear = data.year
+
+                switchEnableButtons(enable = true)
 
                 val showed = activity?.shouldShowInterstitial(positionAds)
                 if (showed != null && showed) {

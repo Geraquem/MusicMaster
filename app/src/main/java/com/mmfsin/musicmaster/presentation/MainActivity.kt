@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     var firstAccessRV = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Thread.sleep(200)
         setTheme(R.style.Theme_MusicMaster)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
