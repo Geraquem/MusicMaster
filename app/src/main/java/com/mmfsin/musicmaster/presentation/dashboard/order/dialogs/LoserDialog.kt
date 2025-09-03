@@ -14,8 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoserDialog(
     val selected: OrderSelected,
-    val songTitle: String,
-    val yearToGuess: Long,
+    private val songTitle: String,
+    private val yearToGuess: Long,
     val restart: () -> Unit,
     val exit: () -> Unit
 ) : BaseDialog<DialogOrderLoserBinding>() {
