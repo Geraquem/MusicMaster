@@ -3,10 +3,13 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     id("kotlin-parcelize")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+//    id("com.google.dagger.hilt.android")
+//    id("kotlin-kapt")
     id("io.realm.kotlin")
     id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -62,7 +65,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.0")
 
     // Youtube
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
 
     // Firebase + Realm
     implementation("io.reactivex.rxjava2:rxjava:2.1.8")
@@ -84,8 +87,11 @@ dependencies {
     implementation("io.realm.kotlin:library-base:3.0.0")
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:2.47")
-    kapt("com.google.dagger:hilt-compiler:2.47")
+//    implementation("com.google.dagger:hilt-android:2.47")
+//    kapt("com.google.dagger:hilt-compiler:2.47")
+    implementation(libs.hilt.android)
+//    implementation(libs.hilt.navigation)
+    ksp(libs.hilt.compiler)
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
